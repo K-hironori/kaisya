@@ -1,0 +1,33 @@
+{
+  "name": "line",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/K-hironori/LINE.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/K-hironori/LINE/issues"
+  },
+  "homepage": "https://github.com/K-hironori/LINE#readme",
+  "description": "",
+  "dependencies": {
+    "@heroicons/react": "^2.2.0",
+    "@types/node": "^24.0.4",
+    "@types/react": "^19.1.8",
+    "next": "^15.3.4",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "tailwindcss": "^4.1.10",
+    "typescript": "^5.8.3"
+  }
+}
