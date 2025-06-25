@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公式LINE構築まるっと代行サービス</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'line-green': '#06C755',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="min-h-screen bg-gray-50">
+        <!-- Hero Section -->
+        <section class="relative bg-gradient-to-br from-[#06C755] to-green-600 text-white overflow-hidden">
+            <div class="absolute inset-0 bg-black/20"></div>
+            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                            "友だち登録"が売上に変わる
+                            <br />
+                            <span class="text-yellow-300">公式LINE構築はプロにまかせよう！</span>
+                        </h1>
+                        <p class="text-xl md:text-2xl mb-8 text-green-100">
+                            開封率90%超、リピート率3倍アップ。<br />
+                            あなたのビジネスを加速させる公式LINE運用を完全代行
+                        </p>
+                        <button class="bg-white text-[#06C755] px-8 py-4 rounded-full text-lg font-bold hover:bg-gray-100 transition-colors shadow-lg">
+                            無料オンライン相談を予約する
+                        </button>
+                    </div>
+                    <div class="hidden lg:block">
+                        <img 
+                            src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop"
+                            alt="スマートフォンでLINEを操作している様子"
+                            class="rounded-2xl shadow-2xl"
+                        />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 課題提起 -->
+        <section class="py-16 bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                        こんなお悩み、ありませんか？
+                    </h2>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="text-center p-6 bg-red-50 rounded-2xl">
+                        <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl">😰</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">友だちは増えたのに売上につながらない</h3>
+                        <p class="text-gray-600">せっかく登録してもらっても、配信しても反応がない...</p>
+                    </div>
+                    <div class="text-center p-6 bg-orange-50 rounded-2xl">
+                        <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl">🤔</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">何を配信すればいいか分からない</h3>
+                        <p class="text-gray-600">シナリオ設計やコンテンツ作成に時間が取られる...</p>
+                    </div>
+                    <div class="text-center p-6 bg-blue-50 rounded-2xl">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl">📱</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">機能が多すぎて使いこなせない</h3>
+                        <p class="text-gray-600">リッチメニューやチャットボットの設定が複雑すぎる...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- お問い合わせフォーム -->
+        <section class="py-16 bg-gradient-to-br from-[#06C755] to-green-600 text-white">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    今すぐ始めて、売上を加速させませんか？
+                </h2>
+                <p class="text-xl mb-8 text-green-100">
+                    無料相談で、あなたのビジネスに最適なLINE活用法をご提案します
+                </p>
+                <form class="max-w-md mx-auto space-y-4">
+                    <input
+                        type="text"
+                        name="name"
+                        placeholder="お名前"
+                        class="w-full px-4 py-3 rounded-lg text-gray-900"
+                        required
+                    />
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="メールアドレス"
+                        class="w-full px-4 py-3 rounded-lg text-gray-900"
+                        required
+                    />
+                    <textarea
+                        name="message"
+                        placeholder="ご相談内容（任意）"
+                        rows="3"
+                        class="w-full px-4 py-3 rounded-lg text-gray-900"
+                    ></textarea>
+                    <button
+                        type="submit"
+                        class="w-full bg-white text-[#06C755] px-8 py-4 rounded-lg text-lg font-bold hover:bg-gray-100 transition-colors"
+                    >
+                        無料オンライン相談を予約する
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- フッター -->
+        <footer class="bg-gray-900 text-white py-12">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h3 class="text-lg font-bold mb-4">LINE構築代行サービス</h3>
+                    <p class="text-gray-400 text-sm">
+                        あなたのビジネスを加速させる公式LINE運用を完全サポート
+                    </p>
+                </div>
+                <div class="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-400">
+                    <p>&copy; 2024 LINE構築代行サービス. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
