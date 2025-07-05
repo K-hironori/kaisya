@@ -8,6 +8,17 @@
     <meta name="keywords" content="LINE公式アカウント, AI, システム構築, LP制作, 中小企業, 個人事業主">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --primary-color: #00C300;
+            --primary-color-dark: #00A000;
+            --accent-color: #FFD700;
+            --text-color: #333;
+            --background-light: #F8F9FA;
+            --background-white: #fff;
+            --border-radius-md: 12px;
+            --shadow-light: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -17,8 +28,8 @@
         body {
             font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background-color: #F8F9FA;
+            color: var(--text-color);
+            background-color: var(--background-light);
         }
         
         .container {
@@ -29,14 +40,14 @@
         
         /* Header */
         header {
-            background: linear-gradient(135deg, #00C300 0%, #00A000 100%);
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-color-dark) 100%);
             color: white;
             padding: 1rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: var(--shadow-light);
         }
         
         .header-content {
@@ -69,11 +80,27 @@
         
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #00C300 0%, #00A000 100%);
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-color-dark) 100%);
             color: white;
             text-align: center;
             padding: 120px 0 80px;
             margin-top: 60px;
+            position: relative; /* 子要素を絶対配置するための基準 */
+            overflow: hidden; /* はみ出した動画を隠す */
+        }
+        
+        /* 動画を配置するためのコンテナ */
+        .hero-background-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: auto;
+            height: auto;
+            min-width: 100%;
+            min-height: 100%;
+            transform: translate(-50%, -50%);
+            z-index: -1; /* テキストの背面に配置 */
+            opacity: 0.15; /* 動画を薄く表示 */
         }
         
         .hero h1 {
@@ -99,13 +126,13 @@
         .hero-visual h2 {
             font-size: 1.8rem;
             margin-bottom: 1rem;
-            color: #FFD700;
+            color: var(--accent-color);
         }
         
         .cta-button {
             display: inline-block;
-            background: #FFD700;
-            color: #333;
+            background: var(--accent-color);
+            color: var(--text-color);
             padding: 15px 40px;
             border-radius: 50px;
             text-decoration: none;
@@ -202,6 +229,39 @@
             color: #00C300;
             margin-bottom: 1rem;
             font-size: 1.3rem;
+        }
+        
+        .service-item h3 i {
+            margin-right: 0.5rem; /* アイコンとテキストの間に余白 */
+            color: #00C300; /* アイコンの色を統一 */
+        }
+        
+        /* ハンバーガーメニューボタンのスタイル */
+        .hamburger-menu {
+            display: none; /* PCでは非表示 */
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 1001; /* メニューより手前に */
+        }
+        .hamburger-menu span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 5px 0;
+            transition: all 0.3s;
+        }
+
+        /* メニューが開いている時のボタンのスタイル (×印に変化) */
+        .hamburger-menu.active span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+        .hamburger-menu.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger-menu.active span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
         }
         
         /* Benefits Section */
@@ -565,8 +625,35 @@
         
         /* Responsive Design */
         @media (max-width: 768px) {
+            .hamburger-menu {
+                display: block; /* スマホで表示 */
+            }
+            
+            .nav-menu-container {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background-color: rgba(0, 0, 0, 0.9);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                transform: translateX(100%); /* 初期状態は画面外 */
+                transition: transform 0.5s ease;
+            }
+
+            .nav-menu-container.active {
+                transform: translateX(0); /* activeクラスで表示 */
+            }
+
             .nav-menu {
-                display: none;
+                flex-direction: column; /* リンクを縦並びに */
+                gap: 3rem;
+                text-align: center;
+            }
+            .nav-menu a {
+                font-size: 1.5rem;
             }
             
             .hero h1 {
@@ -609,8 +696,37 @@
             }
         }
         
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* アニメーションを適用するクラス */
         .fade-in-up {
             animation: fadeInUp 0.8s ease-out;
+        }
+        .fade-in-left {
+            animation: fadeInLeft 0.8s ease-out;
+        }
+        .fade-in-right {
+            animation: fadeInRight 0.8s ease-out;
         }
         
         /* Loading Animation */
@@ -660,13 +776,20 @@
             <div class="header-content">
                 <div class="logo">AI × LINE システム</div>
                 <nav>
-                    <ul class="nav-menu">
-                        <li><a href="#problems">お悩み</a></li>
-                        <li><a href="#services">サービス</a></li>
-                        <li><a href="#benefits">メリット</a></li>
-                        <li><a href="#pricing">料金</a></li>
-                        <li><a href="#contact">お問い合わせ</a></li>
-                    </ul>
+                    <button class="hamburger-menu" id="hamburger-menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <div class="nav-menu-container" id="nav-menu-container">
+                        <ul class="nav-menu">
+                            <li><a href="#problems">お悩み</a></li>
+                            <li><a href="#services">サービス</a></li>
+                            <li><a href="#benefits">メリット</a></li>
+                            <li><a href="#pricing">料金</a></li>
+                            <li><a href="#contact">お問い合わせ</a></li>
+                        </ul>
+                    </div>
                 </nav>
             </div>
         </div>
@@ -674,6 +797,9 @@
 
     <!-- Hero Section -->
     <section class="hero">
+        <video autoplay muted loop class="hero-background-video">
+            <source src="your-video.mp4" type="video/mp4">
+        </video>
         <div class="container">
             <h1 class="fade-in-up">公式LINEを始めたいけど...</h1>
             <p class="subtitle fade-in-up">あいさつ文やメッセージ内容を考えるのが苦手<br>
@@ -1053,15 +1179,22 @@
             observer.observe(el);
         });
 
-        // Mobile Menu Toggle (if needed)
-        const mobileMenuButton = document.querySelector('.mobile-menu-button');
-        const navMenu = document.querySelector('.nav-menu');
-        
-        if (mobileMenuButton) {
-            mobileMenuButton.addEventListener('click', function() {
-                navMenu.classList.toggle('active');
+        // ハンバーガーメニューのロジック
+        const hamburger = document.querySelector('.hamburger-menu');
+        const navContainer = document.querySelector('.nav-menu-container');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navContainer.classList.toggle('active');
+        });
+
+        // メニューのリンクをクリックしたらメニューを閉じる
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navContainer.classList.remove('active');
             });
-        }
+        });
 
         // Lazy Loading for Images (if added later)
         if ('IntersectionObserver' in window) {
