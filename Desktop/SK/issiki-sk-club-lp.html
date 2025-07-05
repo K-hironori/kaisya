@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>一色SKクラブ | 全国準優勝の実績が君を待つ。本気で野球を楽しむなら、一色SKクラブへ。</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ヘッダー */
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 900;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .phone {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        /* ファーストビュー */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.1)" points="0,0 1000,300 1000,1000 0,700"/></svg>');
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            line-height: 1.3;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 18px 35px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(45deg, #00d2d3, #54a0ff);
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        /* セクション共通スタイル */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 60px;
+            position: relative;
+            color: #2c3e50;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        /* 理念セクション */
+        .philosophy {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+
+        .philosophy .section-title {
+            color: white;
+        }
+
+        .philosophy .section-title::after {
+            background: white;
+        }
+
+        .philosophy-content {
+            text-align: center;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .philosophy-content p {
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        /* 選ばれる理由セクション */
+        .reasons {
+            background: white;
+        }
+
+        .reasons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .reason-item {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reason-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .reason-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .reason-item h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        .reason-item p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #555;
+        }
+
+        /* 保護者向けセクション */
+        .parents {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+        }
+
+        .parents .section-title {
+            color: white;
+        }
+
+        .parents .section-title::after {
+            background: white;
+        }
+
+        .parents-content {
+            text-align: center;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .parents-content p {
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        /* LINE公式アカウントセクション */
+        .line-section {
+            background: white;
+            text-align: center;
+        }
+
+        .line-benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .benefit-item {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 5px solid #00c851;
+        }
+
+        .benefit-item::before {
+            content: '✅';
+            font-size: 1.5rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .qr-code {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            display: inline-block;
+            margin: 40px 0;
+        }
+
+        /* 活動概要セクション */
+        .activity-overview {
+            background: #f8f9fa;
+        }
+
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .overview-item {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .overview-item h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .overview-item p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* FAQ セクション */
+        .faq {
+            background: white;
+        }
+
+        .faq-item {
+            background: #f8f9fa;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .faq-question {
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .faq-question::after {
+            content: '+';
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+        }
+
+        .faq-answer {
+            padding: 20px;
+            background: white;
+            line-height: 1.7;
+            color: #555;
+        }
+
+        /* クロージングセクション */
+        .closing {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 100px 0;
+        }
+
+        .closing h2 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .closing p {
+            font-size: 1.3rem;
+            margin-bottom: 50px;
+            opacity: 0.9;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* フッター */
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        /* レスポンシブデザイン */
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .reasons-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>一色SKクラブ</h1>
+                </div>
+                <div class="phone">
+                    <strong>お問い合わせ・体験申込</strong>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ファーストビュー -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>全国準優勝の実績が君を待つ。<br>本気で野球を楽しむなら、一色SKクラブへ。</h2>
+                <p>西尾市一色町を拠点に全国を目指す中学軟式野球クラブ。野球技術はもちろん、人としての成長を全力でサポートします。</p>
+                <div class="cta-buttons">
+                    <a href="#contact" class="btn btn-primary">まずは体験練習に参加する</a>
+                    <a href="https://lin.ee/dUQ9cjs" class="btn btn-secondary" target="_blank">LINEで気軽に質問・見学予約</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 私たちの想い・理念 -->
+    <section class="section philosophy">
+        <div class="container">
+            <h2 class="section-title">なぜ、私たちは「楽しむこと」と「勝利」の両方を追求するのか。</h2>
+            <div class="philosophy-content">
+                <p>私たちの理念は「笑顔で野球に挑戦し、楽しみながら共に成長すること」です。</p>
+                <p>野球が本当に好きだからこそ、上手くなりたい、勝ちたいという気持ちが芽生えます。厳しい練習の中にも「楽しさ」を見出すことで、選手たちは自然と成長していきます。</p>
+                <p>技術だけでなく、礼儀や感謝の心を育む指導方針で、野球を通じて人として大切な力を身につけることを約束します。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 一色SKクラブが選ばれる3つの理由 -->
+    <section class="section reasons">
+        <div class="container">
+            <h2 class="section-title">一色SKクラブが選ばれる3つの理由</h2>
+            <div class="reasons-grid">
+                <div class="reason-item">
+                    <h3>確かな実績が、君の成長を加速させる。</h3>
+                    <p>オールジャパンベースボールリーグ全国大会準優勝という確かな実績があります。この経験と実績が、選手一人ひとりの成長を力強くサポートし、より高いレベルでの野球を実現します。</p>
+                </div>
+                <div class="reason-item">
+                    <h3>君の個性が、チームの力になる。</h3>
+                    <p>経験豊富な指導者が、選手の個性や才能を見極め、長期的な視点で成長をサポートします。一人ひとりと向き合い、それぞれの強みを活かした指導を行います。</p>
+                </div>
+                <div class="reason-item">
+                    <h3>地域に支えられ、思い切り野球に集中できる。</h3>
+                    <p>専用グラウンドや地域企業からのサポート体制が整っており、選手が安心して野球に打ち込める環境が整っています。最高の環境で、最高の仲間と野球を楽しめます。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 保護者の皆様へ -->
+    <section class="section parents">
+        <div class="container">
+            <h2 class="section-title">大切なお子様の成長を、私たちにお任せください。</h2>
+            <div class="parents-content">
+                <p>野球を通じて、挨拶や礼儀、仲間を思いやる心など、社会で生きる上で大切な力を育むことをお約束します。</p>
+                <p>月会費や活動時間、保護者の負担についても透明性を持ってご説明し、安心してお子様を預けていただける環境を整えています。何かご不明な点がございましたら、お気軽にお問い合わせください。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- LINE公式アカウント -->
+    <section class="section line-section">
+        <div class="container">
+            <h2 class="section-title">チームの「今」がわかる！公式LINEを友だち追加しよう！</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 40px; color: #555;">「まずは情報収集から始めたい」「気軽に質問してみたい」という方は、ぜひ公式LINEにご登録ください。練習日程の変更や試合結果の速報、練習風景の動画など、チームのリアルな情報をお届けします。</p>
+            
+            <div class="line-benefits">
+                <div class="benefit-item">
+                    <strong>体験練習や見学の予約がLINEで完結！</strong>
+                </div>
+                <div class="benefit-item">
+                    <strong>練習日程や試合結果をいち早く配信！</strong>
+                </div>
+                <div class="benefit-item">
+                    <strong>入団に関する質問も気軽にチャットで相談OK！</strong>
+                </div>
+            </div>
+
+            <div class="qr-code">
+                <p style="margin-bottom: 20px; font-weight: 600; color: #2c3e50;">QRコードを読み取って友だち追加</p>
+                <div style="width: 200px; height: 200px; background: #f0f0f0; margin: 0 auto; display: flex; align-items: center; justify-content: center; border-radius: 10px;">
+                    <p style="color: #999; text-align: center;">QRコード<br>画像をここに配置</p>
+                </div>
+            </div>
+
+            <a href="https://lin.ee/dUQ9cjs" class="btn btn-secondary" target="_blank" style="font-size: 1.2rem; padding: 20px 40px;">友だち追加はこちら</a>
+        </div>
+    </section>
+
+    <!-- 活動概要・募集要項 -->
+    <section class="section activity-overview">
+        <div class="container">
+            <h2 class="section-title">活動概要・募集要項</h2>
+            <div class="overview-grid">
+                <div class="overview-item">
+                    <h3>募集対象</h3>
+                    <p>野球経験のある新中学1年生〜3年生</p>
+                </div>
+                <div class="overview-item">
+                    <h3>活動場所</h3>
+                    <p>西尾市一色町坂田新田沖84</p>
+                </div>
+                <div class="overview-item">
+                    <h3>活動日時</h3>
+                    <p>毎週土・日曜日<br>（詳細はLINEまたはお問い合わせにてご確認ください）</p>
+                </div>
+                <div class="overview-item">
+                    <h3>会費</h3>
+                    <p>入会金：5,000円<br>月会費：5,000円<br>（兄弟割引あり）</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- よくある質問 -->
+    <section class="section faq">
+        <div class="container">
+            <h2 class="section-title">よくある質問</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">Q1. 野球の経験が浅くても入れますか？</div>
+                <div class="faq-answer">はい、野球経験のある方でしたらレベルに関係なく入団可能です。個人のレベルに合わせて丁寧に指導いたします。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q2. 練習の見学や体験はいつでも可能ですか？</div>
+                <div class="faq-answer">事前にご連絡いただければ、いつでも見学・体験練習が可能です。LINEまたはお電話にてお気軽にお問い合わせください。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q3. 保護者の当番などはありますか？</div>
+                <div class="faq-answer">保護者の皆様には、試合時の応援や年間数回の行事へのご協力をお願いしております。詳細については入団時にご説明いたします。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q4. 詳しい資料はいただけますか？</div>
+                <div class="faq-answer">はい、公式LINEにご登録いただければ、チャットにて詳細資料（PDF）をお送りすることも可能です。お気軽にお申し付けください。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q5. チームの雰囲気について教えてください。</div>
+                <div class="faq-answer">「楽しむこと」と「勝利」の両方を追求する、明るく活気のあるチームです。選手同士の仲も良く、お互いを高め合える環境です。</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- クロージング -->
+    <section class="closing">
+        <div class="container">
+            <h2>さあ、最高の仲間と、最高の舞台へ。</h2>
+            <p>不安なこと、気になることは何でもご相談ください。まずは一度、グラウンドの雰囲気を体験しに来ませんか？電話やメールはもちろん、LINEでお気軽にご連絡いただいても構いません。君の挑戦を、チーム一同、心から待っています。</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn btn-primary">今すぐ体験練習に申し込む（無料）</a>
+                <a href="https://lin.ee/dUQ9cjs" class="btn btn-secondary" target="_blank">LINEで気軽に問い合わせる</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 申し込みフォーム -->
+    <section id="contact" class="section" style="background: #f8f9fa;">
+        <div class="container">
+            <h2 class="section-title">体験練習申し込みフォーム</h2>
+            <form style="max-width: 600px; margin: 0 auto; background: white; padding: 40px; border-radius: 15px; box-shadow: 0 8px 30px rgba(0,0,0,0.1);">
+                <div style="margin-bottom: 25px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #2c3e50;">お名前（必須）</label>
+                    <input type="text" required style="width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 1rem;">
+                </div>
+                
+                <div style="margin-bottom: 25px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #2c3e50;">小学校名（必須）</label>
+                    <input type="text" required style="width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 1rem;">
+                </div>
+                
+                <div style="margin-bottom: 25px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #2c3e50;">電話番号（必須）</label>
+                    <input type="tel" required style="width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 1rem;">
+                </div>
+                
+                <div style="margin-bottom: 25px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #2c3e50;">メールアドレス（必須）</label>
+                    <input type="email" required style="width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 1rem;">
+                </div>
+                
+                <div style="margin-bottom: 25px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #2c3e50;">体験練習希望日</label>
+                    <input type="date" style="width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 1rem;">
+                </div>
+                
+                <div style="margin-bottom: 30px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #2c3e50;">その他ご質問・ご要望</label>
+                    <textarea rows="5" style="width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 1rem; resize: vertical;"></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1.2rem; padding: 15px;">申し込み内容を送信する</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 一色SKクラブ. All rights reserved.</p>
+            <p>西尾市一色町坂田新田沖84</p>
+        </div>
+    </footer>
+
+    <script>
+        // FAQアコーディオン機能
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const isOpen = answer.style.display === 'block';
+                
+                // 全てのFAQを閉じる
+                document.querySelectorAll('.faq-answer').forEach(ans => {
+                    ans.style.display = 'none';
+                });
+                document.querySelectorAll('.faq-question').forEach(q => {
+                    q.style.backgroundColor = '#2c3e50';
+                });
+                
+                // クリックされたFAQを開く/閉じる
+                if (!isOpen) {
+                    answer.style.display = 'block';
+                    question.style.backgroundColor = '#34495e';
+                }
+            });
+        });
+
+        // スムーズスクロール
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
