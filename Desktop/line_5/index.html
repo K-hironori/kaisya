@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI × LINEシステム構築 + LP制作サービス | 公式LINE導入をトータルサポート</title>
+    <meta name="description" content="公式LINEを始めたい中小企業・個人事業主向けのAI×LINEシステム構築サービス。文章作成からLP制作まで低コストでトータルサポートします。">
+    <meta name="keywords" content="LINE公式アカウント, AI, システム構築, LP制作, 中小企業, 個人事業主">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #F8F9FA;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #00C300 0%, #00A000 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+        
+        .nav-menu a:hover {
+            opacity: 0.8;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #00C300 0%, #00A000 100%);
+            color: white;
+            text-align: center;
+            padding: 120px 0 80px;
+            margin-top: 60px;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .hero .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .hero-visual {
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+        
+        .hero-visual h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #FFD700;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: #FFD700;
+            color: #333;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(255,215,0,0.3);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255,215,0,0.4);
+        }
+        
+        /* Section Styles */
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 3rem;
+            color: #333;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: #00C300;
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+        
+        /* Problems Section */
+        .problems {
+            background: white;
+        }
+        
+        .problems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .problem-item {
+            background: #FFF5F5;
+            border-left: 4px solid #FF6B6B;
+            padding: 1.5rem;
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+        
+        .problem-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .problem-item h3 {
+            color: #FF6B6B;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Services Section */
+        .services {
+            background: #F8F9FA;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .service-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            border-top: 4px solid #00C300;
+        }
+        
+        .service-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .service-item h3 {
+            color: #00C300;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        /* Benefits Section */
+        .benefits {
+            background: white;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .benefit-item {
+            background: linear-gradient(135deg, #00C300 0%, #00A000 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .benefit-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .benefit-item h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #FFD700;
+        }
+        
+        /* Data Section */
+        .data-section {
+            background: #F8F9FA;
+        }
+        
+        .data-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .stat-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #00C300;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            color: #666;
+        }
+        
+        /* Target Section */
+        .target {
+            background: white;
+        }
+        
+        .target-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .target-item {
+            background: #E8F5E8;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #00C300;
+            font-size: 1.1rem;
+        }
+        
+        /* Case Studies */
+        .case-studies {
+            background: #F8F9FA;
+        }
+        
+        .case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .case-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .case-item h3 {
+            color: #00C300;
+            margin-bottom: 0.5rem;
+        }
+        
+        .case-item ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .case-item li {
+            padding: 0.25rem 0;
+            padding-left: 1rem;
+            position: relative;
+        }
+        
+        .case-item li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #00C300;
+            font-weight: bold;
+        }
+        
+        /* Pricing Section */
+        .pricing {
+            background: white;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .pricing-item {
+            background: #F8F9FA;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            position: relative;
+            transition: transform 0.3s;
+        }
+        
+        .pricing-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .pricing-item.featured {
+            background: linear-gradient(135deg, #00C300 0%, #00A000 100%);
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .pricing-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #00C300;
+        }
+        
+        .pricing-item.featured h3 {
+            color: #FFD700;
+        }
+        
+        .price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        
+        .pricing-features li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .pricing-item.featured .pricing-features li {
+            border-bottom-color: rgba(255,255,255,0.3);
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #00C300 0%, #00A000 100%);
+            color: white;
+            text-align: center;
+            padding: 80px 0;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .line-button {
+            display: inline-block;
+            background: #FFD700;
+            color: #333;
+            padding: 20px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(255,215,0,0.3);
+        }
+        
+        .contact-button {
+            display: inline-block;
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+            padding: 20px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+        
+        .contact-button:hover {
+            background: white;
+            color: #00C300;
+        }
+        
+        /* Contact Form */
+        .contact-form {
+            background: white;
+            padding: 80px 0;
+        }
+        
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #00C300;
+        }
+        
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        
+        .submit-button {
+            background: #00C300;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+        
+        .submit-button:hover {
+            background: #00A000;
+            transform: translateY(-2px);
+        }
+        
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+        }
+        
+        .footer-content {
+            margin-bottom: 2rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+        
+        .footer-links a:hover {
+            opacity: 0.8;
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #00C300;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,195,0,0.3);
+            transition: all 0.3s;
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0,195,0,0.4);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .line-button,
+            .contact-button {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .container {
+                padding: 0 15px;
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        /* Loading Animation */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s;
+        }
+        
+        .loading.hide {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #00C300;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Animation -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">AI × LINE システム</div>
+                <nav>
+                    <ul class="nav-menu">
+                        <li><a href="#problems">お悩み</a></li>
+                        <li><a href="#services">サービス</a></li>
+                        <li><a href="#benefits">メリット</a></li>
+                        <li><a href="#pricing">料金</a></li>
+                        <li><a href="#contact">お問い合わせ</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="fade-in-up">公式LINEを始めたいけど...</h1>
+            <p class="subtitle fade-in-up">あいさつ文やメッセージ内容を考えるのが苦手<br>
+            ホームページやランディングページを持っていない<br>
+            SNSも連携させたい</p>
+            
+            <div class="hero-visual fade-in-up">
+                <h2>それなら!!<br>『AI』×『LINEシステム構築』にお任せください!!</h2>
+                <p>お悩みをしっかりお聞きした上で最適な公式LINEの構築/文章作成をご提案！</p>
+            </div>
+            
+            <a href="#contact" class="cta-button fade-in-up">無料相談はこちら</a>
+        </div>
+    </section>
+
+    <!-- Problems Section -->
+    <section class="section problems" id="problems">
+        <div class="container">
+            <h2 class="section-title">こんなお悩みありませんか？</h2>
+            <div class="problems-grid">
+                <div class="problem-item fade-in-up">
+                    <h3>文章作成が苦手</h3>
+                    <p>あいさつ文やメッセージ内容を考えるのが苦手で、何を書けばいいかわからない</p>
+                </div>
+                <div class="problem-item fade-in-up">
+                    <h3>ホームページがない</h3>
+                    <p>ホームページやランディングページを持っていないため、お客様に詳しい情報を提供できない</p>
+                </div>
+                <div class="problem-item fade-in-up">
+                    <h3>SNS連携したい</h3>
+                    <p>SNSも連携させて効果的に集客したいが、やり方がわからない</p>
+                </div>
+                <div class="problem-item fade-in-up">
+                    <h3>時間がない</h3>
+                    <p>文章作成が面倒で時間がかかってしまう</p>
+                </div>
+                <div class="problem-item fade-in-up">
+                    <h3>コストを抑えたい</h3>
+                    <p>高額な制作費用をかけたくない</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section services" id="services">
+        <div class="container">
+            <h2 class="section-title">提供するサービス</h2>
+            <div class="services-grid">
+                <div class="service-item fade-in-up">
+                    <h3><i class="fas fa-cog"></i> アカウント設定</h3>
+                    <p>公式LINEアカウントの基本設定を一からサポート。プロフィール作成やメニュー設定、タグ付けなどスムーズにスタートできる環境を整備します。</p>
+                </div>
+                <div class="service-item fade-in-up">
+                    <h3><i class="fas fa-file-alt"></i> 文章・資料作成</h3>
+                    <p>魅力的なメッセージやホームページ・ランディングページの様な資料を作成。効果的な文章やキャンペーン案内のデザインなど内容の質を高めます。</p>
+                </div>
+                <div class="service-item fade-in-up">
+                    <h3><i class="fas fa-paper-plane"></i> メッセージ送信設定</h3>
+                    <p>配信スケジュールや自動応答メッセージの設定を代行。効率的な情報発信ができるよう、ターゲットに合わせた最適な設定をご提供します。</p>
+                </div>
+                <div class="service-item fade-in-up">
+                    <h3><i class="fas fa-desktop"></i> LP制作</h3>
+                    <p>実用的なランディングページ制作（高品質ではないが機能的）。LINE連携機能付きで、短期間・低コストでの制作を実現します。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="section benefits" id="benefits">
+        <div class="container">
+            <h2 class="section-title">公式LINE導入のメリット</h2>
+            <div class="benefits-grid">
+                <div class="benefit-item fade-in-up">
+                    <h3>リピート率が向上</h3>
+                    <p>一度来店されたお客様が再度利用しやすい仕組みを作ります</p>
+                </div>
+                <div class="benefit-item fade-in-up">
+                    <h3>新規顧客を獲得</h3>
+                    <p>ターゲットに合わせた情報発信で新しいお客様を引き寄せます</p>
+                </div>
+                <div class="benefit-item fade-in-up">
+                    <h3>業務効率化&コスト削減</h3>
+                    <p>自動応答で作業時間や人件費を大幅に削減できます</p>
+                </div>
+                <div class="benefit-item fade-in-up">
+                    <h3>ファンを増やす</h3>
+                    <p>お客様とのつながりを強化し好きになる仕掛けを提供します</p>
+                </div>
+                <div class="benefit-item fade-in-up">
+                    <h3>お客様のニーズを把握</h3>
+                    <p>データ分析でお客様が求めるサービスを明確にできます</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Data Section -->
+    <section class="section data-section">
+        <div class="container">
+            <h2 class="section-title">LINEが効果的な理由3選</h2>
+            <div class="data-stats">
+                <div class="stat-item fade-in-up">
+                    <div class="stat-number">92.5%</div>
+                    <div class="stat-label">日本でのLINE利用率<br>（Instagram: 48.5%）</div>
+                    <p>年齢や性別を問わず幅広い層にアプローチできます</p>
+                </div>
+                <div class="stat-item fade-in-up">
+                    <div class="stat-number">高い</div>
+                    <div class="stat-label">開封率と即効性</div>
+                    <p>メルマガやSNSよりも開封率が高く、直接お客様に届きやすいのが特徴です</p>
+                </div>
+                <div class="stat-item fade-in-up">
+                    <div class="stat-number">簡単</div>
+                    <div class="stat-label">魅力を伝える</div>
+                    <p>お知らせやクーポンなどを簡単に送れるので、お店のファンづくりに最適です</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Target Section -->
+    <section class="section target">
+        <div class="container">
+            <h2 class="section-title">こんな方におすすめ！</h2>
+            <div class="target-list">
+                <div class="target-item fade-in-up">
+                    これから新たにアカウントを作成したい方
+                </div>
+                <div class="target-item fade-in-up">
+                    文章作成が苦手・面倒だと感じる方
+                </div>
+                <div class="target-item fade-in-up">
+                    ホームページやランディングページに費用をかけたくない方
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies Section -->
+    <section class="section case-studies">
+        <div class="container">
+            <h2 class="section-title">導入事例・活用例</h2>
+            <div class="case-grid">
+                <div class="case-item fade-in-up">
+                    <h3>美容院</h3>
+                    <ul>
+                        <li>予約促進メッセージ</li>
+                        <li>季節のヘアスタイル提案</li>
+                        <li>キャンペーン告知</li>
+                    </ul>
+                </div>
+                <div class="case-item fade-in-up">
+                    <h3>レストラン</h3>
+                    <ul>
+                        <li>新メニュー告知</li>
+                        <li>来店クーポン配信</li>
+                        <li>イベント案内</li>
+                    </ul>
+                </div>
+                <div class="case-item fade-in-up">
+                    <h3>小売店</h3>
+                    <ul>
+                        <li>新商品案内</li>
+                        <li>お誕生日特典</li>
+                        <li>セール情報</li>
+                    </ul>
+                </div>
+                <div class="case-item fade-in-up">
+                    <h3>整体院</h3>
+                    <ul>
+                        <li>健康情報配信</li>
+                        <li>予約リマインド</li>
+                        <li>メンテナンス案内</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="section pricing" id="pricing">
+        <div class="container">
+            <h2 class="section-title">料金プラン</h2>
+            <div class="pricing-grid">
+                <div class="pricing-item fade-in-up">
+                    <h3>基本プラン</h3>
+                    <div class="price">¥30,000</div>
+                    <ul class="pricing-features">
+                        <li>アカウント基本設定</li>
+                        <li>基本メッセージ作成</li>
+                        <li>自動応答設定</li>
+                        <li>サポート1ヶ月</li>
+                    </ul>
+                </div>
+                <div class="pricing-item featured fade-in-up">
+                    <h3>スタンダードプラン</h3>
+                    <div class="price">¥50,000</div>
+                    <ul class="pricing-features">
+                        <li>基本プラン全て</li>
+                        <li>シンプルLP制作</li>
+                        <li>配信スケジュール設定</li>
+                        <li>SNS連携設定</li>
+                        <li>サポート3ヶ月</li>
+                    </ul>
+                </div>
+                <div class="pricing-item fade-in-up">
+                    <h3>プレミアムプラン</h3>
+                    <div class="price">¥80,000</div>
+                    <ul class="pricing-features">
+                        <li>スタンダードプラン全て</li>
+                        <li>高機能LP制作</li>
+                        <li>データ分析レポート</li>
+                        <li>月次改善提案</li>
+                        <li>サポート6ヶ月</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="#contact" class="cta-button">まずは無料相談から</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
+        <div class="container">
+            <h2>まずは無料相談から始めませんか？</h2>
+            <p>お気軽にお問い合わせください。あなたのビジネスに最適なLINE活用方法をご提案します。</p>
+            <div class="cta-buttons">
+                <a href="https://line.me/ti/p/@example" class="line-button">LINE友だち追加</a>
+                <a href="#contact-form" class="contact-button">お問い合わせフォーム</a>
+            </div>
+            <div style="margin-top: 2rem;">
+                <p>📞 TEL: 080-1234-5678</p>
+                <p>📧 EMAIL: info@ai-line-system.com</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="contact-form" id="contact-form">
+        <div class="container">
+            <h2 class="section-title">お問い合わせフォーム</h2>
+            <div class="form-container">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">お名前 *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">メールアドレス *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="company">会社名・店舗名</label>
+                        <input type="text" id="company" name="company">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">電話番号</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">お問い合わせ内容 *</label>
+                        <textarea id="message" name="message" required placeholder="ご質問やご相談内容をお聞かせください"></textarea>
+                    </div>
+                    <button type="submit" class="submit-button">送信する</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="#problems">お悩み</a>
+                    <a href="#services">サービス</a>
+                    <a href="#benefits">メリット</a>
+                    <a href="#pricing">料金</a>
+                    <a href="#contact">お問い合わせ</a>
+                </div>
+                <p>&copy; 2024 AI × LINEシステム構築サービス. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">↑</button>
+
+    <script>
+        // Loading Animation
+        window.addEventListener('load', function() {
+            const loading = document.getElementById('loading');
+            loading.classList.add('hide');
+            setTimeout(() => {
+                loading.style.display = 'none';
+            }, 500);
+        });
+
+        // Back to Top Button
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+
+        backToTop.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Smooth Scrolling for Navigation Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form Validation and Submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const message = formData.get('message');
+            
+            // Basic validation
+            if (!name || !email || !message) {
+                alert('必須項目をすべて入力してください。');
+                return;
+            }
+            
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('正しいメールアドレスを入力してください。');
+                return;
+            }
+            
+            // Simulate form submission
+            alert('お問い合わせありがとうございます。内容を確認の上、2営業日以内にご連絡いたします。');
+            this.reset();
+        });
+
+        // Intersection Observer for Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with fade-in-up class
+        document.querySelectorAll('.fade-in-up').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Mobile Menu Toggle (if needed)
+        const mobileMenuButton = document.querySelector('.mobile-menu-button');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        if (mobileMenuButton) {
+            mobileMenuButton.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+            });
+        }
+
+        // Lazy Loading for Images (if added later)
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.remove('lazy');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+
+            document.querySelectorAll('img[data-src]').forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
+
+        // Performance Optimization
+        let ticking = false;
+        function updateScrollPosition() {
+            // Handle scroll-based animations here
+            ticking = false;
+        }
+
+        function requestScrollUpdate() {
+            if (!ticking) {
+                requestAnimationFrame(updateScrollPosition);
+                ticking = true;
+            }
+        }
+
+        window.addEventListener('scroll', requestScrollUpdate);
+    </script>
+</body>
+</html>
