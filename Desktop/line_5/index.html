@@ -6,86 +6,66 @@
     <title>AI × LINEシステム構築 + LP制作サービス | 公式LINE導入をトータルサポート</title>
     <meta name="description" content="公式LINEを始めたい中小企業・個人事業主向けのAI×LINEシステム構築サービス。文章作成からLP制作まで低コストでトータルサポートします。">
     <meta name="keywords" content="LINE公式アカウント, AI, システム構築, LP制作, 中小企業, 個人事業主">
-    <link rel="stylesheet" 
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
-          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" 
-          crossorigin="anonymous" 
-          referrerpolicy="no-referrer">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
     <style>
         :root {
-            --primary-color: #00C300;
-            --primary-color-dark: #00A000;
-            --accent-color: #FFD700;
-            --text-color: #333;
-            --background-light: #F8F9FA;
-            --background-white: #fff;
-            --border-radius-md: 12px;
-            --shadow-light: 0 4px 15px rgba(0,0,0,0.1);
-            --z-header: 1000;
-            --z-hamburger: 1001;
-            --z-loading: 9999;
-        }
-        
-        /* Skip Link */
-        .skip-link {
-            position: absolute;
-            top: -40px;
-            left: 6px;
-            background: var(--primary-color);
-            color: white;
-            padding: 8px;
-            text-decoration: none;
-            border-radius: 4px;
-            z-index: calc(var(--z-loading) + 1);
-            transition: top 0.3s;
-        }
-        
-        .skip-link:focus {
-            top: 6px;
-        }
-        
-        /* Screen Reader Only */
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border: 0;
+            --primary-color: #2c5a34; /* 落ち着いたダークグリーン */
+            --primary-color-dark: #204225;
+            --accent-color: #d4af37; /* 上品なゴールド */
+            --line-green: #06C755;
+            --text-primary: #333;
+            --text-secondary: #f9f9f9;
+            --background-light: #fdfdfd;
+            --background-medium: #f4f4f4;
+            --background-dark: #1a1a1a;
+            --border-color: #e0e0e0;
+            --font-family-base: 'Noto Sans JP', sans-serif;
+            --shadow-soft: 0 4px 15px rgba(0, 0, 0, 0.08);
+            --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.1);
         }
 
-        * {
+        *, *::before, *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
         
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px; /* ヘッダーの高さ分 */
+        }
+
         body {
-            font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
+            font-family: var(--font-family-base);
+            line-height: 1.8;
+            color: var(--text-primary);
             background-color: var(--background-light);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
-        
+
         .container {
-            max-width: 1200px;
+            max-width: 1140px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
-        
+
         /* Header */
         header {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-color-dark) 100%);
-            color: white;
+            background-color: var(--background-dark);
+            color: var(--text-secondary);
             padding: 1rem 0;
             position: fixed;
             width: 100%;
             top: 0;
-            z-index: var(--z-header);
-            box-shadow: var(--shadow-light);
+            z-index: 1000;
+            transition: background-color 0.3s ease;
         }
         
         .header-content {
@@ -93,1542 +73,558 @@
             justify-content: space-between;
             align-items: center;
         }
-        
+
         .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--accent-color);
         }
-        
+
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 2.5rem;
         }
-        
+
         .nav-menu a {
-            color: white;
+            color: var(--text-secondary);
             text-decoration: none;
             font-weight: 500;
-            transition: opacity 0.3s;
+            transition: color 0.3s ease;
+            position: relative;
+            padding: 5px 0;
         }
         
-        .nav-menu a:hover {
-            opacity: 0.8;
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent-color);
+            transform-origin: bottom right;
+            transition: transform 0.25s ease-out;
+        }
+
+        .nav-menu a:hover, .nav-menu a:focus {
+            color: var(--accent-color);
+            outline: none;
+        }
+        
+        .nav-menu a:hover::after, .nav-menu a:focus::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        /* Hamburger Menu */
+        .hamburger-menu { display: none; }
+
+        @media (max-width: 768px) {
+            .nav-menu { display: none; }
+            .hamburger-menu {
+                display: block;
+                background: none; border: none; cursor: pointer;
+                z-index: 1001; padding: 10px;
+            }
+            .hamburger-menu span {
+                display: block; width: 25px; height: 2px;
+                background-color: var(--text-secondary);
+                margin: 6px 0; transition: all 0.4s ease;
+            }
+            .hamburger-menu.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+            .hamburger-menu.active span:nth-child(2) { opacity: 0; }
+            .hamburger-menu.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+            .nav-menu-container {
+                position: fixed; top: 0; left: 0;
+                width: 100%; height: 100vh;
+                background-color: var(--background-dark);
+                display: flex; justify-content: center; align-items: center;
+                transform: translateX(100%); transition: transform 0.4s ease;
+            }
+            .nav-menu-container.active { transform: translateX(0); }
+            .nav-menu-container .nav-menu { display: flex; flex-direction: column; gap: 3rem; text-align: center; }
+            .nav-menu-container .nav-menu a { font-size: 1.5rem; }
         }
         
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-color-dark) 100%);
-            color: white;
+            background: var(--background-dark);
+            color: var(--text-secondary);
             text-align: center;
-            padding: 120px 0 80px;
-            margin-top: 60px;
-            position: relative; /* 子要素を絶対配置するための基準 */
-            overflow: hidden; /* はみ出した動画を隠す */
-        }
-        
-        /* 動画を配置するためのコンテナ */
-        .hero-background-video {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: auto;
-            height: auto;
-            min-width: 100%;
-            min-height: 100%;
-            transform: translate(-50%, -50%);
-            z-index: -1; /* テキストの背面に配置 */
-            opacity: 0.15; /* 動画を薄く表示 */
-        }
-        
-        /* particles.js用のスタイルを追加 */
-        #particles-js {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: 0; /* テキストよりは後ろ、背景動画よりは手前に配置 */
+            padding: 160px 0 120px;
+            position: relative;
+            overflow: hidden;
         }
 
-        /* ヒーローセクションのコンテンツが手前に来るように調整 */
-        .hero .container {
-            position: relative;
-            z-index: 1;
-        }
+        #particles-js { position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 0; }
+        .hero .container { position: relative; z-index: 1; }
         
         .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            line-height: 1.2;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
-        
+
         .hero .subtitle {
             font-size: 1.2rem;
-            margin-bottom: 2rem;
+            max-width: 600px;
+            margin: 0 auto 3rem auto;
             opacity: 0.9;
         }
         
-        .hero-visual {
-            background: rgba(255,255,255,0.1);
-            border-radius: 20px;
-            padding: 40px;
-            margin: 2rem 0;
-            backdrop-filter: blur(10px);
-        }
-        
-        .hero-visual h2 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            color: var(--accent-color);
-        }
-        
-        .cta-button {
-            display: inline-block;
-            background: var(--accent-color);
-            color: var(--text-color);
-            padding: 15px 40px;
+        /* LINE CTA Button */
+        .line-cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background-color: var(--line-green);
+            color: white;
+            padding: 18px 45px;
             border-radius: 50px;
             text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1rem;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(255,215,0,0.3);
-            touch-action: manipulation;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(6, 199, 85, 0.4);
+            border: none;
+        }
+
+        .line-cta-button:hover, .line-cta-button:focus {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 25px rgba(6, 199, 85, 0.5);
+            background-color: #05b34d;
+            outline: none;
         }
         
-        .cta-button:hover,
-        .cta-button:focus {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255,215,0,0.4);
-            outline: 3px solid rgba(255,215,0,0.5);
-            outline-offset: 2px;
+        .line-cta-button .fa-line {
+            font-size: 1.5rem;
         }
-        
+
         /* Section Styles */
         .section {
-            padding: 80px 0;
+            padding: 100px 0;
         }
         
         .section-title {
             text-align: center;
-            font-size: 2.2rem;
-            margin-bottom: 3rem;
-            color: var(--text-color);
-            position: relative;
-        }
-        
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background: var(--primary-color);
-            margin: 1rem auto;
-            border-radius: 2px;
-        }
-        
-        /* Problems Section */
-        .problems {
-            background: var(--background-white);
-        }
-        
-        .problems-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .problem-item {
-            background: #FFF5F5;
-            border-left: 4px solid #FF6B6B;
-            padding: 1.5rem;
-            border-radius: 8px;
-            transition: transform 0.3s;
-        }
-        
-        .problem-item:hover {
-            transform: translateY(-5px);
-        }
-        
-        .problem-item h3 {
-            color: #FF6B6B;
-            margin-bottom: 0.5rem;
-        }
-        
-        /* Services Section */
-        .services {
-            background: var(--background-light);
-        }
-        
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .service-item {
-            background: var(--background-white);
-            padding: 2rem;
-            border-radius: var(--border-radius-md);
-            box-shadow: var(--shadow-light);
-            transition: all 0.3s;
-            border-top: 4px solid var(--primary-color);
-        }
-        
-        .service-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-        }
-        
-        .service-item h3 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-        
-        .service-item h3 i {
-            margin-right: 0.5rem; /* アイコンとテキストの間に余白 */
-            color: var(--primary-color); /* アイコンの色を統一 */
-        }
-        
-        /* ハンバーガーメニューボタンのスタイル */
-        .hamburger-menu {
-            display: none; /* PCでは非表示 */
-            background: none;
-            border: none;
-            cursor: pointer;
-            z-index: var(--z-hamburger); /* メニューより手前に */
-            touch-action: manipulation;
-        }
-        .hamburger-menu span {
-            display: block;
-            width: 25px;
-            height: 3px;
-            background-color: white;
-            margin: 5px 0;
-            transition: all 0.3s;
+            font-size: 2.5rem;
+            margin-bottom: 4rem;
+            font-weight: 700;
         }
 
-        /* メニューが開いている時のボタンのスタイル (×印に変化) */
-        .hamburger-menu.active span:nth-child(1) {
-            transform: translateY(8px) rotate(45deg);
-        }
-        .hamburger-menu.active span:nth-child(2) {
-            opacity: 0;
-        }
-        .hamburger-menu.active span:nth-child(3) {
-            transform: translateY(-8px) rotate(-45deg);
+        .section-title::after {
+            content: ''; display: block; width: 60px; height: 3px;
+            background: var(--accent-color); margin: 1rem auto 0;
         }
         
-        /* Benefits Section */
-        .benefits {
-            background: var(--background-white);
-        }
-        
-        .benefits-grid {
+        /* Service Item, Problem Item, etc. Card styles */
+        .card-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
-            margin-top: 2rem;
+        }
+
+        .service-item, .problem-item, .benefit-item, .case-item, .pricing-item {
+            background-color: var(--background-light);
+            padding: 2.5rem;
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: var(--shadow-soft);
         }
         
+        .service-item:hover, .problem-item:hover, .case-item:hover, .pricing-item:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .problems { background-color: var(--background-medium); }
+        .problem-item {
+            border-left: 5px solid #d9534f;
+            background-color: #fff;
+        }
+        .problem-item h3 { color: #d9534f; margin-bottom: 1rem; font-size: 1.2rem; }
+        
+        .services { background-color: #fff; }
+        .service-item { border-top: 4px solid var(--primary-color); }
+        .service-item h3 { color: var(--primary-color); margin-bottom: 1rem; font-size: 1.3rem; display: flex; align-items: center; gap: 10px; }
+
+        .benefits { background-color: var(--background-medium); }
         .benefit-item {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-color-dark) 100%);
-            color: white;
-            padding: 2rem;
-            border-radius: var(--border-radius-md);
-            text-align: center;
-            transition: transform 0.3s;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-color-dark));
+            color: var(--text-secondary); text-align: center;
         }
-        
-        .benefit-item:hover {
-            transform: scale(1.05);
-        }
-        
-        .benefit-item h3 {
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-            color: var(--accent-color);
-        }
-        
-        /* Data Section */
-        .data-section {
-            background: var(--background-light);
-        }
-        
-        .data-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .stat-item {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-        
-        .stat-number {
-            font-size: 3rem;
-            font-weight: bold;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
-        
-        .stat-label {
-            font-size: 1.1rem;
-            color: #666;
-        }
-        
-        /* Target Section */
-        .target {
-            background: white;
-        }
-        
-        .target-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-        
-        .target-item {
-            background: #E8F5E8;
-            padding: 1.5rem;
-            border-radius: 8px;
-            border-left: 4px solid var(--primary-color);
-            font-size: 1.1rem;
-        }
-        
-        /* Case Studies */
-        .case-studies {
-            background: var(--background-light);
-        }
-        
-        .case-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .case-item {
-            background: var(--background-white);
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
-        .case-item h3 {
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
-        
-        .case-item ul {
-            list-style: none;
-            padding-left: 0;
-        }
-        
-        .case-item li {
-            padding: 0.25rem 0;
-            padding-left: 1rem;
-            position: relative;
-        }
-        
-        .case-item li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--primary-color);
-            font-weight: bold;
-        }
+        .benefit-item:hover { transform: scale(1.05); box-shadow: var(--shadow-medium); }
+        .benefit-item h3 { color: var(--accent-color); font-size: 1.4rem; margin-bottom: 1rem; }
         
         /* Pricing Section */
-        .pricing {
-            background: var(--background-white);
-        }
-        
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .pricing-item {
-            background: #F8F9FA;
-            padding: 2rem;
-            border-radius: 12px;
-            text-align: center;
-            position: relative;
-            transition: transform 0.3s;
-        }
-        
-        .pricing-item:hover {
-            transform: translateY(-5px);
-        }
-        
         .pricing-item.featured {
-            background: linear-gradient(135deg, #00C300 0%, #00A000 100%);
-            color: white;
             transform: scale(1.05);
+            background: var(--background-dark);
+            color: var(--text-secondary);
         }
-        
-        .pricing-item h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--primary-color);
-        }
-        
-        .pricing-item.featured h3 {
-            color: var(--accent-color);
-        }
-        
-        .price {
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-        }
-        
-        .pricing-features {
-            list-style: none;
-            margin-bottom: 2rem;
-        }
-        
-        .pricing-features li {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .pricing-item.featured .pricing-features li {
-            border-bottom-color: rgba(255,255,255,0.3);
-        }
-        
-        /* CTA Section */
+        .pricing-item.featured h3, .pricing-item.featured .price { color: var(--accent-color); }
+        .price { font-size: 2.8rem; font-weight: 700; margin: 1rem 0; }
+        .pricing-features { list-style: none; margin-bottom: 2rem; }
+        .pricing-features li { padding: 0.7rem 0; border-bottom: 1px solid var(--border-color); }
+        .pricing-item.featured .pricing-features li { border-bottom-color: rgba(255,255,255,0.2); }
+
+        /* CTA Section (End of Page) */
         .cta-section {
-            background: linear-gradient(135deg, #00C300 0%, #00A000 100%);
-            color: white;
+            background-color: var(--background-medium);
             text-align: center;
-            padding: 80px 0;
+            padding: 100px 0;
         }
         
         .cta-section h2 {
             font-size: 2.5rem;
-            margin-bottom: 2rem;
-        }
-        
-        .cta-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-        }
-        
-        .line-button {
-            display: inline-block;
-            background: var(--accent-color);
-            color: var(--text-color);
-            padding: 20px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.2rem;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(255,215,0,0.3);
-            touch-action: manipulation;
-        }
-        
-        .contact-button {
-            display: inline-block;
-            background: transparent;
-            color: white;
-            border: 2px solid white;
-            padding: 20px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.2rem;
-            transition: all 0.3s;
-        }
-        
-        .contact-button:hover {
-            background: white;
-            color: var(--primary-color);
-        }
-        
-        /* Contact Form */
-        .contact-form {
-            background: var(--background-white);
-            padding: 80px 0;
-        }
-        
-        .form-container {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .form-group {
             margin-bottom: 1.5rem;
+            font-weight: 700;
         }
         
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
-            color: #333;
-        }
-        
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-        
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary-color);
-        }
-        
-        .form-group textarea {
-            height: 120px;
-            resize: vertical;
-        }
-        
-        .submit-button {
-            background: var(--primary-color);
-            color: white;
-            padding: 15px 40px;
-            border: none;
-            border-radius: 50px;
+        .cta-section p {
+            max-width: 600px;
+            margin: 0 auto 3rem auto;
             font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            width: 100%;
-            touch-action: manipulation;
-        }
-        
-        .submit-button:hover,
-        .submit-button:focus {
-            background: var(--primary-color-dark);
-            transform: translateY(-2px);
-            outline: 3px solid rgba(0, 195, 0, 0.3);
-            outline-offset: 2px;
+            opacity: 0.8;
         }
         
         /* Footer */
         footer {
-            background: #333;
-            color: white;
+            background: var(--background-dark);
+            color: var(--text-secondary);
             text-align: center;
-            padding: 40px 0;
+            padding: 4rem 0;
         }
-        
-        .footer-content {
-            margin-bottom: 2rem;
-        }
-        
+
         .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
+            display: flex; justify-content: center; gap: 2rem;
+            margin-bottom: 2rem; list-style: none;
         }
-        
+
         .footer-links a {
-            color: white;
+            color: var(--text-secondary);
             text-decoration: none;
-            transition: opacity 0.3s;
-        }
-        
-        .footer-links a:hover {
+            transition: color 0.3s ease;
             opacity: 0.8;
         }
         
+        .footer-links a:hover { color: var(--accent-color); opacity: 1; }
+        .footer p { opacity: 0.6; font-size: 0.9rem; }
+        
         /* Back to Top Button */
         .back-to-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,195,0,0.3);
-            transition: all 0.3s;
-            opacity: 0;
-            visibility: hidden;
-            touch-action: manipulation;
-            z-index: calc(var(--z-header) - 1);
+            position: fixed; bottom: 20px; right: 20px;
+            background: var(--primary-color); color: white;
+            border: none; border-radius: 50%; width: 50px; height: 50px;
+            font-size: 1.2rem; cursor: pointer;
+            box-shadow: var(--shadow-medium);
+            transition: all 0.3s; opacity: 0; visibility: hidden;
+            z-index: 999;
         }
-        
-        .back-to-top.show {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .back-to-top:hover,
-        .back-to-top:focus {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 20px rgba(0,195,0,0.4);
-            outline: 3px solid rgba(0, 195, 0, 0.3);
-            outline-offset: 2px;
-        }
-        
-        /* Responsive Design */
-        
-        /* Large screens (desktops, 1200px and up) */
-        @media (min-width: 1200px) {
-            .container {
-                max-width: 1400px;
-            }
-            
-            .hero h1 {
-                font-size: 3rem;
-            }
-            
-            .section-title {
-                font-size: 2.5rem;
-            }
-        }
-        
-        /* Medium screens (tablets, 768px to 1199px) */
-        @media (min-width: 769px) and (max-width: 1199px) {
-            .container {
-                padding: 0 30px;
-            }
-            
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            
-            .hero .subtitle {
-                font-size: 1.1rem;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            .services-grid,
-            .benefits-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .pricing-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 1.5rem;
-            }
-        }
-        
-        /* Small screens (mobile phones, 768px and down) */
-        @media (max-width: 768px) {
-            .hamburger-menu {
-                display: block; /* スマホで表示 */
-            }
-            
-            .nav-menu-container {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100vh;
-                background-color: rgba(0, 0, 0, 0.9);
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                transform: translateX(100%); /* 初期状態は画面外 */
-                transition: transform 0.5s ease;
-            }
+        .back-to-top.show { opacity: 1; visibility: visible; }
+        .back-to-top:hover { background-color: var(--primary-color-dark); transform: translateY(-5px); }
 
-            .nav-menu-container.active {
-                transform: translateX(0); /* activeクラスで表示 */
-            }
-
-            .nav-menu {
-                flex-direction: column; /* リンクを縦並びに */
-                gap: 3rem;
-                text-align: center;
-            }
-            .nav-menu a {
-                font-size: 1.5rem;
-            }
-            
-            .hero {
-                padding: 100px 0 60px;
-            }
-            
-            .hero h1 {
-                font-size: 1.8rem;
-                line-height: 1.3;
-            }
-            
-            .hero .subtitle {
-                font-size: 0.9rem;
-                margin-bottom: 1.5rem;
-            }
-            
-            .hero-visual {
-                padding: 20px;
-                margin: 1.5rem 0;
-            }
-            
-            .hero-visual h2 {
-                font-size: 1.4rem;
-            }
-            
-            .section {
-                padding: 60px 0;
-            }
-            
-            .section-title {
-                font-size: 1.6rem;
-                margin-bottom: 2rem;
-            }
-            
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-                gap: 1rem;
-            }
-            
-            .line-button,
-            .contact-button {
-                width: 100%;
-                max-width: 280px;
-                padding: 15px 30px;
-                font-size: 1rem;
-            }
-            
-            .container {
-                padding: 0 15px;
-            }
-            
-            .problems-grid,
-            .services-grid,
-            .benefits-grid,
-            .data-stats,
-            .case-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            
-            .pricing-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .target-list {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-        }
-        
-        /* Extra small screens (480px and down) */
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 1.5rem;
-            }
-            
-            .hero .subtitle {
-                font-size: 0.85rem;
-            }
-            
-            .hero-visual h2 {
-                font-size: 1.2rem;
-            }
-            
-            .section-title {
-                font-size: 1.4rem;
-            }
-            
-            .cta-button {
-                padding: 12px 25px;
-                font-size: 1rem;
-            }
-            
-            .service-item,
-            .benefit-item {
-                padding: 1.5rem;
-            }
-            
-            .stat-number {
-                font-size: 2.5rem;
-            }
-            
-            .container {
-                padding: 0 10px;
-            }
-        }
+        /* Other sections not detailed above will inherit base styles */
+        .data-section { background-color: #fff; }
+        .stat-item { text-align: center; padding: 2rem; }
+        .stat-number { font-size: 3rem; font-weight: 700; color: var(--primary-color); }
+        .target { background-color: var(--background-medium); }
+        .target-item { background: #fff; border-left: 4px solid var(--primary-color); padding: 1.5rem; }
+        .case-studies { background-color: #fff; }
+        .case-item h3 { color: var(--primary-color); margin-bottom: 1rem; }
+        .case-item ul { list-style: none; padding-left: 0; }
+        .case-item li { padding: 0.25rem 0 0.25rem 1rem; position: relative; }
+        .case-item li::before { content: '✓'; position: absolute; left: 0; color: var(--primary-color); font-weight: bold; }
         
         /* Animations */
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        
-        @keyframes fadeInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes fadeInRight {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        /* アニメーションを適用するクラス */
         .fade-in-up {
-            animation: fadeInUp 0.8s ease-out;
+            animation: fadeInUp 0.8s ease-out both;
         }
-        .fade-in-left {
-            animation: fadeInLeft 0.8s ease-out;
-        }
-        .fade-in-right {
-            animation: fadeInRight 0.8s ease-out;
-        }
-        
+
         /* Loading Animation */
         .loading {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: var(--z-loading);
-            transition: opacity 0.5s;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--background-light);
+            display: flex; justify-content: center; align-items: center;
+            z-index: 9999; transition: opacity 0.8s ease;
         }
-        
-        .loading.hide {
-            opacity: 0;
-            pointer-events: none;
-        }
-        
-        /* 新しいローディングテキストのスタイル */
+        .loading.hide { opacity: 0; pointer-events: none; }
         .loading-text {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary-color);
-            font-family: monospace; /* タイプライターらしいフォントに */
-            overflow: hidden; /* はみ出した文字を隠す */
-            border-right: .15em solid var(--primary-color); /* カーソルを表現 */
-            white-space: nowrap; /* 折り返しを防ぐ */
+            font-size: 1.5rem; font-weight: bold; color: var(--primary-color);
+            font-family: monospace; overflow: hidden;
+            border-right: .15em solid var(--primary-color); white-space: nowrap;
             letter-spacing: .1em;
-            animation: 
-                typing 2s steps(20, end),
-                blink-caret .75s step-end infinite;
+            animation: typing 2s steps(20, end), blink-caret .75s step-end infinite;
+        }
+        @keyframes typing { from { width: 0 } to { width: 100% } }
+        @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: var(--primary-color); } }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            html { scroll-padding-top: 70px; }
+            .hero h1 { font-size: 2.2rem; }
+            .section-title, .cta-section h2 { font-size: 2rem; }
+            .card-grid { grid-template-columns: 1fr; }
         }
 
-        /* 文字がタイプされるアニメーション */
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
-
-        /* カーソルの点滅アニメーション */
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: var(--primary-color); }
-        }
     </style>
 </head>
 <body>
-    <!-- Skip Link -->
-    <a href="#main-content" class="skip-link">メインコンテンツへスキップ</a>
-
-    <!-- Loading Animation -->
-    <div class="loading" id="loading" aria-hidden="true">
-        <div class="loading-text" id="loading-text">AI × LINE System...</div>
+    <div class="loading" id="loading">
+        <div class="loading-text">AI × LINE System...</div>
     </div>
 
-    <!-- Header -->
     <header>
         <div class="container">
             <div class="header-content">
-                <div class="logo">AI × LINE システム</div>
-                <nav role="navigation" aria-label="メインナビゲーション">
-                    <button class="hamburger-menu" id="hamburger-menu" 
-                            aria-label="メニューを開く" 
-                            aria-expanded="false" 
-                            aria-controls="nav-menu-container">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
-                    <div class="nav-menu-container" id="nav-menu-container" aria-hidden="true">
-                        <ul class="nav-menu" role="menubar">
-                            <li role="none"><a href="#problems" role="menuitem">お悩み</a></li>
-                            <li role="none"><a href="#services" role="menuitem">サービス</a></li>
-                            <li role="none"><a href="#benefits" role="menuitem">メリット</a></li>
-                            <li role="none"><a href="#pricing" role="menuitem">料金</a></li>
-                            <li role="none"><a href="#contact" role="menuitem">お問い合わせ</a></li>
+                <div class="logo">AI × LINE</div>
+                <button class="hamburger-menu" id="hamburger-menu" aria-label="メニューを開く" aria-expanded="false" aria-controls="nav-menu-container">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="nav-menu-container" id="nav-menu-container">
+                    <nav>
+                        <ul class="nav-menu">
+                            <li><a href="#problems">お悩み</a></li>
+                            <li><a href="#services">サービス</a></li>
+                            <li><a href="#benefits">メリット</a></li>
+                            <li><a href="#pricing">料金</a></li>
+                            <li><a href="#contact">お問い合わせ</a></li>
                         </ul>
-                    </div>
-                </nav>
+                    </nav>
+                </div>
             </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <main id="main-content">
-        <section class="hero" role="banner" aria-label="ヒーローセクション">
-            <div id="particles-js" aria-hidden="true"></div>
-            
-            <video autoplay muted loop class="hero-background-video" aria-hidden="true">
-                <source src="your-video.mp4" type="video/mp4">
-            </video>
+    <main>
+        <section class="hero">
+            <div id="particles-js"></div>
             <div class="container">
-                <h1 class="fade-in-up">公式LINEを始めたいけど...</h1>
-            <p class="subtitle fade-in-up">あいさつ文やメッセージ内容を考えるのが苦手<br>
-            ホームページやランディングページを持っていない<br>
-            SNSも連携させたい</p>
-            
-            <div class="hero-visual fade-in-up">
-                <h2>それなら!!<br>『AI』×『LINEシステム構築』にお任せください!!</h2>
-                <p>お悩みをしっかりお聞きした上で最適な公式LINEの構築/文章作成をご提案！</p>
+                <h1 class="fade-in-up">AIで、LINE活用を<br>もっと賢く、もっと手軽に。</h1>
+                <p class="subtitle fade-in-up">
+                    文章作成・LP制作・システム構築まで、<br>
+                    あなたのビジネスに最適なLINE公式アカウント運用をトータルサポートします。
+                </p>
+                <a href="https://lin.ee/fjzMk8L" target="_blank" rel="noopener noreferrer" class="line-cta-button">
+                    <i class="fab fa-line"></i>
+                    <span>まずはお気軽にLINEで無料相談</span>
+                </a>
             </div>
-            
-            <a href="#contact" class="cta-button fade-in-up" aria-describedby="cta-description">無料相談はこちら</a>
-            <div id="cta-description" class="sr-only">お問い合わせフォームに移動します</div>
-        </div>
         </section>
 
-    <!-- Problems Section -->
-    <section class="section problems" id="problems">
-        <div class="container">
-            <h2 class="section-title">こんなお悩みありませんか？</h2>
-            <div class="problems-grid">
-                <div class="problem-item fade-in-up">
-                    <h3>文章作成が苦手</h3>
-                    <p>あいさつ文やメッセージ内容を考えるのが苦手で、何を書けばいいかわからない</p>
-                </div>
-                <div class="problem-item fade-in-up">
-                    <h3>ホームページがない</h3>
-                    <p>ホームページやランディングページを持っていないため、お客様に詳しい情報を提供できない</p>
-                </div>
-                <div class="problem-item fade-in-up">
-                    <h3>SNS連携したい</h3>
-                    <p>SNSも連携させて効果的に集客したいが、やり方がわからない</p>
-                </div>
-                <div class="problem-item fade-in-up">
-                    <h3>時間がない</h3>
-                    <p>文章作成が面倒で時間がかかってしまう</p>
-                </div>
-                <div class="problem-item fade-in-up">
-                    <h3>コストを抑えたい</h3>
-                    <p>高額な制作費用をかけたくない</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section class="section services" id="services">
-        <div class="container">
-            <h2 class="section-title">提供するサービス</h2>
-            <div class="services-grid">
-                <div class="service-item fade-in-up">
-                    <h3><i class="fas fa-cog"></i> アカウント設定</h3>
-                    <p>公式LINEアカウントの基本設定を一からサポート。プロフィール作成やメニュー設定、タグ付けなどスムーズにスタートできる環境を整備します。</p>
-                </div>
-                <div class="service-item fade-in-up">
-                    <h3><i class="fas fa-file-alt"></i> 文章・資料作成</h3>
-                    <p>魅力的なメッセージやホームページ・ランディングページの様な資料を作成。効果的な文章やキャンペーン案内のデザインなど内容の質を高めます。</p>
-                </div>
-                <div class="service-item fade-in-up">
-                    <h3><i class="fas fa-paper-plane"></i> メッセージ送信設定</h3>
-                    <p>配信スケジュールや自動応答メッセージの設定を代行。効率的な情報発信ができるよう、ターゲットに合わせた最適な設定をご提供します。</p>
-                </div>
-                <div class="service-item fade-in-up">
-                    <h3><i class="fas fa-desktop"></i> LP制作</h3>
-                    <p>実用的なランディングページ制作（高品質ではないが機能的）。LINE連携機能付きで、短期間・低コストでの制作を実現します。</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Benefits Section -->
-    <section class="section benefits" id="benefits">
-        <div class="container">
-            <h2 class="section-title">公式LINE導入のメリット</h2>
-            <div class="benefits-grid">
-                <div class="benefit-item fade-in-up">
-                    <h3>リピート率が向上</h3>
-                    <p>一度来店されたお客様が再度利用しやすい仕組みを作ります</p>
-                </div>
-                <div class="benefit-item fade-in-up">
-                    <h3>新規顧客を獲得</h3>
-                    <p>ターゲットに合わせた情報発信で新しいお客様を引き寄せます</p>
-                </div>
-                <div class="benefit-item fade-in-up">
-                    <h3>業務効率化&コスト削減</h3>
-                    <p>自動応答で作業時間や人件費を大幅に削減できます</p>
-                </div>
-                <div class="benefit-item fade-in-up">
-                    <h3>ファンを増やす</h3>
-                    <p>お客様とのつながりを強化し好きになる仕掛けを提供します</p>
-                </div>
-                <div class="benefit-item fade-in-up">
-                    <h3>お客様のニーズを把握</h3>
-                    <p>データ分析でお客様が求めるサービスを明確にできます</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Data Section -->
-    <section class="section data-section">
-        <div class="container">
-            <h2 class="section-title">LINEが効果的な理由3選</h2>
-            <div class="data-stats">
-                <div class="stat-item fade-in-up">
-                    <div class="stat-number">92.5%</div>
-                    <div class="stat-label">日本でのLINE利用率<br>（Instagram: 48.5%）</div>
-                    <p>年齢や性別を問わず幅広い層にアプローチできます</p>
-                </div>
-                <div class="stat-item fade-in-up">
-                    <div class="stat-number">高い</div>
-                    <div class="stat-label">開封率と即効性</div>
-                    <p>メルマガやSNSよりも開封率が高く、直接お客様に届きやすいのが特徴です</p>
-                </div>
-                <div class="stat-item fade-in-up">
-                    <div class="stat-number">簡単</div>
-                    <div class="stat-label">魅力を伝える</div>
-                    <p>お知らせやクーポンなどを簡単に送れるので、お店のファンづくりに最適です</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Target Section -->
-    <section class="section target">
-        <div class="container">
-            <h2 class="section-title">こんな方におすすめ！</h2>
-            <div class="target-list">
-                <div class="target-item fade-in-up">
-                    これから新たにアカウントを作成したい方
-                </div>
-                <div class="target-item fade-in-up">
-                    文章作成が苦手・面倒だと感じる方
-                </div>
-                <div class="target-item fade-in-up">
-                    ホームページやランディングページに費用をかけたくない方
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Case Studies Section -->
-    <section class="section case-studies">
-        <div class="container">
-            <h2 class="section-title">導入事例・活用例</h2>
-            <div class="case-grid">
-                <div class="case-item fade-in-up">
-                    <h3>美容院</h3>
-                    <ul>
-                        <li>予約促進メッセージ</li>
-                        <li>季節のヘアスタイル提案</li>
-                        <li>キャンペーン告知</li>
-                    </ul>
-                </div>
-                <div class="case-item fade-in-up">
-                    <h3>レストラン</h3>
-                    <ul>
-                        <li>新メニュー告知</li>
-                        <li>来店クーポン配信</li>
-                        <li>イベント案内</li>
-                    </ul>
-                </div>
-                <div class="case-item fade-in-up">
-                    <h3>小売店</h3>
-                    <ul>
-                        <li>新商品案内</li>
-                        <li>お誕生日特典</li>
-                        <li>セール情報</li>
-                    </ul>
-                </div>
-                <div class="case-item fade-in-up">
-                    <h3>整体院</h3>
-                    <ul>
-                        <li>健康情報配信</li>
-                        <li>予約リマインド</li>
-                        <li>メンテナンス案内</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section class="section pricing" id="pricing">
-        <div class="container">
-            <h2 class="section-title">料金プラン</h2>
-            <div class="pricing-grid">
-                <div class="pricing-item fade-in-up">
-                    <h3>基本プラン</h3>
-                    <div class="price">¥30,000</div>
-                    <ul class="pricing-features">
-                        <li>アカウント基本設定</li>
-                        <li>基本メッセージ作成</li>
-                        <li>自動応答設定</li>
-                        <li>サポート1ヶ月</li>
-                    </ul>
-                </div>
-                <div class="pricing-item featured fade-in-up">
-                    <h3>スタンダードプラン</h3>
-                    <div class="price">¥50,000</div>
-                    <ul class="pricing-features">
-                        <li>基本プラン全て</li>
-                        <li>シンプルLP制作</li>
-                        <li>配信スケジュール設定</li>
-                        <li>SNS連携設定</li>
-                        <li>サポート3ヶ月</li>
-                    </ul>
-                </div>
-                <div class="pricing-item fade-in-up">
-                    <h3>プレミアムプラン</h3>
-                    <div class="price">¥80,000</div>
-                    <ul class="pricing-features">
-                        <li>スタンダードプラン全て</li>
-                        <li>高機能LP制作</li>
-                        <li>データ分析レポート</li>
-                        <li>月次改善提案</li>
-                        <li>サポート6ヶ月</li>
-                    </ul>
-                </div>
-            </div>
-            <div style="text-align: center; margin-top: 3rem;">
-                <a href="#contact" class="cta-button">まずは無料相談から</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta-section" id="contact">
-        <div class="container">
-            <h2>まずは無料相談から始めませんか？</h2>
-            <p>お気軽にお問い合わせください。あなたのビジネスに最適なLINE活用方法をご提案します。</p>
-            <div class="cta-buttons">
-                <a href="https://line.me/ti/p/@example" class="line-button">LINE友だち追加</a>
-                <a href="#contact-form" class="contact-button">お問い合わせフォーム</a>
-            </div>
-            <div style="margin-top: 2rem;">
-                <p>📞 TEL: 080-1234-5678</p>
-                <p>📧 EMAIL: info@ai-line-system.com</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Form -->
-    <section class="contact-form" id="contact-form">
-        <div class="container">
-            <h2 class="section-title">お問い合わせフォーム</h2>
-            <div class="form-container">
-                <form id="contactForm">
-                    <div class="form-group">
-                        <label for="name">お名前 *</label>
-                        <input type="text" id="name" name="name" required>
+        <section class="section problems" id="problems">
+            <div class="container">
+                <h2 class="section-title">こんなお悩みありませんか？</h2>
+                <div class="card-grid">
+                    <div class="problem-item">
+                        <h3>文章作成が苦手</h3>
+                        <p>あいさつ文やメッセージ内容を考えるのが苦手で、何を書けばいいかわからない。</p>
                     </div>
-                    <div class="form-group">
-                        <label for="email">メールアドレス *</label>
-                        <input type="email" id="email" name="email" required>
+                    <div class="problem-item">
+                        <h3>時間とコストがない</h3>
+                        <p>本業が忙しく運用に時間を割けない。高額な制作・運用費用はかけたくない。</p>
                     </div>
-                    <div class="form-group">
-                        <label for="company">会社名・店舗名</label>
-                        <input type="text" id="company" name="company">
+                    <div class="problem-item">
+                        <h3>Webサイトがない</h3>
+                        <p>ホームページやLPがなく、LINEだけでは伝えられる情報に限界を感じる。</p>
                     </div>
-                    <div class="form-group">
-                        <label for="phone">電話番号</label>
-                        <input type="tel" id="phone" name="phone">
-                    </div>
-                    <div class="form-group">
-                        <label for="message">お問い合わせ内容 *</label>
-                        <textarea id="message" name="message" required placeholder="ご質問やご相談内容をお聞かせください"></textarea>
-                    </div>
-                    <button type="submit" class="submit-button">送信する</button>
-                </form>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
+        <section class="section services" id="services">
+            <div class="container">
+                <h2 class="section-title">提供するサービス</h2>
+                <div class="card-grid">
+                    <div class="service-item">
+                        <h3><i class="fas fa-robot"></i> AIによる文章作成</h3>
+                        <p>AIを活用し、あなたのビジネスに最適な挨拶文、配信メッセージ、キャンペーン告知などをスピーディーに作成します。</p>
+                    </div>
+                    <div class="service-item">
+                        <h3><i class="fas fa-desktop"></i> 高機能LP制作</h3>
+                        <p>LINEと連携するモダンなランディングページを制作。サービス紹介や商品販売、予約受付などをLINEに集約できます。</p>
+                    </div>
+                    <div class="service-item">
+                        <h3><i class="fas fa-cogs"></i> LINEシステム構築</h3>
+                        <p>自動応答、セグメント配信、顧客管理など、ビジネスを効率化するLINEのシステム設定をトータルでサポートします。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section benefits" id="benefits">
+            <div class="container">
+                <h2 class="section-title" style="color: white;">導入で得られるメリット</h2>
+                <div class="card-grid">
+                    <div class="benefit-item">
+                        <h3>リピート率向上</h3>
+                        <p>顧客との継続的な接点を生み出し、再来店・再購入を促すファン化の仕組みを構築します。</p>
+                    </div>
+                    <div class="benefit-item">
+                        <h3>業務効率化</h3>
+                        <p>AIと自動化システムにより、問い合わせ対応や情報発信の手間を大幅に削減し、本業に集中できます。</p>
+                    </div>
+                    <div class="benefit-item">
+                        <h3>コスト削減</h3>
+                        <p>高額な広告費や人件費をかけずに、低コストで効果的なマーケティングと顧客管理を実現します。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section pricing" id="pricing">
+            <div class="container">
+                <h2 class="section-title">料金プラン</h2>
+                <div class="card-grid">
+                    <div class="pricing-item">
+                        <h3>基本プラン</h3>
+                        <div class="price">¥30,000</div>
+                        <ul class="pricing-features">
+                            <li>アカウント基本設定</li>
+                            <li>AIメッセージ作成(5本)</li>
+                            <li>自動応答設定</li>
+                            <li>1ヶ月サポート</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-item featured">
+                        <h3>スタンダードプラン</h3>
+                        <div class="price">¥50,000</div>
+                        <ul class="pricing-features">
+                            <li>基本プランの全内容</li>
+                            <li><b>シンプルLP制作</b></li>
+                            <li>配信スケジュール設定</li>
+                            <li>SNS連携設定</li>
+                            <li>3ヶ月サポート</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-item">
+                        <h3>プレミアムプラン</h3>
+                        <div class="price">¥80,000</div>
+                        <ul class="pricing-features">
+                            <li>スタンダードプランの全内容</li>
+                            <li><b>高機能LP制作</b></li>
+                            <li>データ分析レポート</li>
+                            <li>月次改善提案</li>
+                            <li>6ヶ月サポート</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section cta-section" id="contact">
+            <div class="container">
+                <h2>さあ、はじめましょう</h2>
+                <p>
+                    あなたのビジネスの可能性を最大限に引き出すLINE活用を、私たちがサポートします。<br>
+                    まずは下のボタンから友だち追加して、お気軽にご相談ください。
+                </p>
+                <a href="https://lin.ee/fjzMk8L" target="_blank" rel="noopener noreferrer" class="line-cta-button">
+                    <i class="fab fa-line"></i>
+                    <span>LINEで友だち追加して相談する</span>
+                </a>
+            </div>
+        </section>
     </main>
 
-    <!-- Footer -->
-    <footer role="contentinfo">
+    <footer>
         <div class="container">
-            <div class="footer-content">
-                <nav aria-label="フッターナビゲーション">
-                    <div class="footer-links">
-                        <a href="#problems">お悩み</a>
-                        <a href="#services">サービス</a>
-                        <a href="#benefits">メリット</a>
-                        <a href="#pricing">料金</a>
-                        <a href="#contact">お問い合わせ</a>
-                    </div>
-                </nav>
-                <p>&copy; 2024 AI × LINEシステム構築サービス. All rights reserved.</p>
-            </div>
+            <ul class="footer-links">
+                <li><a href="#problems">お悩み</a></li>
+                <li><a href="#services">サービス</a></li>
+                <li><a href="#benefits">メリット</a></li>
+                <li><a href="#pricing">料金</a></li>
+            </ul>
+            <p>&copy; 2024 AI × LINE System. All Rights Reserved.</p>
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
-    <button class="back-to-top" id="backToTop">↑</button>
+    <button class="back-to-top" id="backToTop" aria-label="ページトップに戻る">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        // Loading Animation with error handling
-        window.addEventListener('load', function() {
+        document.addEventListener('DOMContentLoaded', function () {
+            // Loading Animation
             const loading = document.getElementById('loading');
-            if (loading) {
-                loading.classList.add('hide');
-                setTimeout(() => {
-                    loading.style.display = 'none';
-                }, 500);
+            window.addEventListener('load', () => {
+                if (loading) {
+                    loading.classList.add('hide');
+                    setTimeout(() => { loading.style.display = 'none'; }, 800);
+                }
+            });
+
+            // Hamburger Menu
+            const hamburger = document.getElementById('hamburger-menu');
+            const navContainer = document.getElementById('nav-menu-container');
+            if (hamburger && navContainer) {
+                hamburger.addEventListener('click', () => {
+                    hamburger.classList.toggle('active');
+                    navContainer.classList.toggle('active');
+                    const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
+                    hamburger.setAttribute('aria-expanded', !isExpanded);
+                });
+                navContainer.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        hamburger.classList.remove('active');
+                        navContainer.classList.remove('active');
+                        hamburger.setAttribute('aria-expanded', 'false');
+                    });
+                });
             }
-        });
 
-        // Global error handler
-        window.addEventListener('error', function(e) {
-            console.error('エラーが発生しました:', e.error);
-            // ユーザーに優しいエラーメッセージ（必要に応じて表示）
-        });
-
-        // Unhandled promise rejection handler
-        window.addEventListener('unhandledrejection', function(e) {
-            console.error('未処理のPromiseエラー:', e.reason);
-            e.preventDefault();
-        });
-
-        // Back to Top Button with error handling
-        const backToTop = document.getElementById('backToTop');
-        if (backToTop) {
-            window.addEventListener('scroll', function() {
-                try {
+            // Back to Top Button
+            const backToTop = document.getElementById('backToTop');
+            if (backToTop) {
+                window.addEventListener('scroll', () => {
                     if (window.scrollY > 300) {
                         backToTop.classList.add('show');
                     } else {
                         backToTop.classList.remove('show');
                     }
-                } catch (error) {
-                    console.error('スクロールイベントエラー:', error);
-                }
-            });
-
-            backToTop.addEventListener('click', function() {
-                try {
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                } catch (error) {
-                    // フォールバック: スムーススクロールが失敗した場合
-                    window.scrollTo(0, 0);
-                }
-            });
-        }
-
-        // Smooth Scrolling for Navigation Links with error handling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                try {
-                    const targetId = this.getAttribute('href');
-                    const target = document.querySelector(targetId);
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    } else {
-                        console.warn(`ターゲット要素が見つかりません: ${targetId}`);
-                    }
-                } catch (error) {
-                    console.error('スムーススクロールエラー:', error);
-                }
-            });
-        });
-
-        // Form Validation and Submission with error handling
-        const contactForm = document.getElementById('contactForm');
-        if (contactForm) {
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                try {
-                    const formData = new FormData(this);
-                    const name = formData.get('name')?.trim();
-                    const email = formData.get('email')?.trim();
-                    const message = formData.get('message')?.trim();
-                    
-                    // Basic validation
-                    if (!name || !email || !message) {
-                        showFormError('必須項目をすべて入力してください。');
-                        return;
-                    }
-                    
-                    // Email validation
-                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                    if (!emailRegex.test(email)) {
-                        showFormError('正しいメールアドレスを入力してください。');
-                        return;
-                    }
-                    
-                    // Name length validation
-                    if (name.length < 2) {
-                        showFormError('お名前は2文字以上で入力してください。');
-                        return;
-                    }
-                    
-                    // Message length validation
-                    if (message.length < 10) {
-                        showFormError('お問い合わせ内容は10文字以上で入力してください。');
-                        return;
-                    }
-                    
-                    // Success message
-                    showFormSuccess('お問い合わせありがとうございます。内容を確認の上、2営業日以内にご連絡いたします。');
-                    this.reset();
-                    
-                } catch (error) {
-                    console.error('フォーム送信エラー:', error);
-                    showFormError('送信中にエラーが発生しました。しばらく時間をおいて再度お試しください。');
-                }
-            });
-        }
-
-        // Form error/success message functions
-        function showFormError(message) {
-            alert(message); // 本来はより良いUI実装が推奨
-        }
-
-        function showFormSuccess(message) {
-            alert(message); // 本来はより良いUI実装が推奨
-        }
-
-        // Intersection Observer for Animation
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in-up');
-                }
-            });
-        }, observerOptions);
-
-        // Observe all elements with fade-in-up class
-        document.querySelectorAll('.fade-in-up').forEach(el => {
-            observer.observe(el);
-        });
-
-        // ハンバーガーメニューのロジック
-        const hamburger = document.querySelector('.hamburger-menu');
-        const navContainer = document.querySelector('.nav-menu-container');
-
-        if (hamburger && navContainer) {
-            hamburger.addEventListener('click', () => {
-                const isActive = hamburger.classList.contains('active');
-                hamburger.classList.toggle('active');
-                navContainer.classList.toggle('active');
-                
-                // ARIA属性更新
-                hamburger.setAttribute('aria-expanded', (!isActive).toString());
-                hamburger.setAttribute('aria-label', isActive ? 'メニューを開く' : 'メニューを閉じる');
-                navContainer.setAttribute('aria-hidden', isActive.toString());
-            });
-
-            // メニューのリンクをクリックしたらメニューを閉じる
-            document.querySelectorAll('.nav-menu a').forEach(link => {
-                link.addEventListener('click', () => {
-                    hamburger.classList.remove('active');
-                    navContainer.classList.remove('active');
-                    hamburger.setAttribute('aria-expanded', 'false');
-                    hamburger.setAttribute('aria-label', 'メニューを開く');
-                    navContainer.setAttribute('aria-hidden', 'true');
                 });
-            });
+                backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+            }
 
-            // ESCキーでメニューを閉じる
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && navContainer.classList.contains('active')) {
-                    hamburger.classList.remove('active');
-                    navContainer.classList.remove('active');
-                    hamburger.setAttribute('aria-expanded', 'false');
-                    hamburger.setAttribute('aria-label', 'メニューを開く');
-                    navContainer.setAttribute('aria-hidden', 'true');
-                    hamburger.focus();
-                }
-            });
-        }
-
-        // Lazy Loading for Images (if added later)
-        if ('IntersectionObserver' in window) {
-            const imageObserver = new IntersectionObserver((entries, observer) => {
+            // Intersection Observer for Animations
+            const animatedElements = document.querySelectorAll('.fade-in-up');
+            const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        const img = entry.target;
-                        img.src = img.dataset.src;
-                        img.classList.remove('lazy');
-                        imageObserver.unobserve(img);
+                        entry.target.style.animationPlayState = 'running';
+                        observer.unobserve(entry.target);
                     }
                 });
+            }, { threshold: 0.1 });
+
+            animatedElements.forEach(el => {
+                el.style.animationPlayState = 'paused'; // 初期状態は停止
+                observer.observe(el);
             });
-
-            document.querySelectorAll('img[data-src]').forEach(img => {
-                imageObserver.observe(img);
-            });
-        }
-
-        // Performance Optimization
-        let ticking = false;
-        function updateScrollPosition() {
-            // Handle scroll-based animations here
-            ticking = false;
-        }
-
-        function requestScrollUpdate() {
-            if (!ticking) {
-                requestAnimationFrame(updateScrollPosition);
-                ticking = true;
-            }
-        }
-
-        window.addEventListener('scroll', requestScrollUpdate);
-
-        // Particles.js設定（ライブラリ読み込み確認後実行）
-        function initParticles() {
+            
+            // Particles.js
             if (typeof particlesJS !== 'undefined') {
                 particlesJS('particles-js', {
-            "particles": {
-                "number": {
-                    "value": 80, // パーティクルの数
-                    "density": {
-                        "enable": true,
-                        "value_area": 800
-                    }
-                },
-                "color": {
-                    "value": "#ffffff" // パーティクルの色
-                },
-                "shape": {
-                    "type": "circle",
-                },
-                "opacity": {
-                    "value": 0.5,
-                    "random": false,
-                },
-                "size": {
-                    "value": 3,
-                    "random": true,
-                },
-                "line_linked": {
-                    "enable": true,
-                    "distance": 150,
-                    "color": "#ffffff", // 線路の色
-                    "opacity": 0.4,
-                    "width": 1
-                },
-                "move": {
-                    "enable": true,
-                    "speed": 2, // 動きの速さ
-                    "direction": "none",
-                    "random": false,
-                    "straight": false,
-                    "out_mode": "out",
-                    "bounce": false,
-                }
-            },
-            "interactivity": {
-                "detect_on": "canvas",
-                "events": {
-                    "onhover": {
-                        "enable": true,
-                        "mode": "repulse" // カーソルを近づけると反発する
-                    },
-                    "onclick": {
-                        "enable": true,
-                        "mode": "push" // クリックするとパーティクルが追加される
-                    },
-                    "resize": true
-                },
-                "modes": {
-                    "repulse": {
-                        "distance": 100,
-                        "duration": 0.4
-                    },
-                    "push": {
-                        "particles_nb": 4
-                    },
-                }
-            },
-            "retina_detect": true
+                    "particles": { "number": { "value": 60, "density": { "enable": true, "value_area": 800 } }, "color": { "value": "#ffffff" }, "shape": { "type": "circle" }, "opacity": { "value": 0.4, "random": true }, "size": { "value": 2, "random": true }, "line_linked": { "enable": false }, "move": { "enable": true, "speed": 1, "direction": "none", "random": true, "straight": false, "out_mode": "out" } },
+                    "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": true, "mode": "bubble" }, "onclick": { "enable": false } }, "modes": { "bubble": { "distance": 250, "size": 4, "duration": 2, "opacity": 0.8 } } },
+                    "retina_detect": true
                 });
-            } else {
-                console.warn('particles.js ライブラリが読み込まれていません。');
-                // フォールバック: シンプルなCSS背景を表示
-                try {
-                    const particlesContainer = document.getElementById('particles-js');
-                    if (particlesContainer) {
-                        particlesContainer.style.background = 'linear-gradient(45deg, rgba(255,255,255,0.1) 25%, transparent 25%), linear-gradient(-45deg, rgba(255,255,255,0.1) 25%, transparent 25%)';
-                        particlesContainer.style.backgroundSize = '20px 20px';
-                        particlesContainer.style.opacity = '0.3';
-                    }
-                } catch (error) {
-                    console.error('フォールバック背景設定エラー:', error);
-                }
             }
-        }
-
-        // particles.js読み込み完了後に初期化
-        window.addEventListener('load', () => {
-            setTimeout(initParticles, 100); // 少し遅延させて確実に読み込み
         });
     </script>
-
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" 
-            integrity="sha512-Kef5sc7gfTacR7TZKelcrRs15ipf7+t+n7Zh6mKNJbmW+Eac174Q8wdFGDr15JVF8m6F7fWE7cFcn5uK3b9k8A==" 
-            crossorigin="anonymous" 
-            onerror="console.error('particles.js の読み込みに失敗しました')"></script>
 </body>
 </html>
