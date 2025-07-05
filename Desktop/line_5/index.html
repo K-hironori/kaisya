@@ -103,6 +103,22 @@
             opacity: 0.15; /* 動画を薄く表示 */
         }
         
+        /* particles.js用のスタイルを追加 */
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0; /* テキストよりは後ろ、背景動画よりは手前に配置 */
+        }
+
+        /* ヒーローセクションのコンテンツが手前に来るように調整 */
+        .hero .container {
+            position: relative;
+            z-index: 1;
+        }
+        
         .hero h1 {
             font-size: 2.5rem;
             margin-bottom: 1rem;
@@ -749,25 +765,38 @@
             pointer-events: none;
         }
         
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid #00C300;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
+        /* 新しいローディングテキストのスタイル */
+        .loading-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            font-family: monospace; /* タイプライターらしいフォントに */
+            overflow: hidden; /* はみ出した文字を隠す */
+            border-right: .15em solid var(--primary-color); /* カーソルを表現 */
+            white-space: nowrap; /* 折り返しを防ぐ */
+            letter-spacing: .1em;
+            animation: 
+                typing 2s steps(20, end),
+                blink-caret .75s step-end infinite;
         }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+
+        /* 文字がタイプされるアニメーション */
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        /* カーソルの点滅アニメーション */
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--primary-color); }
         }
     </style>
 </head>
 <body>
     <!-- Loading Animation -->
     <div class="loading" id="loading">
-        <div class="spinner"></div>
+        <div class="loading-text" id="loading-text">AI × LINE System...</div>
     </div>
 
     <!-- Header -->
@@ -797,6 +826,8 @@
 
     <!-- Hero Section -->
     <section class="hero">
+        <div id="particles-js"></div>
+        
         <video autoplay muted loop class="hero-background-video">
             <source src="your-video.mp4" type="video/mp4">
         </video>
@@ -1229,6 +1260,75 @@
         }
 
         window.addEventListener('scroll', requestScrollUpdate);
+
+        // Particles.js設定
+        particlesJS('particles-js', {
+            "particles": {
+                "number": {
+                    "value": 80, // パーティクルの数
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#ffffff" // パーティクルの色
+                },
+                "shape": {
+                    "type": "circle",
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": false,
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#ffffff", // 線路の色
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 2, // 動きの速さ
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "repulse" // カーソルを近づけると反発する
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push" // クリックするとパーティクルが追加される
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "repulse": {
+                        "distance": 100,
+                        "duration": 0.4
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    },
+                }
+            },
+            "retina_detect": true
+        });
     </script>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 </body>
 </html>
