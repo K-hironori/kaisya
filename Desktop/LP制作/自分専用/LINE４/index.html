@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公式LINE構築 × LP制作｜ぐっさん</title>
+    <meta name="description" content="公式LINE自動化とコンバージョン特化LPで売れる仕組みを最速構築。忙しい中小企業オーナー・個人事業主の売上アップを支援します。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3A6B59;
+            --primary-dark: #305447;
+            --bg-color: #FAFAF8;
+            --text-color: #222;
+            --white: #FFF;
+            --light-gray: #f5f5f5;
+            --border-color: #e0e0e0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Noto Sans JP", sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            margin-bottom: 80px;
+        }
+        
+        h1, h2, h3 {
+            font-weight: 700;
+            line-height: 1.3;
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .btn-primary {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 16px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            text-align: center;
+            transition: background-color 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .nav-links {
+            display: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, var(--bg-color) 0%, #f0f5f2 100%);
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            margin-bottom: 1rem;
+        }
+        
+        .hero .highlight {
+            color: var(--primary-color);
+            font-style: italic;
+        }
+        
+        .hero .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #666;
+        }
+        
+        .hero-image {
+            margin: 2rem 0;
+        }
+        
+        .hero-image img {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .target-section ul {
+            list-style: none;
+            display: grid;
+            gap: 1rem;
+        }
+        
+        .target-section li {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .problems ul {
+            list-style: none;
+            display: grid;
+            gap: 1.5rem;
+        }
+        
+        .problems li {
+            background: #ffe6e6;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #ff4444;
+        }
+        
+        .solution-grid {
+            display: grid;
+            gap: 2rem;
+        }
+        
+        .solution-item {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .solution-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            gap: 2rem;
+        }
+        
+        .benefit-step {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: relative;
+        }
+        
+        .step-number {
+            background: var(--primary-color);
+            color: var(--white);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .results-grid {
+            display: grid;
+            gap: 2rem;
+        }
+        
+        .result-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .before-after {
+            display: flex;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .before, .after {
+            flex: 1;
+            text-align: center;
+            padding: 1rem;
+            border-radius: 8px;
+        }
+        
+        .before {
+            background: #ffe6e6;
+        }
+        
+        .after {
+            background: #e6f4ea;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            gap: 2rem;
+        }
+        
+        .pricing-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            text-align: center;
+            position: relative;
+        }
+        
+        .pricing-card.featured {
+            border: 2px solid var(--primary-color);
+        }
+        
+        .badge {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin: 1rem 0;
+        }
+        
+        .features {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+        
+        .features li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .process-timeline {
+            display: flex;
+            overflow-x: auto;
+            gap: 1rem;
+            padding: 1rem 0;
+        }
+        
+        .process-step {
+            min-width: 250px;
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .cta-section {
+            background: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 60px 0;
+            border-radius: 8px;
+        }
+        
+        .cta-section h2 {
+            color: var(--white);
+        }
+        
+        .cta-section .btn-primary {
+            background: var(--white);
+            color: var(--primary-color);
+        }
+        
+        .cta-section .btn-primary:hover {
+            background: var(--light-gray);
+        }
+        
+        .faq-item {
+            background: var(--white);
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+        }
+        
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            display: none;
+            border-top: 1px solid var(--border-color);
+            padding-top: 1.5rem;
+        }
+        
+        .faq-answer.active {
+            display: block;
+        }
+        
+        .profile-section {
+            background: var(--white);
+            padding: 3rem 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .profile-content {
+            display: grid;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .profile-image img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 50%;
+        }
+        
+        .footer {
+            background: var(--text-color);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 0;
+        }
+        
+        @media (min-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+            
+            h2 {
+                font-size: 2.2rem;
+            }
+            
+            .nav-links {
+                display: flex;
+            }
+            
+            .hero {
+                padding: 100px 0;
+            }
+            
+            .target-section ul {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .solution-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .benefits-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .results-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .pricing-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .profile-content {
+                grid-template-columns: 1fr 2fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="header-nav">
+                <div class="logo">ぐっさん</div>
+                <div class="nav-links">
+                    <a href="#target">対象者</a>
+                    <a href="#solution">解決策</a>
+                    <a href="#pricing">料金</a>
+                    <a href="#faq">よくある質問</a>
+                    <a href="#profile">プロフィール</a>
+                </div>
+                <a href="#contact" class="btn-primary" aria-label="無料相談を予約する">無料相談</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>LP✖︎公式LINE構築で <span class="highlight">売れる仕組み</span> を最速構築</h1>
+                <p class="subtitle">まだ"人の手売り"に時間を奪われますか？</p>
+                <div class="hero-image">
+                    <img src="https://via.placeholder.com/800x500?text=LINE%C3%97LP%E8%87%AA%E5%8B%95%E5%8C%96%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0" alt="LINE×LP自動化システムのイメージ" loading="lazy">
+                </div>
+                <a href="#contact" class="btn-primary" aria-label="無料相談を予約する">無料相談を予約する</a>
+            </div>
+        </section>
+
+        <section id="target" class="target-section">
+            <div class="container">
+                <h2>こんな方におすすめ</h2>
+                <ul>
+                    <li>💼 忙しい中小企業のオーナー様</li>
+                    <li>🚀 売上アップを目指す個人事業主</li>
+                    <li>📱 LINE活用に興味があるけど方法がわからない方</li>
+                    <li>💰 広告費を抑えながら集客したい方</li>
+                    <li>⏰ 営業時間外も自動で売上を作りたい方</li>
+                    <li>🎯 見込み客の育成に課題を感じている方</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="problems">
+            <div class="container">
+                <h2>よくある3つの悩み</h2>
+                <ul>
+                    <li>
+                        <h3>😰 集客に時間とお金がかかりすぎる</h3>
+                        <p>広告費が高騰し、SNS運用も手が回らない。新規顧客獲得のハードルが年々上がっている。</p>
+                    </li>
+                    <li>
+                        <h3>📞 営業や接客に追われて本業に集中できない</h3>
+                        <p>問い合わせ対応や商談で時間を取られ、サービス改善や新商品開発に時間を割けない。</p>
+                    </li>
+                    <li>
+                        <h3>💔 せっかくの見込み客が離れていく</h3>
+                        <p>興味を持ってもらえても、適切なフォローができずに機会損失が発生している。</p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="solution" class="solution-section">
+            <div class="container">
+                <h2>公式LINE自動化 × コンバージョン特化LP</h2>
+                <div class="solution-grid">
+                    <div class="solution-item">
+                        <div class="solution-icon">📱</div>
+                        <h3>LINE公式アカウント設計</h3>
+                        <p>ユーザーの行動を分析し、最適なシナリオで自動的に見込み客を育成します</p>
+                    </div>
+                    <div class="solution-item">
+                        <div class="solution-icon">🎯</div>
+                        <h3>コンバージョン特化LP</h3>
+                        <p>心理学に基づいた構成で、訪問者を確実に顧客へと導くランディングページを制作</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="benefits-section">
+            <div class="container">
+                <h2>3ステップで売上の自動化を実現</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-step">
+                        <div class="step-number">1</div>
+                        <h3>自動集客</h3>
+                        <p>SEO対策済みのLPで24時間365日、見込み客を自動収集。LINE登録への導線を最適化します。</p>
+                    </div>
+                    <div class="benefit-step">
+                        <div class="step-number">2</div>
+                        <h3>自動育成</h3>
+                        <p>LINE公式アカウントで段階的に価値提供。ユーザーの興味度合いに応じて最適なメッセージを配信。</p>
+                    </div>
+                    <div class="benefit-step">
+                        <div class="step-number">3</div>
+                        <h3>自動成約</h3>
+                        <p>購買意欲が高まったタイミングで自動的にオファー。あなたが寝ている間も売上が発生します。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="results-section">
+            <div class="container">
+                <h2>実績・事例</h2>
+                <div class="results-grid">
+                    <div class="result-card">
+                        <h3>整体院A様</h3>
+                        <div class="before-after">
+                            <div class="before">
+                                <h4>Before</h4>
+                                <p>月20万円<br>新規獲得に苦戦</p>
+                            </div>
+                            <div class="after">
+                                <h4>After</h4>
+                                <p>月60万円<br>リピーター増加</p>
+                            </div>
+                        </div>
+                        <img src="https://via.placeholder.com/400x300?text=LINE%E3%82%AD%E3%83%A3%E3%83%97%E3%83%81%E3%83%A3%E7%94%BB%E5%83%8F" alt="LINE運用実績のキャプチャ" loading="lazy">
+                    </div>
+                    <div class="result-card">
+                        <h3>コンサル業B様</h3>
+                        <div class="before-after">
+                            <div class="before">
+                                <h4>Before</h4>
+                                <p>個別対応で疲弊<br>月5件の契約</p>
+                            </div>
+                            <div class="after">
+                                <h4>After</h4>
+                                <p>自動化で効率UP<br>月15件の契約</p>
+                            </div>
+                        </div>
+                        <img src="https://via.placeholder.com/400x300?text=%E6%88%90%E7%B4%84%E7%8E%87%E5%90%91%E4%B8%8A%E3%81%AE%E3%82%B0%E3%83%A9%E3%83%95" alt="成約率向上のグラフ" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="pricing" class="pricing-section">
+            <div class="container">
+                <h2>プラン & 料金</h2>
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <h3>ライトプラン</h3>
+                        <div class="price">¥298,000</div>
+                        <ul class="features">
+                            <li>LP制作（5ページまで）</li>
+                            <li>LINE公式アカウント基本設定</li>
+                            <li>自動応答メッセージ設定</li>
+                            <li>1ヶ月間のサポート</li>
+                        </ul>
+                        <a href="#contact" class="btn-primary" aria-label="ライトプランで無料相談を予約">このプランで相談</a>
+                    </div>
+                    <div class="pricing-card featured">
+                        <div class="badge">人気No.1</div>
+                        <h3>プレミアムプラン</h3>
+                        <div class="price">¥498,000</div>
+                        <ul class="features">
+                            <li>LP制作（無制限）</li>
+                            <li>LINE公式アカウント完全構築</li>
+                            <li>ステップ配信シナリオ設計</li>
+                            <li>リッチメニュー・リッチメッセージ</li>
+                            <li>3ヶ月間の運用サポート</li>
+                            <li>月1回の改善提案</li>
+                        </ul>
+                        <a href="#contact" class="btn-primary" aria-label="プレミアムプランで無料相談を予約">このプランで相談</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="process-section">
+            <div class="container">
+                <h2>制作フロー & 納期</h2>
+                <div class="process-timeline">
+                    <div class="process-step">
+                        <h3>1. ヒアリング</h3>
+                        <p>ビジネスモデルと目標を詳しくお聞きします</p>
+                        <small>1-2日</small>
+                    </div>
+                    <div class="process-step">
+                        <h3>2. 戦略設計</h3>
+                        <p>最適なシナリオとLP構成を設計します</p>
+                        <small>3-5日</small>
+                    </div>
+                    <div class="process-step">
+                        <h3>3. 制作・構築</h3>
+                        <p>LPとLINE公式アカウントを構築します</p>
+                        <small>10-14日</small>
+                    </div>
+                    <div class="process-step">
+                        <h3>4. テスト・納品</h3>
+                        <p>動作確認後、運用方法をレクチャーします</p>
+                        <small>2-3日</small>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <h2>今すぐ売上の自動化を始めませんか？</h2>
+                <p>無料相談では、あなたのビジネスに最適な自動化戦略をご提案します</p>
+                <a href="#contact" class="btn-primary" aria-label="無料相談を予約する">無料相談を予約する</a>
+            </div>
+        </section>
+
+        <section id="faq" class="faq-section">
+            <div class="container">
+                <h2>よくある質問</h2>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        LINE公式アカウントの運用は難しくないですか？
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>ご安心ください。設定完了後は基本的に自動で動作します。運用マニュアルも含めてお渡しし、サポート期間中はいつでもご質問いただけます。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        どのような業種でも効果はありますか？
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>はい。整体院、美容室、コンサルティング、EC事業など幅広い業種で実績があります。まずは無料相談で可能性を確認させていただきます。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        料金の支払い方法は？
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>銀行振込、クレジットカード決済に対応しています。分割払いのご相談も承りますので、お気軽にお問い合わせください。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        制作後のサポートはありますか？
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>はい。プランに応じて1-3ヶ月間のサポートが含まれています。運用方法のご質問や改善提案など、しっかりとフォローいたします。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="profile" class="profile-section">
+            <div class="container">
+                <div class="profile-content">
+                    <div class="profile-image">
+                        <img src="https://via.placeholder.com/300x300?text=%E3%81%90%E3%81%A3%E3%81%95%E3%82%93" alt="ぐっさんのプロフィール写真" loading="lazy">
+                    </div>
+                    <div class="profile-text">
+                        <h2>プロフィール & 想い</h2>
+                        <h3>ぐっさん</h3>
+                        <p><strong>実績：</strong>100社以上のLINE×LP構築、平均売上向上率230%</p>
+                        <p>「忙しい経営者の時間を作り、本当にやりたいことに集中してもらいたい」</p>
+                        <p>そんな想いから、自動化システムの構築に特化してサービスを提供しています。単なる制作ではなく、あなたのビジネスの成長パートナーとして、長期的な成功をサポートします。</p>
+                        <p>お客様の「ありがとう」の声が、私の最大のやりがいです。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <h2>あなたの成功への第一歩を踏み出しませんか？</h2>
+                <p>無料相談で、具体的な改善案をご提案します</p>
+                <a href="#contact" class="btn-primary" aria-label="今すぐ無料相談を予約する">今すぐ無料相談を予約</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 ぐっさん LINE×LP構築サービス. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleFaq(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('span');
+            
+            if (answer.classList.contains('active')) {
+                answer.classList.remove('active');
+                icon.textContent = '+';
+            } else {
+                document.querySelectorAll('.faq-answer').forEach(item => {
+                    item.classList.remove('active');
+                });
+                document.querySelectorAll('.faq-question span').forEach(item => {
+                    item.textContent = '+';
+                });
+                answer.classList.add('active');
+                icon.textContent = '-';
+            }
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
