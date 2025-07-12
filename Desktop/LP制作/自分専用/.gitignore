@@ -6,6 +6,7 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
+.CFUserTextEncoding
 
 # IDE
 .vscode/
@@ -37,9 +38,11 @@ Thumbs.db
 .elecom/
 .gemini/
 .gitkraken/
+.npmrc
 
 # System files
 *.log
 node_modules/
 dist/
 build/
+.Trash/
