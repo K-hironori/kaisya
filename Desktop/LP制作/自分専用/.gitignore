@@ -1,0 +1,45 @@
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# Claude specific
+.claude/
+.claude.json*
+
+# Other tools
+.windsurf/
+.npm/
+.npm-global/
+.zsh_history
+.zsh_sessions/
+.zshrc
+.gitconfig
+.codeium/
+.config/
+.cups/
+.dropbox/
+.elecom/
+.gemini/
+.gitkraken/
+
+# System files
+*.log
+node_modules/
+dist/
+build/
