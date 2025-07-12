@@ -7,68 +7,59 @@
     <meta name="description" content="公式LINE自動化とコンバージョン特化LPで売れる仕組みを最速構築。忙しい中小企業オーナー・個人事業主の売上アップを支援します。">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-color: #3A6B59;
             --primary-dark: #305447;
             --bg-color: #FAFAF8;
-            --text-color: #333;
-            --white: #FFFFFF;
-            --light-gray: #f7f7f7;
-            --border-color: #e9e9e9;
-            --accent-red: #c0392b;
-            --accent-green: #27ae60;
+            --text-color: #222;
+            --white: #FFF;
+            --light-gray: #f5f5f5;
+            --border-color: #e0e0e0;
         }
         
-        *, *::before, *::after {
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
-        html {
-            scroll-behavior: smooth;
-        }
         
         body {
             font-family: "Noto Sans JP", sans-serif;
-            line-height: 1.8;
+            line-height: 1.6;
             color: var(--text-color);
             background-color: var(--bg-color);
-            -webkit-font-smoothing: antialiased;
         }
         
         .container {
             max-width: 1100px;
             margin: 0 auto;
-            padding: 0 24px;
+            padding: 0 20px;
         }
         
         section {
-            padding: 80px 0;
+            margin-bottom: 80px;
         }
         
         h1, h2, h3 {
             font-weight: 700;
-            line-height: 1.4;
-            letter-spacing: 0.02em;
+            line-height: 1.3;
         }
         
         h1 {
-            font-size: clamp(2.2rem, 5vw, 3.2rem);
-            font-weight: 900;
+            font-size: 2.2rem;
             margin-bottom: 1rem;
         }
         
         h2 {
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            margin-bottom: 3rem;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
             text-align: center;
         }
         
         h3 {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             margin-bottom: 1rem;
         }
         
@@ -76,206 +67,207 @@
             display: inline-block;
             background-color: var(--primary-color);
             color: var(--white);
-            padding: 16px 40px;
-            border-radius: 50px;
+            padding: 16px 32px;
+            border-radius: 8px;
             text-decoration: none;
-            font-weight: 700;
+            font-weight: 500;
             text-align: center;
-            transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+            transition: background-color 0.3s ease;
             border: none;
             cursor: pointer;
             font-size: 1.1rem;
-            box-shadow: 0 4px 15px rgba(58, 107, 89, 0.2);
         }
         
         .btn-primary:hover {
             background-color: var(--primary-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 7px 20px rgba(58, 107, 89, 0.3);
-        }
-
-        /* --- Animation --- */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-
-        .fade-in.is-visible {
-            opacity: 1;
-            transform: translateY(0);
         }
         
-        /* --- Header --- */
         .header {
-            background-color: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             position: sticky;
             top: 0;
             z-index: 100;
-            width: 100%;
         }
         
         .header-nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.2rem 0;
+            padding: 1rem 0;
         }
         
         .logo {
-            font-size: 1.6rem;
-            font-weight: 900;
+            font-size: 1.5rem;
+            font-weight: 700;
             color: var(--primary-color);
-            text-decoration: none;
         }
         
         .nav-links {
             display: none;
-            gap: 2.5rem;
+            gap: 2rem;
         }
         
         .nav-links a {
             text-decoration: none;
             color: var(--text-color);
             font-weight: 500;
-            position: relative;
-            transition: color 0.3s;
         }
-        .nav-links a:hover { color: var(--primary-color); }
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background-color: var(--primary-color);
-            transform: scaleX(0);
-            transform-origin: bottom right;
-            transition: transform 0.3s ease-out;
-        }
-        .nav-links a:hover::after {
-            transform: scaleX(1);
-            transform-origin: bottom left;
-        }
-
-        .header .btn-primary { padding: 10px 24px; font-size: 0.9rem; }
         
-        /* --- Hero Section --- */
         .hero {
-            padding: 80px 0;
+            background: linear-gradient(135deg, var(--bg-color) 0%, #f0f5f2 100%);
+            padding: 60px 0;
             text-align: center;
         }
         
+        .hero h1 {
+            margin-bottom: 1rem;
+        }
+        
         .hero .highlight {
-            background: linear-gradient(120deg, var(--primary-color), var(--accent-green));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-style: normal;
+            color: var(--primary-color);
+            font-style: italic;
         }
         
         .hero .subtitle {
-            font-size: 1.25rem;
-            margin-bottom: 2.5rem;
-            color: #555;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #666;
+        }
+        
+        .hero-image {
+            margin: 2rem 0;
         }
         
         .hero-image img {
             width: 100%;
-            max-width: 700px;
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            margin: 2rem 0;
+            max-width: 600px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         }
         
-        /* --- Cards & Grids --- */
-        .card {
-            background: var(--white);
-            padding: 2.5rem;
-            border-radius: 16px;
-            box-shadow: 0 4px 25px rgba(0,0,0,0.06);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 35px rgba(0,0,0,0.1);
-        }
-
         .target-section ul {
             list-style: none;
             display: grid;
-            gap: 1.5rem;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
         }
         
         .target-section li {
             background: var(--white);
             padding: 1.5rem;
-            border-radius: 12px;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-            border-left: 5px solid var(--primary-color);
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            font-weight: 500;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--primary-color);
         }
         
         .problems ul {
             list-style: none;
             display: grid;
-            gap: 2rem;
+            gap: 1.5rem;
         }
         
         .problems li {
-            background: #fff5f5;
-            padding: 2rem;
-            border-radius: 16px;
-            border: 1px solid #ffe0e0;
+            background: #ffe6e6;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #ff4444;
         }
-        .problems h3 { color: var(--accent-red); }
-
+        
         .solution-grid {
             display: grid;
             gap: 2rem;
         }
         
-        .solution-icon { font-size: 3rem; margin-bottom: 1rem; color: var(--primary-color); }
-        .solution-item { text-align: center; }
+        .solution-item {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
         
-        .benefits-grid { display: grid; gap: 2rem; }
+        .solution-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
         
-        .benefit-step { position: relative; }
+        .benefits-grid {
+            display: grid;
+            gap: 2rem;
+        }
+        
+        .benefit-step {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: relative;
+        }
+        
         .step-number {
             background: var(--primary-color);
             color: var(--white);
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            font-size: 1.4rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 4px 10px rgba(58, 107, 89, 0.3);
+            margin-bottom: 1rem;
         }
         
-        .results-grid { display: grid; gap: 2rem; }
-        .before-after { display: flex; gap: 1rem; margin: 1.5rem 0; }
-        .before, .after { flex: 1; text-align: center; padding: 1.5rem 1rem; border-radius: 12px; }
-        .before { background: #fee; border: 1px solid #fdd; }
-        .after { background: #e6f4ea; border: 1px solid #cce8d6; }
-        .result-card img { width: 100%; border-radius: 8px; margin-top: 1rem; }
+        .results-grid {
+            display: grid;
+            gap: 2rem;
+        }
         
-        .pricing-grid { display: grid; gap: 2rem; align-items: center; }
+        .result-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
         
-        .pricing-card { text-align: center; }
+        .before-after {
+            display: flex;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .before, .after {
+            flex: 1;
+            text-align: center;
+            padding: 1rem;
+            border-radius: 8px;
+        }
+        
+        .before {
+            background: #ffe6e6;
+        }
+        
+        .after {
+            background: #e6f4ea;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            gap: 2rem;
+        }
+        
+        .pricing-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            text-align: center;
+            position: relative;
+        }
+        
         .pricing-card.featured {
             border: 2px solid var(--primary-color);
-            transform: scale(1.05);
         }
+        
         .badge {
             background: var(--primary-color);
             color: var(--white);
@@ -283,107 +275,158 @@
             border-radius: 20px;
             font-size: 0.9rem;
             position: absolute;
-            top: -18px;
+            top: -10px;
             left: 50%;
             transform: translateX(-50%);
-            font-weight: 700;
         }
-        .price { font-size: 2.5rem; font-weight: 900; color: var(--primary-color); margin: 1rem 0; }
-        .features { list-style: none; margin: 2rem 0; text-align: left;}
-        .features li { padding: 0.75rem 0; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; gap: 0.5rem;}
-        .features li::before {
-            content: '✓';
-            color: var(--accent-green);
+        
+        .price {
+            font-size: 2rem;
             font-weight: 700;
+            color: var(--primary-color);
+            margin: 1rem 0;
         }
-
+        
+        .features {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+        
+        .features li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
         .process-timeline {
-            display: grid;
-            gap: 1.5rem;
+            display: flex;
+            overflow-x: auto;
+            gap: 1rem;
+            padding: 1rem 0;
         }
         
         .process-step {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
+            min-width: 250px;
             background: var(--white);
-            padding: 2rem;
-            border-radius: 16px;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
-        .process-step .step-number { margin-bottom: 0; }
-
+        
         .cta-section {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            background: var(--primary-color);
             color: var(--white);
             text-align: center;
-            padding: 80px 0;
-            border-radius: 24px;
+            padding: 60px 0;
+            border-radius: 8px;
         }
-        .cta-section h2 { color: var(--white); }
-        .cta-section .btn-primary { background: var(--white); color: var(--primary-color); box-shadow: none; }
-        .cta-section .btn-primary:hover { background: var(--light-gray); }
+        
+        .cta-section h2 {
+            color: var(--white);
+        }
+        
+        .cta-section .btn-primary {
+            background: var(--white);
+            color: var(--primary-color);
+        }
+        
+        .cta-section .btn-primary:hover {
+            background: var(--light-gray);
+        }
         
         .faq-item {
             background: var(--white);
             margin-bottom: 1rem;
-            border-radius: 12px;
+            border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
+        
         .faq-question {
             padding: 1.5rem;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-weight: 700;
-            font-size: 1.1rem;
+            font-weight: 500;
         }
-        .faq-icon {
-            transition: transform 0.3s ease;
-            font-size: 1.5rem;
-            color: var(--primary-color);
-        }
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease, padding 0.5s ease;
-        }
-        .faq-answer p {
-             padding: 0 1.5rem 1.5rem;
-             border-top: 1px solid var(--border-color);
-             padding-top: 1.5rem;
-        }
-        .faq-item.active .faq-answer { max-height: 200px; }
-        .faq-item.active .faq-icon { transform: rotate(45deg); }
         
-        .profile-section { background: var(--white); border-radius: 24px; padding: 4rem; }
-        .profile-content { display: grid; gap: 3rem; align-items: center; }
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            display: none;
+            border-top: 1px solid var(--border-color);
+            padding-top: 1.5rem;
+        }
+        
+        .faq-answer.active {
+            display: block;
+        }
+        
+        .profile-section {
+            background: var(--white);
+            padding: 3rem 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .profile-content {
+            display: grid;
+            gap: 2rem;
+            align-items: center;
+        }
+        
         .profile-image img {
             width: 100%;
-            max-width: 250px;
+            max-width: 300px;
             border-radius: 50%;
-            margin: 0 auto;
-            display: block;
-            box-shadow: 0 0 0 10px var(--white), 0 0 0 12px var(--primary-color);
         }
-        .profile-text p { margin-bottom: 1rem; }
         
         .footer {
             background: var(--text-color);
-            color: var(--bg-color);
+            color: var(--white);
             text-align: center;
-            padding: 3rem 0;
-            margin-top: 80px;
+            padding: 2rem 0;
         }
         
         @media (min-width: 768px) {
-            .nav-links { display: flex; }
-            .solution-grid { grid-template-columns: repeat(2, 1fr); }
-            .benefits-grid { grid-template-columns: repeat(3, 1fr); }
-            .results-grid { grid-template-columns: repeat(2, 1fr); }
-            .pricing-grid { grid-template-columns: repeat(2, 1fr); }
-            .process-timeline { grid-template-columns: repeat(4, 1fr); }
-            .profile-content { grid-template-columns: 250px 1fr; }
+            h1 {
+                font-size: 3rem;
+            }
+            
+            h2 {
+                font-size: 2.2rem;
+            }
+            
+            .nav-links {
+                display: flex;
+            }
+            
+            .hero {
+                padding: 100px 0;
+            }
+            
+            .target-section ul {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .solution-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .benefits-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .results-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .pricing-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .profile-content {
+                grid-template-columns: 1fr 2fr;
+            }
         }
     </style>
 </head>
@@ -391,12 +434,13 @@
     <header class="header">
         <div class="container">
             <nav class="header-nav">
-                <a href="#" class="logo">ぐっさん</a>
+                <div class="logo">ぐっさん</div>
                 <div class="nav-links">
                     <a href="#target">対象者</a>
                     <a href="#solution">解決策</a>
                     <a href="#pricing">料金</a>
                     <a href="#faq">よくある質問</a>
+                    <a href="#profile">プロフィール</a>
                 </div>
                 <a href="#contact" class="btn-primary" aria-label="無料相談を予約する">無料相談</a>
             </nav>
@@ -405,20 +449,20 @@
 
     <main>
         <section class="hero">
-            <div class="container fade-in">
-                <h1>LP × 公式LINEで<br><span class="highlight">売れる仕組み</span>を最速構築</h1>
-                <p class="subtitle">まだ「手売り」にあなたの貴重な時間を奪われますか？</p>
-                <a href="#contact" class="btn-primary" aria-label="無料相談を予約する">無料相談を予約する</a>
+            <div class="container">
+                <h1>LP✖︎公式LINE構築で <span class="highlight">売れる仕組み</span> を最速構築</h1>
+                <p class="subtitle">まだ"人の手売り"に時間を奪われますか？</p>
                 <div class="hero-image">
                     <img src="https://via.placeholder.com/800x500?text=LINE%C3%97LP%E8%87%AA%E5%8B%95%E5%8C%96%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0" alt="LINE×LP自動化システムのイメージ" loading="lazy">
                 </div>
+                <a href="#contact" class="btn-primary" aria-label="無料相談を予約する">無料相談を予約する</a>
             </div>
         </section>
 
         <section id="target" class="target-section">
             <div class="container">
-                <h2 class="fade-in">こんな方におすすめです</h2>
-                <ul class="fade-in">
+                <h2>こんな方におすすめ</h2>
+                <ul>
                     <li>💼 忙しい中小企業のオーナー様</li>
                     <li>🚀 売上アップを目指す個人事業主</li>
                     <li>📱 LINE活用に興味があるけど方法がわからない方</li>
@@ -431,8 +475,8 @@
 
         <section class="problems">
             <div class="container">
-                <h2 class="fade-in">よくある3つの悩み</h2>
-                <ul class="fade-in">
+                <h2>よくある3つの悩み</h2>
+                <ul>
                     <li>
                         <h3>😰 集客に時間とお金がかかりすぎる</h3>
                         <p>広告費が高騰し、SNS運用も手が回らない。新規顧客獲得のハードルが年々上がっている。</p>
@@ -451,14 +495,14 @@
 
         <section id="solution" class="solution-section">
             <div class="container">
-                <h2 class="fade-in">公式LINE自動化 × コンバージョン特化LP</h2>
-                <div class="solution-grid fade-in">
-                    <div class="solution-item card">
+                <h2>公式LINE自動化 × コンバージョン特化LP</h2>
+                <div class="solution-grid">
+                    <div class="solution-item">
                         <div class="solution-icon">📱</div>
                         <h3>LINE公式アカウント設計</h3>
                         <p>ユーザーの行動を分析し、最適なシナリオで自動的に見込み客を育成します</p>
                     </div>
-                    <div class="solution-item card">
+                    <div class="solution-item">
                         <div class="solution-icon">🎯</div>
                         <h3>コンバージョン特化LP</h3>
                         <p>心理学に基づいた構成で、訪問者を確実に顧客へと導くランディングページを制作</p>
@@ -469,19 +513,19 @@
 
         <section class="benefits-section">
             <div class="container">
-                <h2 class="fade-in">3ステップで売上の自動化を実現</h2>
-                <div class="benefits-grid fade-in">
-                    <div class="benefit-step card">
+                <h2>3ステップで売上の自動化を実現</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-step">
                         <div class="step-number">1</div>
                         <h3>自動集客</h3>
                         <p>SEO対策済みのLPで24時間365日、見込み客を自動収集。LINE登録への導線を最適化します。</p>
                     </div>
-                    <div class="benefit-step card">
+                    <div class="benefit-step">
                         <div class="step-number">2</div>
                         <h3>自動育成</h3>
                         <p>LINE公式アカウントで段階的に価値提供。ユーザーの興味度合いに応じて最適なメッセージを配信。</p>
                     </div>
-                    <div class="benefit-step card">
+                    <div class="benefit-step">
                         <div class="step-number">3</div>
                         <h3>自動成約</h3>
                         <p>購買意欲が高まったタイミングで自動的にオファー。あなたが寝ている間も売上が発生します。</p>
@@ -492,9 +536,9 @@
 
         <section class="results-section">
             <div class="container">
-                <h2 class="fade-in">実績・事例</h2>
-                <div class="results-grid fade-in">
-                    <div class="result-card card">
+                <h2>実績・事例</h2>
+                <div class="results-grid">
+                    <div class="result-card">
                         <h3>整体院A様</h3>
                         <div class="before-after">
                             <div class="before">
@@ -508,7 +552,7 @@
                         </div>
                         <img src="https://via.placeholder.com/400x300?text=LINE%E3%82%AD%E3%83%A3%E3%83%97%E3%83%81%E3%83%A3%E7%94%BB%E5%83%8F" alt="LINE運用実績のキャプチャ" loading="lazy">
                     </div>
-                    <div class="result-card card">
+                    <div class="result-card">
                         <h3>コンサル業B様</h3>
                         <div class="before-after">
                             <div class="before">
@@ -528,9 +572,9 @@
 
         <section id="pricing" class="pricing-section">
             <div class="container">
-                <h2 class="fade-in">プラン & 料金</h2>
-                <div class="pricing-grid fade-in">
-                    <div class="pricing-card card">
+                <h2>プラン & 料金</h2>
+                <div class="pricing-grid">
+                    <div class="pricing-card">
                         <h3>ライトプラン</h3>
                         <div class="price">¥298,000</div>
                         <ul class="features">
@@ -541,7 +585,7 @@
                         </ul>
                         <a href="#contact" class="btn-primary" aria-label="ライトプランで無料相談を予約">このプランで相談</a>
                     </div>
-                    <div class="pricing-card featured card">
+                    <div class="pricing-card featured">
                         <div class="badge">人気No.1</div>
                         <h3>プレミアムプラン</h3>
                         <div class="price">¥498,000</div>
@@ -561,39 +605,27 @@
 
         <section class="process-section">
             <div class="container">
-                <h2 class="fade-in">制作フロー & 納期</h2>
-                <div class="process-timeline fade-in">
-                    <div class="process-step card">
-                        <div class="step-number">1</div>
-                        <div>
-                            <h3>ヒアリング</h3>
-                            <p>ビジネスモデルと目標を詳しくお聞きします</p>
-                            <small>1-2日</small>
-                        </div>
+                <h2>制作フロー & 納期</h2>
+                <div class="process-timeline">
+                    <div class="process-step">
+                        <h3>1. ヒアリング</h3>
+                        <p>ビジネスモデルと目標を詳しくお聞きします</p>
+                        <small>1-2日</small>
                     </div>
-                    <div class="process-step card">
-                        <div class="step-number">2</div>
-                        <div>
-                            <h3>戦略設計</h3>
-                            <p>最適なシナリオとLP構成を設計します</p>
-                            <small>3-5日</small>
-                        </div>
+                    <div class="process-step">
+                        <h3>2. 戦略設計</h3>
+                        <p>最適なシナリオとLP構成を設計します</p>
+                        <small>3-5日</small>
                     </div>
-                    <div class="process-step card">
-                        <div class="step-number">3</div>
-                        <div>
-                            <h3>制作・構築</h3>
-                            <p>LPとLINE公式アカウントを構築します</p>
-                            <small>10-14日</small>
-                        </div>
+                    <div class="process-step">
+                        <h3>3. 制作・構築</h3>
+                        <p>LPとLINE公式アカウントを構築します</p>
+                        <small>10-14日</small>
                     </div>
-                    <div class="process-step card">
-                        <div class="step-number">4</div>
-                        <div>
-                            <h3>テスト・納品</h3>
-                            <p>動作確認後、運用方法をレクチャーします</p>
-                            <small>2-3日</small>
-                        </div>
+                    <div class="process-step">
+                        <h3>4. テスト・納品</h3>
+                        <p>動作確認後、運用方法をレクチャーします</p>
+                        <small>2-3日</small>
                     </div>
                 </div>
             </div>
@@ -609,50 +641,48 @@
 
         <section id="faq" class="faq-section">
             <div class="container">
-                <h2 class="fade-in">よくある質問</h2>
-                <div class="fade-in">
-                    <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFaq(this)">
-                            LINE公式アカウントの運用は難しくないですか？
-                            <span class="faq-icon">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            <p>ご安心ください。設定完了後は基本的に自動で動作します。運用マニュアルも含めてお渡しし、サポート期間中はいつでもご質問いただけます。</p>
-                        </div>
+                <h2>よくある質問</h2>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        LINE公式アカウントの運用は難しくないですか？
+                        <span>+</span>
                     </div>
-                    <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFaq(this)">
-                            どのような業種でも効果はありますか？
-                            <span class="faq-icon">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            <p>はい。整体院、美容室、コンサルティング、EC事業など幅広い業種で実績があります。まずは無料相談で可能性を確認させていただきます。</p>
-                        </div>
+                    <div class="faq-answer">
+                        <p>ご安心ください。設定完了後は基本的に自動で動作します。運用マニュアルも含めてお渡しし、サポート期間中はいつでもご質問いただけます。</p>
                     </div>
-                    <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFaq(this)">
-                            料金の支払い方法は？
-                            <span class="faq-icon">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            <p>銀行振込、クレジットカード決済に対応しています。分割払いのご相談も承りますので、お気軽にお問い合わせください。</p>
-                        </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        どのような業種でも効果はありますか？
+                        <span>+</span>
                     </div>
-                    <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFaq(this)">
-                            制作後のサポートはありますか？
-                            <span class="faq-icon">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            <p>はい。プランに応じて1-3ヶ月間のサポートが含まれています。運用方法のご質問や改善提案など、しっかりとフォローいたします。</p>
-                        </div>
+                    <div class="faq-answer">
+                        <p>はい。整体院、美容室、コンサルティング、EC事業など幅広い業種で実績があります。まずは無料相談で可能性を確認させていただきます。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        料金の支払い方法は？
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>銀行振込、クレジットカード決済に対応しています。分割払いのご相談も承りますので、お気軽にお問い合わせください。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        制作後のサポートはありますか？
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>はい。プランに応じて1-3ヶ月間のサポートが含まれています。運用方法のご質問や改善提案など、しっかりとフォローいたします。</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <section id="profile" class="profile-section">
-            <div class="container fade-in">
+            <div class="container">
                 <div class="profile-content">
                     <div class="profile-image">
                         <img src="https://via.placeholder.com/300x300?text=%E3%81%90%E3%81%A3%E3%81%95%E3%82%93" alt="ぐっさんのプロフィール写真" loading="lazy">
@@ -686,44 +716,24 @@
 
     <script>
         function toggleFaq(element) {
-            const faqItem = element.parentElement;
             const answer = element.nextElementSibling;
-            const icon = element.querySelector('.faq-icon');
+            const icon = element.querySelector('span');
             
-            if (faqItem.classList.contains('active')) {
-                faqItem.classList.remove('active');
+            if (answer.classList.contains('active')) {
+                answer.classList.remove('active');
                 icon.textContent = '+';
             } else {
-                document.querySelectorAll('.faq-item').forEach(item => {
+                document.querySelectorAll('.faq-answer').forEach(item => {
                     item.classList.remove('active');
                 });
-                document.querySelectorAll('.faq-icon').forEach(item => {
+                document.querySelectorAll('.faq-question span').forEach(item => {
                     item.textContent = '+';
                 });
-                faqItem.classList.add('active');
+                answer.classList.add('active');
                 icon.textContent = '-';
             }
         }
 
-        // Fade in animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
