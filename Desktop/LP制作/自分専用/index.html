@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI × LINEシステム構築代行サービス | 集客を自動運転で最大化</title>
+    <meta name="description" content="AI技術とLINE公式アカウントを活用したシステム構築代行サービス。最短2週間で集客の自動化を実現します。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --clr-main: #2E7D32;
+            --clr-main-light: #4E9F64;
+            --clr-accent: #B79529;
+            --clr-bg: #F2F7F2;
+            --clr-text: #222;
+            --border-radius: 12px;
+            --box-shadow: rgba(0,0,0,.08) 0 4px 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            line-height: 1.6;
+            color: var(--clr-text);
+            background-color: var(--clr-bg);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--clr-main), var(--clr-main-light));
+            color: white;
+            padding: 80px 0 120px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="70" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: clamp(1.8rem, 4vw, 3.2rem);
+            font-weight: 700;
+            margin-bottom: 2rem;
+            line-height: 1.2;
+        }
+
+        .pain-points {
+            list-style: none;
+            margin: 2rem 0 3rem;
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .pain-points li {
+            padding: 0.8rem 0;
+            padding-left: 2rem;
+            position: relative;
+            font-size: 1.1rem;
+        }
+
+        .pain-points li::before {
+            content: '❌';
+            position: absolute;
+            left: 0;
+            top: 0.8rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--clr-accent);
+            color: white;
+            padding: 18px 40px;
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            font-weight: 700;
+            font-size: 1.2rem;
+            box-shadow: var(--box-shadow);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background: #A08528;
+            transform: translateY(-2px);
+            box-shadow: rgba(0,0,0,.15) 0 8px 20px;
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: var(--clr-main);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #666;
+        }
+
+        /* Recommended section */
+        .recommended-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .recommended-item {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            text-align: center;
+        }
+
+        .recommended-item .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* LINE effectiveness section */
+        .effectiveness-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .effectiveness-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            text-align: center;
+            position: relative;
+        }
+
+        .effectiveness-card .number {
+            position: absolute;
+            top: -15px;
+            left: 2rem;
+            background: var(--clr-main);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .effectiveness-card h3 {
+            margin: 1.5rem 0 1rem;
+            color: var(--clr-main);
+            font-size: 1.5rem;
+        }
+
+        /* Pie chart */
+        .pie-chart {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: conic-gradient(var(--clr-main) 0% 92.5%, #e0e0e0 92.5% 100%);
+            margin: 1rem auto;
+            position: relative;
+        }
+
+        .pie-chart::after {
+            content: '92.5%';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--clr-text);
+        }
+
+        /* Benefits section */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-item {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .benefit-item .icon {
+            font-size: 2.5rem;
+            flex-shrink: 0;
+        }
+
+        .benefit-item h3 {
+            color: var(--clr-main);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        /* Reasons section */
+        .reasons-list {
+            max-width: 800px;
+            margin: 3rem auto 0;
+        }
+
+        .reason-item {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+        }
+
+        .reason-number {
+            background: var(--clr-main);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .reason-content h3 {
+            color: var(--clr-main);
+            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+        }
+
+        /* Services section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            text-align: center;
+        }
+
+        .service-card .icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            color: var(--clr-main);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        /* Flow section */
+        .flow-container {
+            margin-top: 3rem;
+            position: relative;
+        }
+
+        .flow-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+            position: relative;
+        }
+
+        .flow-steps::before {
+            content: '';
+            position: absolute;
+            top: 50px;
+            left: 10%;
+            right: 10%;
+            height: 3px;
+            background: var(--clr-main-light);
+            z-index: 0;
+        }
+
+        .flow-step {
+            background: white;
+            padding: 2rem 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            text-align: center;
+            flex: 1;
+            position: relative;
+            z-index: 1;
+            max-width: 200px;
+        }
+
+        .flow-step .step-number {
+            background: var(--clr-main);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin: 0 auto 1rem;
+        }
+
+        .flow-step h4 {
+            color: var(--clr-main);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .flow-step p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* FAQ section */
+        .faq-container {
+            max-width: 800px;
+            margin: 3rem auto 0;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .faq-item details summary {
+            padding: 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--clr-main);
+            border-bottom: 1px solid #eee;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-item details summary::after {
+            content: '+';
+            font-size: 1.5rem;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item details[open] summary::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-item details div {
+            padding: 1.5rem;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* Final CTA section */
+        .final-cta {
+            background: linear-gradient(135deg, var(--clr-main), var(--clr-main-light));
+            color: white;
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .final-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .final-cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--clr-text);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-nav {
+            margin-bottom: 1rem;
+        }
+
+        .footer-nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1rem;
+            opacity: 0.8;
+        }
+
+        .footer-nav a:hover {
+            opacity: 1;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .benefit-item {
+                min-width: auto;
+            }
+
+            .flow-steps {
+                flex-direction: column;
+                align-items: center;
+                gap: 2rem;
+            }
+
+            .flow-steps::before {
+                display: none;
+            }
+
+            .flow-step {
+                max-width: 100%;
+                width: 100%;
+            }
+
+            .pain-points {
+                text-align: center;
+            }
+
+            .pain-points li {
+                padding-left: 0;
+            }
+
+            .pain-points li::before {
+                position: static;
+                margin-right: 0.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .recommended-grid,
+            .effectiveness-grid,
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-button {
+                padding: 15px 30px;
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="hero-content">
+                <h1>AI × LINEシステム構築で<br>集客を"自動運転"</h1>
+                <ul class="pain-points">
+                    <li>新規顧客の獲得に時間とコストがかかりすぎている</li>
+                    <li>既存顧客との継続的なコミュニケーションが取れていない</li>
+                    <li>マーケティング業務に追われて本業に集中できない</li>
+                </ul>
+                <a href="#contact" class="cta-button" id="cta-hero">無料で相談する</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section>
+            <div class="container">
+                <h2 class="section-title">こんな方におすすめ</h2>
+                <div class="recommended-grid">
+                    <div class="recommended-item">
+                        <div class="icon">👔</div>
+                        <h3>経営者・起業家</h3>
+                        <p>限られたリソースで最大の効果を求める方。AIとLINEを活用して効率的な集客システムを構築したい経営者の方に最適です。</p>
+                    </div>
+                    <div class="recommended-item">
+                        <div class="icon">🏪</div>
+                        <h3>店舗経営者</h3>
+                        <p>実店舗を持つ事業者の方。顧客との継続的な関係構築と来店促進を自動化し、売上向上を実現したい方におすすめです。</p>
+                    </div>
+                    <div class="recommended-item">
+                        <div class="icon">💼</div>
+                        <h3>士業・コンサルタント</h3>
+                        <p>専門サービスを提供する方。信頼関係の構築と継続的な顧客フォローを効率化し、リピート率向上を目指す方に適しています。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <h2 class="section-title">LINEが効果的な理由3選</h2>
+                <div class="effectiveness-grid">
+                    <div class="effectiveness-card">
+                        <div class="number">1</div>
+                        <div class="pie-chart"></div>
+                        <h3>圧倒的な普及率</h3>
+                        <p>日本国内でのLINE利用率は92.5%。ほぼ全ての人がスマートフォンに入れているアプリなので、新しいアプリをダウンロードしてもらう必要がありません。</p>
+                    </div>
+                    <div class="effectiveness-card">
+                        <div class="number">2</div>
+                        <div class="icon">📧</div>
+                        <h3>高い開封率</h3>
+                        <p>メールの開封率が約20%に対し、LINEメッセージの開封率は約60%以上。重要な情報を確実に顧客に届けることができます。</p>
+                    </div>
+                    <div class="effectiveness-card">
+                        <div class="number">3</div>
+                        <div class="icon">📱</div>
+                        <h3>使いやすさ</h3>
+                        <p>普段使い慣れたLINEなので、顧客にとって心理的ハードルが低く、気軽にコミュニケーションを取ってもらえます。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <h2 class="section-title">公式LINE導入で得られる5大メリット</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <div class="icon">🎯</div>
+                        <div>
+                            <h3>リード獲得の自動化</h3>
+                            <p>AIチャットボットが24時間365日、見込み顧客からの問い合わせに対応。深夜や休日でも商談機会を逃しません。</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="icon">🔄</div>
+                        <div>
+                            <h3>顧客フォローの効率化</h3>
+                            <p>購入後のアフターフォローやリピート促進メッセージを自動送信。手動での個別対応が不要になります。</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="icon">📊</div>
+                        <div>
+                            <h3>データ分析による改善</h3>
+                            <p>顧客の行動データを自動収集・分析。マーケティング戦略の改善点が明確になります。</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="icon">💰</div>
+                        <div>
+                            <h3>コスト削減効果</h3>
+                            <p>人件費や広告費を大幅に削減。ROI（投資対効果）が明確に可視化されます。</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="icon">⚡</div>
+                        <div>
+                            <h3>即時レスポンス</h3>
+                            <p>顧客からの質問に即座に回答。顧客満足度向上と機会損失の防止を実現します。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <h2 class="section-title">当社が選ばれる理由</h2>
+                <div class="reasons-list">
+                    <div class="reason-item">
+                        <div class="reason-number">1</div>
+                        <div class="reason-content">
+                            <h3>AIコピーライティング技術</h3>
+                            <p>最新のAI技術を活用して、顧客の心に響く魅力的なメッセージを自動生成。コンバージョン率の高い文章作成を実現します。</p>
+                        </div>
+                    </div>
+                    <div class="reason-item">
+                        <div class="reason-number">2</div>
+                        <div class="reason-content">
+                            <h3>ワンストップサービス</h3>
+                            <p>企画から構築、運用まで全てお任せ。複数の業者とやり取りする必要がなく、窓口が一本化されるため管理が簡単です。</p>
+                        </div>
+                    </div>
+                    <div class="reason-item">
+                        <div class="reason-number">3</div>
+                        <div class="reason-content">
+                            <h3>月額固定の安心価格</h3>
+                            <p>成果報酬ではなく月額固定制なので、予算管理が簡単。追加費用の心配なく安心してご利用いただけます。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <h2 class="section-title">提供サービス</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="icon">⚙️</div>
+                        <h3>アカウント設定</h3>
+                        <p>LINE公式アカウントの開設から基本設定まで完全代行。プロフィール作成、メニュー設定、自動応答機能の構築を行います。</p>
+                        <!-- TODO: アカウント設定のイメージ画像を追加 -->
+                    </div>
+                    <div class="service-card">
+                        <div class="icon">✍️</div>
+                        <h3>文章・資料作成</h3>
+                        <p>AIを活用した魅力的なメッセージ作成。ターゲットに響く文章やリッチメニュー、チラシデザインまで一括制作します。</p>
+                        <!-- TODO: 文章作成のサンプル画像を追加 -->
+                    </div>
+                    <div class="service-card">
+                        <div class="icon">📤</div>
+                        <h3>メッセージ送信設定</h3>
+                        <p>ステップメール配信やセグメント配信の設定。顧客の行動に応じた最適なタイミングでのメッセージ自動送信を実現します。</p>
+                        <!-- TODO: メッセージ送信設定の画面キャプチャを追加 -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <h2 class="section-title">導入フロー（最短2週間）</h2>
+                <div class="flow-container">
+                    <div class="flow-steps">
+                        <div class="flow-step">
+                            <div class="step-number">1</div>
+                            <h4>ヒアリング</h4>
+                            <p>現在の課題と目標を詳しくお聞きします</p>
+                        </div>
+                        <div class="flow-step">
+                            <div class="step-number">2</div>
+                            <h4>企画・提案</h4>
+                            <p>最適なシステム設計をご提案します</p>
+                        </div>
+                        <div class="flow-step">
+                            <div class="step-number">3</div>
+                            <h4>構築・設定</h4>
+                            <p>LINE公式アカウントとAIシステムを構築</p>
+                        </div>
+                        <div class="flow-step">
+                            <div class="step-number">4</div>
+                            <h4>テスト・調整</h4>
+                            <p>動作確認と最終調整を実施</p>
+                        </div>
+                        <div class="flow-step">
+                            <div class="step-number">5</div>
+                            <h4>運用開始</h4>
+                            <p>本格運用開始とサポート提供</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <h2 class="section-title">よくあるご質問</h2>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <details>
+                            <summary>導入にどのくらいの期間がかかりますか？</summary>
+                            <div>
+                                <p>最短2週間で導入可能です。お客様の業種や要望の複雑さによって期間は変動しますが、一般的には2-4週間程度で運用開始できます。ヒアリングから設定、テストまで全てサポートいたします。</p>
+                            </div>
+                        </details>
+                    </div>
+                    <div class="faq-item">
+                        <details>
+                            <summary>技術的な知識がなくても利用できますか？</summary>
+                            <div>
+                                <p>はい、全く問題ありません。設定から運用まで全て弊社で対応いたします。お客様は普段通りにLINEを使うだけで、自動的に集客システムが稼働します。操作方法についても丁寧にサポートいたします。</p>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="final-cta" id="contact">
+            <div class="container">
+                <h2>今すぐ始めて、集客を自動化しませんか？</h2>
+                <p>無料相談で、あなたのビジネスに最適なAI × LINEシステムをご提案します</p>
+                <a href="#contact" class="cta-button">無料で相談する</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <nav class="footer-nav">
+                <a href="#privacy">プライバシーポリシー</a>
+                <a href="#terms">利用規約</a>
+                <a href="#company">会社概要</a>
+            </nav>
+            <p>&copy; 2024 AI × LINEシステム構築サービス. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
