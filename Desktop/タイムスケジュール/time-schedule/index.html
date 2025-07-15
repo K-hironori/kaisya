@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>24時間円グラフタイムスケジュール</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>24時間タイムスケジュール管理</h1>
+        
+        <div class="schedule-container">
+            <div class="clock-circle">
+                <svg id="clock-svg" width="400" height="400" viewBox="0 0 400 400">
+                    <!-- 時計の背景円 -->
+                    <circle cx="200" cy="200" r="180" fill="none" stroke="#404040" stroke-width="2"/>
+                    
+                    <!-- 時間のマーカー -->
+                    <g id="hour-markers"></g>
+                    
+                    <!-- スケジュール表示エリア -->
+                    <g id="schedule-segments"></g>
+                    
+                    <!-- 現在時刻ライン -->
+                    <g id="current-time-line"></g>
+                    
+                    <!-- 中央の円 -->
+                    <circle cx="200" cy="200" r="40" fill="#2c2c2c" stroke="#555" stroke-width="2"/>
+                    <text x="200" y="210" text-anchor="middle" font-size="16" fill="#ffffff">24H</text>
+                </svg>
+            </div>
+            
+            <div class="controls">
+                <div class="time-input">
+                    <label for="start-time">開始時刻</label>
+                    <input type="time" id="start-time" value="09:00">
+                </div>
+                
+                <div class="time-input">
+                    <label for="end-time">終了時刻</label>
+                    <input type="time" id="end-time" value="10:00">
+                </div>
+                
+                <div class="task-input">
+                    <label for="task-name">予定名</label>
+                    <input type="text" id="task-name" placeholder="予定を入力">
+                </div>
+                
+                <div class="color-input">
+                    <label for="task-color">色</label>
+                    <input type="color" id="task-color" value="#4CAF50">
+                </div>
+                
+                <button id="add-task" onclick="addTask()">予定を追加</button>
+                <button id="clear-all" onclick="clearAll()">全て削除</button>
+            </div>
+        </div>
+        
+        <div class="schedule-list">
+            <h3>予定一覧</h3>
+            <div id="task-list"></div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
