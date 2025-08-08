@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OB・OG会の公式LINE説明スライド</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Meiryo', 'メイリオ', 'Hiragino Kaku Gothic Pro', 'ヒラギノ角ゴ Pro W3', sans-serif;
+            background: #f5f5f5;
+            color: #192a56;
+            overflow: hidden;
+        }
+
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background: white;
+        }
+
+        .slide {
+            display: none;
+            padding: 60px 80px 120px 80px;
+            text-align: center;
+            height: 100vh;
+            position: relative;
+            animation: fadeIn 0.5s ease-in;
+            overflow-y: auto;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: #192a56;
+            margin-bottom: 40px;
+            line-height: 1.3;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            font-size: 2.8rem;
+            font-weight: bold;
+            color: #192a56;
+            margin-bottom: 30px;
+            line-height: 1.3;
+        }
+
+        .content {
+            font-size: 2rem;
+            line-height: 2;
+            margin-bottom: 30px;
+            max-width: 1200px;
+        }
+
+        .content p {
+            margin-bottom: 25px;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #c8d6ff, #f1f4ff);
+            padding: 20px 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            font-weight: bold;
+            border-left: 8px solid #192a56;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .points {
+            text-align: left;
+            margin: 40px auto;
+            max-width: 1000px;
+        }
+
+        .points li {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-left: 20px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .points li::before {
+            content: "";
+            color: #192a56;
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: #192a56;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .nav-btn:hover {
+            background: #2c3e50;
+            transform: translateY(-2px);
+            box-shadow: 0 7px 20px rgba(0,0,0,0.3);
+        }
+
+        .nav-btn:disabled {
+            background: #bbb;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .slide-counter {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: rgba(25, 42, 86, 0.8);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .shapes {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .shape {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #c8d6ff, #e8f0ff);
+            border: 3px solid #192a56;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .shape.rectangle {
+            border-radius: 15px;
+            width: 160px;
+            height: 100px;
+        }
+
+        .arrow {
+            width: 0;
+            height: 0;
+            border-left: 30px solid #192a56;
+            border-top: 20px solid transparent;
+            border-bottom: 20px solid transparent;
+            margin: 0 20px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #666;
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        .flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .flow-item {
+            background: linear-gradient(135deg, #c8d6ff, #f1f4ff);
+            padding: 20px 30px;
+            border-radius: 15px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            border: 2px solid #192a56;
+            min-width: 150px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .steps {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .step {
+            background: white;
+            border: 3px solid #192a56;
+            border-radius: 20px;
+            padding: 30px 25px;
+            text-align: center;
+            min-width: 200px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .step-number {
+            background: #192a56;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .slide { padding: 40px 30px; }
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            .content { font-size: 1.5rem; }
+            .points li { font-size: 1.3rem; }
+            .shapes { gap: 20px; }
+            .shape { width: 80px; height: 80px; font-size: 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="slideshow-container">
+        <div class="slide-counter">
+            <span id="currentSlide">1</span> / <span id="totalSlides">10</span>
+        </div>
+
+        <!-- スライド1: タイトル -->
+        <div class="slide active">
+            <h1>OB・OG会の「公式LINE」って何？</h1>
+            <div class="content">
+                <div class="highlight">享栄高校 硬式野球部</div>
+                <p class="subtitle">〜みんなで使える新しい連絡手段〜</p>
+                <p class="subtitle">OB・OG会 役員、幹事説明会</p>
+            </div>
+        </div>
+
+        <!-- スライド2: 一言でいうと -->
+        <div class="slide">
+            <h2>一言でいうと：回覧板＋連絡網＋掲示板がスマホひとつに</h2>
+            <div class="content">
+                <div class="highlight">町内会の回覧板が、スマホで見られるようになった</div>
+                <p>OB・OG会からのお知らせ・試合結果・その他案内</p>
+                <p>すべて同じ場所で確認できる便利な仕組みです</p>
+                <div class="shapes">
+                    <div class="shape">OB・OG会からのお知らせ</div>
+                    <div class="shape">試合結果</div>
+                    <div class="shape">その他案内</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- スライド3: いま困っていること -->
+        <div class="slide">
+            <h2>いま困っていること（抜け漏れ／手間／遅れ／不安／費用）</h2>
+            <div class="content">
+                <ul class="points">
+                    <li><strong>抜け漏れ</strong>：お知らせが届かない人がいる</li>
+                    <li><strong>手間</strong>：郵送の準備に時間がかかる</li>
+                    <li><strong>遅れ</strong>：情報が回るまで1週間以上かかることも</li>
+                    <li><strong>不安</strong>：封書が届いているか分からない</li>
+                    <li><strong>費用</strong>：費用がかなりかかっている</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- スライド4: 公式LINEで解決 -->
+        <div class="slide">
+            <h2>公式LINEで解決</h2>
+            <div class="content">
+                <ul class="points">
+                    <li><strong>抜け漏れ解消</strong>：登録者全員に確実に一斉配信</li>
+                    <li><strong>手間削減</strong>：ボタン1つで瞬時に配信完了</li>
+                    <li><strong>時間短縮</strong>：リアルタイムでお知らせが届く</li>
+                    <li><strong>安心確認</strong>：開封確認で到達確認が可能</li>
+                    <li><strong>費用削減</strong>：郵送費・印刷費が大幅カット</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- スライド5: 運用の全体像 -->
+        <div class="slide">
+            <h2>運用の全体像（月1の「型」＋必要時のお知らせ）</h2>
+            <div class="content">
+                <ul class="points">
+                    <li><strong>定期配信</strong>：毎月15日頃に決まった「型」で配信</li>
+                    <li><strong>臨時配信</strong>：緊急時や重要なお知らせのみ</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- スライド6: 配信の中身 -->
+        <div class="slide">
+            <h2>配信の中身（写真1枚＋短文／予定3点／さりげない予告）</h2>
+            <div class="content">
+                <div class="shapes">
+                    <div class="shape rectangle">近況報告<br>学校の写真1枚＋<br>100文字程度の短文</div>
+                    <div class="shape rectangle">今月の予定<br>同窓会イベントを<br>3つまで</div>
+                    <div class="shape rectangle">さりげない予告<br>応援会費の<br>お知らせリンク</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- スライド7: 定期配信のねらい -->
+        <div class="slide">
+            <h2>定期配信のねらい（見る→思い出す→動ける）</h2>
+            <div class="content">
+                <div class="flow">
+                    <div class="flow-item">見る<br>スマホで手軽に<br>野球部の近況をチェック</div>
+                    <div class="arrow"></div>
+                    <div class="flow-item">思い出す<br>野球部への愛着や<br>つながりを再認識</div>
+                    <div class="arrow"></div>
+                    <div class="flow-item">動ける<br>同窓会行事への<br>参加意欲が自然に湧く</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- スライド8: 参加のしかた -->
+        <div class="slide">
+            <h2>参加のしかた（QR→追加→見るだけ／通知オフOK）</h2>
+            <div class="content">
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">①</div>
+                        <strong>QRコード</strong><br>
+                        専用コードをスマホで読み取り
+                    </div>
+                    <div class="step">
+                        <div class="step-number">②</div>
+                        <strong>友だち追加</strong><br>
+                        「追加」ボタンを押すだけ
+                    </div>
+                    <div class="step">
+                        <div class="step-number">③</div>
+                        <strong>見るだけOK</strong><br>
+                        通知オフ設定・退会もいつでも自由
+                    </div>
+                </div>
+                <div class="highlight" style="margin-top: 40px; background: #fff3cd; border-left: 8px solid #856404;">
+                    <strong>📝 メモ：</strong> 退会対策として、登録時にメールアドレスを取得することを推奨
+                </div>
+            </div>
+        </div>
+
+        <!-- スライド9: 安心のルール -->
+        <div class="slide">
+            <h2>安心のルール（個人情報配慮／売り込みしない）</h2>
+            <div class="content">
+                <ul class="points">
+                    <li><strong>個人情報</strong>：住所・電話番号など一切収集しません</li>
+                    <li><strong>営業なし</strong>：商品の売り込みや勧誘は行いません</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- スライド10: 今日のゴール＆次へ -->
+        <div class="slide">
+            <h2>今日のゴール＆次へ（応援会費について）</h2>
+            <div class="content">
+                <ul class="points">
+                    <li><strong>今日のゴール</strong>：公式LINEの全体像を理解していただく</li>
+                    <li><strong>お疲れ様でした</strong>：ご質問があればお気軽にどうぞ</li>
+                    <li><strong>続いて</strong>：次は応援会費の目的、ねらい</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">◀ 前へ</button>
+        <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">次へ ▶</button>
+    </div>
+
+    <script>
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        document.getElementById('totalSlides').textContent = totalSlides;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+            
+            document.getElementById('currentSlide').textContent = index + 1;
+            document.getElementById('prevBtn').disabled = index === 0;
+            document.getElementById('nextBtn').disabled = index === totalSlides - 1;
+        }
+
+        function changeSlide(direction) {
+            currentSlideIndex += direction;
+            if (currentSlideIndex < 0) currentSlideIndex = 0;
+            if (currentSlideIndex >= totalSlides) currentSlideIndex = totalSlides - 1;
+            showSlide(currentSlideIndex);
+        }
+
+        // キーボードナビゲーション
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                changeSlide(-1);
+            } else if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
+                e.preventDefault();
+                changeSlide(1);
+            }
+        });
+
+        // 初期化
+        showSlide(0);
+    </script>
+</body>
+</html>
