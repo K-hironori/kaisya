@@ -266,7 +266,8 @@
             padding-left: 8px;
         }
         .cost-comparison {
-            display: flex;
+            display: grid;
+            grid-template-columns: auto 1fr auto auto auto;
             align-items: center;
             gap: 8px;
             background: #f0f9ff;
@@ -274,18 +275,15 @@
             border-radius: var(--radius-md);
         }
         .cost-text {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             font-weight: 700;
             color: var(--accent-blue);
-            white-space: nowrap;
         }
         .cost-amount {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             font-weight: 700;
             color: var(--primary-dark);
-            white-space: nowrap;
             text-align: center;
-            flex: 1;
         }
         .efficiency-grid {
             display: grid;
