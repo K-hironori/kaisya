@@ -101,27 +101,38 @@
         /* --- タブナビゲーション --- */
         .nav-tabs {
             display: flex;
-            background-color: var(--bg-card);
-            border-radius: var(--radius-md);
-            padding: 6px;
-            box-shadow: var(--shadow-soft);
+            background-color: #f8fafc;
+            border-radius: var(--radius-lg);
+            padding: 8px;
+            box-shadow: var(--shadow-medium);
             margin-bottom: 24px;
+            border: 2px solid #e2e8f0;
         }
         .nav-tab {
             flex: 1;
-            padding: 12px 8px;
-            border: none;
-            background: transparent;
-            border-radius: 8px;
+            padding: 16px 12px;
+            border: 2px solid transparent;
+            background: white;
+            border-radius: var(--radius-md);
             font-weight: 700;
-            color: var(--text-light);
+            font-size: 0.9rem;
+            color: var(--text-dark);
             cursor: pointer;
             transition: all 0.3s ease;
+            margin: 0 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .nav-tab:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-color: var(--primary-color);
         }
         .nav-tab.active {
-            background-color: var(--primary-color);
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
             color: white;
-            box-shadow: 0 2px 8px rgba(6, 199, 85, 0.3);
+            border-color: var(--primary-dark);
+            box-shadow: 0 4px 12px rgba(6, 199, 85, 0.4);
+            transform: translateY(-1px);
         }
         .tab-content { display: none; }
         .tab-content.active { display: block; }
