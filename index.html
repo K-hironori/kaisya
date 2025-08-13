@@ -3,737 +3,528 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>公式LINE構築実績まとめ - モバイル版</title>
+    <title>【改善版】公式LINE構築実績 | Modern Portfolio</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    
     <style>
+        /* --- CSS変数定義 --- */
+        :root {
+            --primary-color: #06C755;
+            --primary-dark: #05a84a;
+            --accent-blue: #3B82F6;
+            --accent-red: #EF4444;
+            --text-dark: #1a202c;
+            --text-light: #4a5568;
+            --bg-main: #f8faff;
+            --bg-card: #ffffff;
+            --border-light: #e2e8f0;
+            --shadow-soft: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            --shadow-medium: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --radius-md: 12px;
+            --radius-lg: 16px;
+        }
+
+        /* --- 基本スタイル --- */
         body {
-            margin: 0;
-            padding: 0;
             font-family: 'Noto Sans JP', sans-serif;
-            background: linear-gradient(135deg, #ffffff 0%, #e6f9e6 100%);
-            min-height: 100vh;
+            background-color: var(--bg-main);
+            color: var(--text-light);
         }
-        
-        .mobile-container {
-            max-width: 100%;
+
+        .container {
+            max-width: 480px;
             margin: 0 auto;
-            padding: 10px;
+            padding: 16px;
+        }
+
+        /* --- アニメーション --- */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out forwards;
         }
         
-        .slide-card {
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .line-accent {
-            position: absolute;
-            height: 100%;
-            width: 6px;
-            background-color: #06C755;
-            left: 0;
-            top: 0;
-        }
-        
-        .title-section {
-            padding: 20px;
-            text-align: center;
-            background: linear-gradient(135deg, #06C755, #04a045);
+        /* --- ヘッダーカード --- */
+        .hero-card {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
             color: white;
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            text-align: center;
+            box-shadow: var(--shadow-medium);
+            margin-bottom: 24px;
         }
-        
-        .title {
-            font-size: 28px;
+        .hero-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .hero-title {
+            font-size: 1.8rem;
             font-weight: 900;
-            line-height: 1.2;
-            margin-bottom: 10px;
+            line-height: 1.3;
         }
-        
-        .subtitle {
-            font-size: 16px;
+        .hero-subtitle {
+            font-size: 1rem;
             opacity: 0.9;
+            margin-top: 8px;
         }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            padding: 20px;
-            background: white;
+        .stats-bar {
+            display: flex;
+            justify-content: space-around;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: var(--radius-md);
+            margin-top: 24px;
+            padding: 16px 8px;
         }
-        
         .stat-item {
             text-align: center;
-            padding: 15px 10px;
-            background: #f8f9fa;
-            border-radius: 10px;
         }
-        
         .stat-number {
-            font-size: 32px;
-            font-weight: bold;
-            color: #06C755;
-            line-height: 1;
+            font-size: 2rem;
+            font-weight: 700;
         }
-        
         .stat-label {
-            font-size: 14px;
-            color: #666;
-            margin-top: 5px;
+            font-size: 0.8rem;
+            opacity: 0.8;
         }
-        
-        .case-card {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            margin-bottom: 15px;
-            overflow: hidden;
-            position: relative;
-            border-left: 4px solid #06C755;
-        }
-        
-        .case-header {
-            padding: 15px;
-            background: linear-gradient(to right, rgba(6, 199, 85, 0.1), rgba(255, 255, 255, 0));
-            border-bottom: 1px solid #f0f0f0;
-        }
-        
-        .case-number {
-            position: absolute;
-            top: -8px;
-            left: -8px;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background-color: #06C755;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 14px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        }
-        
-        .case-title {
-            font-size: 18px;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 8px;
-            padding-left: 15px;
-        }
-        
-        .case-badges {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 5px;
-            margin-bottom: 10px;
-            padding-left: 15px;
-        }
-        
-        .badge {
-            background-color: #06C755;
-            color: white;
-            padding: 3px 8px;
-            border-radius: 12px;
-            font-size: 10px;
-            font-weight: 600;
-        }
-        
-        .badge-blue { background-color: #3B82F6; }
-        .badge-purple { background-color: #8B5CF6; }
-        .badge-orange { background-color: #F59E0B; }
-        .badge-red { background-color: #EF4444; }
-        .badge-pink { background-color: #EC4899; }
-        
-        .case-body {
-            padding: 15px;
-        }
-        
-        .case-description {
-            font-size: 14px;
-            color: #666;
-            line-height: 1.5;
-            margin-bottom: 15px;
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
-            margin-bottom: 15px;
-        }
-        
-        .feature-item {
-            background: #f8f9fa;
-            padding: 8px;
-            border-radius: 8px;
-            font-size: 12px;
-            text-align: center;
-        }
-        
-        .quote-box {
-            background: #f5fffa;
-            border: 2px solid #06C755;
-            border-radius: 10px;
-            padding: 12px;
-            text-align: center;
-            position: relative;
-            margin-top: 15px;
-        }
-        
-        .quote-text {
-            font-size: 14px;
-            font-weight: 600;
-            color: #06C755;
-            font-style: italic;
-        }
-        
-        .phone-preview {
-            width: 120px;
-            height: 200px;
-            border: 3px solid #333;
-            border-radius: 12px;
-            overflow: hidden;
-            margin: 10px auto;
-            position: relative;
-            background: #000;
-        }
-        
-        .phone-screen {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .cost-comparison {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin: 15px 0;
-        }
-        
-        .cost-item {
-            text-align: center;
-            padding: 12px;
-            border-radius: 8px;
-        }
-        
-        .cost-before {
-            background: #fff1f1;
-            border: 1px solid #ffcdd2;
-        }
-        
-        .cost-after {
-            background: #e8f5e9;
-            border: 1px solid #c8e6c9;
-        }
-        
-        .cost-amount {
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        
-        .cost-before .cost-amount { color: #d32f2f; }
-        .cost-after .cost-amount { color: #388e3c; }
-        
-        .expand-btn {
-            width: 100%;
-            padding: 12px;
-            background: #06C755;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: all 0.3s ease;
-        }
-        
-        .expand-btn:hover {
-            background: #05b54b;
-            transform: translateY(-1px);
-        }
-        
-        .expandable-content {
-            display: none;
-            padding-top: 15px;
-            border-top: 1px solid #e0e0e0;
-            margin-top: 15px;
-        }
-        
-        .expandable-content.expanded {
-            display: block;
-        }
-        
-        .icon-circle {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 10px;
-            color: white;
-            font-size: 18px;
-        }
-        
-        .icon-bg-1 { background: linear-gradient(135deg, #06C755, #025a27); }
-        .icon-bg-2 { background: linear-gradient(135deg, #3B82F6, #1D4ED8); }
-        .icon-bg-3 { background: linear-gradient(135deg, #F59E0B, #D97706); }
-        .icon-bg-4 { background: linear-gradient(135deg, #8B5CF6, #6D28D9); }
-        .icon-bg-5 { background: linear-gradient(135deg, #EC4899, #BE185D); }
-        
+
+        /* --- タブナビゲーション --- */
         .nav-tabs {
             display: flex;
-            background: white;
-            border-radius: 10px;
-            padding: 5px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            background-color: var(--bg-card);
+            border-radius: var(--radius-md);
+            padding: 6px;
+            box-shadow: var(--shadow-soft);
+            margin-bottom: 24px;
         }
-        
         .nav-tab {
             flex: 1;
             padding: 12px 8px;
-            text-align: center;
-            background: transparent;
             border: none;
+            background: transparent;
             border-radius: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            color: #666;
+            font-weight: 700;
+            color: var(--text-light);
             cursor: pointer;
             transition: all 0.3s ease;
         }
-        
         .nav-tab.active {
-            background: #06C755;
+            background-color: var(--primary-color);
             color: white;
+            box-shadow: 0 2px 8px rgba(6, 199, 85, 0.3);
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* --- 案件カード --- */
+        .case-card {
+            background-color: var(--bg-card);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-soft);
+            margin-bottom: 20px;
+            overflow: hidden;
+            border-left: 5px solid;
+            transition: all 0.3s ease;
+        }
+        .case-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-medium);
+        }
+        .case-card[data-type="consult"] { border-image: linear-gradient(to top, #8B5CF6, #c084fc) 1; }
+        .case-card[data-type="sports"] { border-image: linear-gradient(to top, #3B82F6, #60a5fa) 1; }
+        .case-card[data-type="beauty"] { border-image: linear-gradient(to top, #F59E0B, #fcd34d) 1; }
+        .case-card[data-type="group"] { border-image: linear-gradient(to top, #6D28D9, #a78bfa) 1; }
+        .case-card[data-type="company"] { border-image: linear-gradient(to top, #EC4899, #f9a8d4) 1; }
+        
+        .case-header {
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .case-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            color: white;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+        .case-icon-consult { background: linear-gradient(135deg, #8B5CF6, #c084fc); }
+        .case-icon-sports { background: linear-gradient(135deg, #3B82F6, #60a5fa); }
+        .case-icon-beauty { background: linear-gradient(135deg, #F59E0B, #fcd34d); }
+        .case-icon-group { background: linear-gradient(135deg, #6D28D9, #a78bfa); }
+        .case-icon-company { background: linear-gradient(135deg, #EC4899, #f9a8d4); }
+        
+        .case-title-group {
+            flex-grow: 1;
+        }
+        .case-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+        .case-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 4px;
+        }
+        .badge {
+            padding: 3px 10px;
+            border-radius: 99px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: white;
+            background-color: var(--primary-color);
+        }
+
+        .case-body {
+            padding: 0 20px 20px;
+        }
+        .case-desc {
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+        }
+        .case-point {
+            background-color: rgba(6, 199, 85, 0.05);
+            border-radius: var(--radius-md);
+            padding: 12px;
+            text-align: center;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            border: 1px solid rgba(6, 199, 85, 0.1);
+        }
+
+        /* 詳細表示 */
+        .expand-btn {
+            width: 100%;
+            padding: 12px;
+            margin-top: 16px;
+            background-color: #e2e8f0;
+            color: var(--text-light);
+            border: none;
+            border-radius: var(--radius-md);
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .expand-btn:hover {
+            background-color: #cbd5e1;
+            color: var(--text-dark);
+        }
+        .expand-btn i {
+            transition: transform 0.3s ease;
+        }
+        .expandable-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, margin-top 0.5s ease-in-out;
+        }
+        .expandable-content.expanded {
+            margin-top: 16px;
+            max-height: 500px; /* 十分な高さを確保 */
         }
         
-        .tab-content {
-            display: none;
+        /* 成果タブ */
+        .result-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow-soft);
         }
-        
-        .tab-content.active {
-            display: block;
+        .result-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            text-align: center;
         }
-        
-        .summary-stats {
+        .result-item {
+            margin-bottom: 24px;
+        }
+        .result-item-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 12px;
+            border-left: 3px solid var(--primary-color);
+            padding-left: 8px;
+        }
+        .cost-comparison {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #fff5f5;
+            padding: 16px;
+            border-radius: var(--radius-md);
+        }
+        .cost-text {
+            flex-grow: 1;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--accent-red);
+        }
+        .cost-amount {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--accent-red);
+        }
+        .efficiency-grid {
+            display: grid;
+            gap: 12px;
+        }
+        .efficiency-item {
+            background-color: #f0f9ff;
+            border: 1px solid #e0f2fe;
+            border-radius: var(--radius-md);
+            padding: 16px;
+            text-align: center;
+        }
+        .efficiency-value {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+            margin-bottom: 4px;
+        }
+        .efficiency-label {
+            font-size: 0.8rem;
+        }
+
+        /* 概要タブ */
+        .summary-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            padding: 20px;
+            gap: 16px;
         }
-        
         .summary-item {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: 20px;
             text-align: center;
-            padding: 15px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            box-shadow: var(--shadow-soft);
         }
-        
         .summary-icon {
-            font-size: 24px;
-            color: #06C755;
-            margin-bottom: 8px;
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+            color: var(--primary-color);
         }
-        
         .summary-title {
-            font-size: 14px;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 5px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 4px;
         }
-        
         .summary-desc {
-            font-size: 12px;
-            color: #666;
+            font-size: 0.8rem;
+            line-height: 1.5;
         }
+
+        /* スマホプレビュー */
+        .phone-preview {
+            width: 150px;
+            height: auto;
+            margin: 16px auto 8px;
+            filter: drop-shadow(0 10px 8px rgba(0,0,0,0.1));
+        }
+        .phone-preview img {
+            width: 100%;
+            border-radius: 12px;
+        }
+
     </style>
 </head>
 <body>
-    <div class="mobile-container">
-        <!-- Title Section -->
-        <div class="slide-card">
-            <div class="line-accent"></div>
-            <div class="title-section">
-                <div class="icon-circle icon-bg-1 mx-auto mb-4">
-                    <i class="fab fa-line"></i>
-                </div>
-                <h1 class="title">公式LINE<br>構築実績まとめ</h1>
-                <p class="subtitle">お客様の課題を解決する<br>成果につながる公式LINE構築</p>
-            </div>
-            <div class="stats-grid">
+    <div class="container">
+        <header class="hero-card">
+            <div class="hero-icon"><i class="fab fa-line"></i></div>
+            <h1 class="hero-title">公式LINE構築実績</h1>
+            <p class="hero-subtitle">ビジネスを加速させるLINE活用事例</p>
+            <div class="stats-bar">
                 <div class="stat-item">
-                    <div class="stat-number">5</div>
+                    <div class="stat-number" data-count="5">0</div>
                     <div class="stat-label">構築案件</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">100%</div>
-                    <div class="stat-label">顧客満足度</div>
+                    <div class="stat-number" data-count="100">0</div>
+                    <div class="stat-label">顧客満足度 %</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number"><i class="fas fa-check-circle text-green-500"></i></div>
-                    <div class="stat-label">課題解決</div>
+                    <div class="stat-number" data-count="20">0</div>
+                    <div class="stat-label">コスト削減 万円</div>
                 </div>
             </div>
-        </div>
+        </header>
 
-        <!-- Navigation Tabs -->
-        <div class="nav-tabs">
+        <nav class="nav-tabs">
             <button class="nav-tab active" onclick="showTab('overview')">概要</button>
             <button class="nav-tab" onclick="showTab('cases')">案件詳細</button>
             <button class="nav-tab" onclick="showTab('results')">成果</button>
-        </div>
+        </nav>
 
-        <!-- Overview Tab -->
         <div id="overview" class="tab-content active">
-            <div class="slide-card">
-                <div class="line-accent"></div>
-                <div style="padding: 20px;">
-                    <h2 style="font-size: 20px; font-weight: bold; color: #333; margin-bottom: 15px; text-align: center;">
-                        <i class="fas fa-chart-line text-green-500 mr-2"></i>
-                        構築実績サマリー
-                    </h2>
-                    
-                    <div class="summary-stats">
-                        <div class="summary-item">
-                            <div class="summary-icon">
-                                <i class="fas fa-industry"></i>
-                            </div>
-                            <div class="summary-title">多様な業種・業態</div>
-                            <div class="summary-desc">コンサル・スポーツ・美容・団体・リフォーム</div>
-                        </div>
-                        
-                        <div class="summary-item">
-                            <div class="summary-icon">
-                                <i class="fas fa-chart-line"></i>
-                            </div>
-                            <div class="summary-title">効果の実証</div>
-                            <div class="summary-desc">コスト削減・効率化・満足度向上</div>
-                        </div>
-                        
-                        <div class="summary-item">
-                            <div class="summary-icon">
-                                <i class="fas fa-robot"></i>
-                            </div>
-                            <div class="summary-title">最新技術活用</div>
-                            <div class="summary-desc">AI動画・ChatGPT・自動応答</div>
-                        </div>
-                        
-                        <div class="summary-item">
-                            <div class="summary-icon">
-                                <i class="fas fa-users-cog"></i>
-                            </div>
-                            <div class="summary-title">課題解決力</div>
-                            <div class="summary-desc">各種ビジネス課題に対応した設計</div>
-                        </div>
-                    </div>
+            <div class="summary-grid">
+                <div class="summary-item fade-in-up" style="animation-delay: 0.1s;">
+                    <div class="summary-icon"><i class="fas fa-industry"></i></div>
+                    <div class="summary-title">多様な業種に対応</div>
+                    <div class="summary-desc">コンサル・美容・スポーツなど幅広い実績</div>
+                </div>
+                <div class="summary-item fade-in-up" style="animation-delay: 0.2s;">
+                    <div class="summary-icon"><i class="fas fa-chart-line"></i></div>
+                    <div class="summary-title">確かな成果</div>
+                    <div class="summary-desc">コスト削減・業務効率化・満足度向上を実現</div>
+                </div>
+                <div class="summary-item fade-in-up" style="animation-delay: 0.3s;">
+                    <div class="summary-icon"><i class="fas fa-robot"></i></div>
+                    <div class="summary-title">最新技術の活用</div>
+                    <div class="summary-desc">AI動画・ChatGPT連携など最先端の機能</div>
+                </div>
+                <div class="summary-item fade-in-up" style="animation-delay: 0.4s;">
+                    <div class="summary-icon"><i class="fas fa-lightbulb"></i></div>
+                    <div class="summary-title">課題解決へのこだわり</div>
+                    <div class="summary-desc">お客様の課題に寄り添った最適な設計を提案</div>
                 </div>
             </div>
         </div>
 
-        <!-- Cases Tab -->
         <div id="cases" class="tab-content">
-            <!-- Case 1: Axis Consultant -->
-            <div class="case-card">
-                <div class="case-number">1</div>
+            <div class="case-card fade-in-up" data-type="consult">
                 <div class="case-header">
-                    <div class="icon-circle icon-bg-1">
-                        <i class="fas fa-compass"></i>
-                    </div>
-                    <div class="case-title">軸づくりコンサルタント</div>
-                    <div class="case-badges">
-                        <span class="badge">モニター案件</span>
-                        <span class="badge badge-purple">AI活用</span>
+                    <div class="case-icon case-icon-consult"><i class="fas fa-compass"></i></div>
+                    <div class="case-title-group">
+                        <div class="case-title">軸づくりコンサルタント</div>
+                        <div class="case-badges"><span class="badge">AI活用</span></div>
                     </div>
                 </div>
                 <div class="case-body">
-                    <p class="case-description">
-                        クライアントの世界観を反映し、ブランドイメージの一貫性を実現した初案件
-                    </p>
-                    
-                    <div class="features-grid">
-                        <div class="feature-item">ChatGPT活用</div>
-                        <div class="feature-item">世界観構築</div>
-                        <div class="feature-item">メニュー最適化</div>
-                        <div class="feature-item">ZOOM予約</div>
-                    </div>
-                    
-                    <div class="quote-box">
-                        <div class="quote-text">"大満足です！"</div>
-                    </div>
-                    
-                    <button class="expand-btn" onclick="toggleExpand(this)">
-                        詳細を見る <i class="fas fa-chevron-down ml-2"></i>
-                    </button>
-                    
+                    <p class="case-desc">クライアントの世界観を反映し、ブランドイメージの一貫性を実現。</p>
+                    <div class="case-point">"大満足です！" というお言葉を頂きました</div>
+                    <button class="expand-btn" onclick="toggleExpand(this)">詳細を見る <i class="fas fa-chevron-down ml-2"></i></button>
                     <div class="expandable-content">
-                        <div class="phone-preview">
-                            <img src="https://page.genspark.site/v1/base64_upload/dadf28c58e5f755a6bc7ea944506f626" alt="軸づくりコンサルタントLINE画面" class="phone-screen">
-                        </div>
-                        <p style="font-size: 12px; color: #666; text-align: center;">
-                            AI技術でクライアントの世界観を的確に表現し、ZOOM予約への導線を強化
-                        </p>
+                        <div class="phone-preview"><img src="https://page.genspark.site/v1/base64_upload/dadf28c58e5f755a6bc7ea944506f626" alt="LINE画面"></div>
+                        <p class="text-xs text-center px-4">AI技術で世界観を的確に表現し、ZOOM予約への導線を強化しました。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="case-card fade-in-up" data-type="sports">
+                <div class="case-header">
+                    <div class="case-icon case-icon-sports"><i class="fas fa-baseball-ball"></i></div>
+                    <div class="case-title-group">
+                        <div class="case-title">中学生野球クラブチーム</div>
+                        <div class="case-badges"><span class="badge">業務効率化</span></div>
+                    </div>
+                </div>
+                <div class="case-body">
+                    <p class="case-desc">電話対応だった体験申込をLINEで完結させ、集客と運営の基盤を構築。</p>
+                    <div class="case-point">保護者の対応が格段に楽になったと好評</div>
+                    <button class="expand-btn" onclick="toggleExpand(this)">詳細を見る <i class="fas fa-chevron-down ml-2"></i></button>
+                    <div class="expandable-content">
+                        <div class="phone-preview"><img src="https://page.genspark.site/v1/base64_upload/b19077f634e7f8334bbfdbbc5f991fd5" alt="LINE画面"></div>
+                        <p class="text-xs text-center px-4">体験申込の自動化で運営効率化を実現。保護者の負担も大幅軽減しました。</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Case 2: Baseball Club -->
-            <div class="case-card">
-                <div class="case-number">2</div>
+            <div class="case-card fade-in-up" data-type="beauty">
                 <div class="case-header">
-                    <div class="icon-circle icon-bg-2">
-                        <i class="fas fa-baseball-ball"></i>
-                    </div>
-                    <div class="case-title">中学生野球クラブチーム</div>
-                    <div class="case-badges">
-                        <span class="badge badge-blue">スポーツ団体向け</span>
-                        <span class="badge">初報酬案件</span>
+                    <div class="case-icon case-icon-beauty"><i class="fas fa-cut"></i></div>
+                    <div class="case-title-group">
+                        <div class="case-title">美容室BLESS</div>
+                        <div class="case-badges"><span class="badge">複合サービス</span></div>
                     </div>
                 </div>
                 <div class="case-body">
-                    <p class="case-description">
-                        電話対応だった体験申込受付をLINEで完結し、集客基盤を構築
-                    </p>
-                    
-                    <div class="features-grid">
-                        <div class="feature-item">体験申込フォーム</div>
-                        <div class="feature-item">自動応答</div>
-                        <div class="feature-item">集客導線</div>
-                        <div class="feature-item">年間スケジュール</div>
-                    </div>
-                    
-                    <div class="quote-box">
-                        <div class="quote-text">"保護者対応が楽になった"</div>
-                    </div>
-                    
-                    <button class="expand-btn" onclick="toggleExpand(this)">
-                        詳細を見る <i class="fas fa-chevron-down ml-2"></i>
-                    </button>
-                    
+                    <p class="case-desc">複数事業（美容・ヨガ・整体等）の情報発信と予約導線を一元化。</p>
+                    <div class="case-point">伝えるのがラクになった！と感謝されました</div>
+                    <button class="expand-btn" onclick="toggleExpand(this)">詳細を見る <i class="fas fa-chevron-down ml-2"></i></button>
                     <div class="expandable-content">
-                        <div class="phone-preview">
-                            <img src="https://page.genspark.site/v1/base64_upload/b19077f634e7f8334bbfdbbc5f991fd5" alt="野球クラブチームLINE画面" class="phone-screen">
-                        </div>
-                        <p style="font-size: 12px; color: #666; text-align: center;">
-                            体験申込の自動化で運営効率化を実現、保護者の負担も大幅軽減
-                        </p>
+                        <div class="phone-preview"><img src="https://page.genspark.site/v1/base64_upload/dc9f2c427c0b23c6a0ad32ba534f0fdc" alt="LINE画面"></div>
+                        <p class="text-xs text-center px-4">6つのサービスを整理し、マルチサービス展開を強力にサポートしました。</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Case 3: Beauty Salon -->
-            <div class="case-card">
-                <div class="case-number">3</div>
+            <div class="case-card fade-in-up" data-type="group">
                 <div class="case-header">
-                    <div class="icon-circle icon-bg-3">
-                        <i class="fas fa-cut"></i>
-                    </div>
-                    <div class="case-title">美容室BLESS</div>
-                    <div class="case-badges">
-                        <span class="badge badge-orange">店舗ビジネス</span>
-                        <span class="badge">複合サービス</span>
+                    <div class="case-icon case-icon-group"><i class="fas fa-users"></i></div>
+                    <div class="case-title-group">
+                        <div class="case-title">享栄高校 硬式野球部 OB・OG会</div>
+                        <div class="case-badges"><span class="badge">コスト削減</span></div>
                     </div>
                 </div>
                 <div class="case-body">
-                    <p class="case-description">
-                        美容・ヨガ・ピラティス・整体など複数事業の情報発信環境を効率化
-                    </p>
-                    
-                    <div class="features-grid">
-                        <div class="feature-item">複数サービス案内</div>
-                        <div class="feature-item">一斉配信</div>
-                        <div class="feature-item">導線設計</div>
-                        <div class="feature-item">情報一元管理</div>
-                    </div>
-                    
-                    <div class="quote-box">
-                        <div class="quote-text">"伝えるのがラクになった！"</div>
-                    </div>
-                    
-                    <button class="expand-btn" onclick="toggleExpand(this)">
-                        詳細を見る <i class="fas fa-chevron-down ml-2"></i>
-                    </button>
-                    
+                    <p class="case-desc">郵送費を全額削減し、情報伝達率を30%から90%へと劇的に改善。</p>
+                    <div class="case-point">コストも減り、運営が楽になったと高評価</div>
+                    <button class="expand-btn" onclick="toggleExpand(this)">詳細を見る <i class="fas fa-chevron-down ml-2"></i></button>
                     <div class="expandable-content">
-                        <div class="phone-preview">
-                            <img src="https://page.genspark.site/v1/base64_upload/dc9f2c427c0b23c6a0ad32ba534f0fdc" alt="美容室BLESSLINE画面" class="phone-screen">
-                        </div>
-                        <p style="font-size: 12px; color: #666; text-align: center;">
-                            6つのサービスを一元管理し、マルチサービス展開をサポート
-                        </p>
+                         <div class="phone-preview"><img src="https://page.genspark.site/v1/base64_upload/88028339988cc88ba6962fe2bb7e6cf1" alt="LINE画面"></div>
+                        <p class="text-xs text-center px-4">年間約20万円の郵送費削減と、情報共有率の向上を同時に達成しました。</p>
                     </div>
                 </div>
             </div>
-
-            <!-- Case 4: OB/OG Association -->
-            <div class="case-card">
-                <div class="case-number">4</div>
+            
+            <div class="case-card fade-in-up" data-type="company">
                 <div class="case-header">
-                    <div class="icon-circle icon-bg-4">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <div class="case-title">享栄高校 硬式野球部 OB・OG会</div>
-                    <div class="case-badges">
-                        <span class="badge badge-purple">団体向け</span>
-                        <span class="badge">コスト削減</span>
+                    <div class="case-icon case-icon-company"><i class="fas fa-tools"></i></div>
+                    <div class="case-title-group">
+                        <div class="case-title">リフォーム会社 Novaデザイン</div>
+                        <div class="case-badges"><span class="badge">AI動画</span><span class="badge ml-2">在庫削減</span></div>
                     </div>
                 </div>
                 <div class="case-body">
-                    <p class="case-description">
-                        郵送費年間20万円を削減し、情報伝達率を30%から90%に向上
-                    </p>
-                    
-                    <div class="cost-comparison">
-                        <div class="cost-item cost-before">
-                            <div class="cost-amount">¥200,000/年</div>
-                            <div style="font-size: 12px;">郵送費用</div>
-                            <div style="font-size: 10px; color: #666;">返信率30%</div>
-                        </div>
-                        <div class="cost-item cost-after">
-                            <div class="cost-amount">¥0</div>
-                            <div style="font-size: 12px;">LINE活用</div>
-                            <div style="font-size: 10px; color: #666;">既読率90%</div>
-                        </div>
-                    </div>
-                    
-                    <div class="quote-box">
-                        <div class="quote-text">"コストも減り運営が楽に"</div>
-                    </div>
-                    
-                    <button class="expand-btn" onclick="toggleExpand(this)">
-                        詳細を見る <i class="fas fa-chevron-down ml-2"></i>
-                    </button>
-                    
+                    <p class="case-desc">AI動画で業務効率化と顧客満足度を向上させ、在庫問題も改善。</p>
+                    <div class="case-point">"LINEってここまでできるんだ！"と驚きの声</div>
+                    <button class="expand-btn" onclick="toggleExpand(this)">詳細を見る <i class="fas fa-chevron-down ml-2"></i></button>
                     <div class="expandable-content">
-                        <div class="phone-preview">
-                            <img src="https://page.genspark.site/v1/base64_upload/88028339988cc88ba6962fe2bb7e6cf1" alt="OB・OG会LINE画面" class="phone-screen">
-                        </div>
-                        <p style="font-size: 12px; color: #666; text-align: center;">
-                            年間約20万円の削減と情報共有率向上を同時に実現
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Case 5: Renovation Company -->
-            <div class="case-card">
-                <div class="case-number">5</div>
-                <div class="case-header">
-                    <div class="icon-circle icon-bg-5">
-                        <i class="fas fa-tools"></i>
-                    </div>
-                    <div class="case-title">リフォーム会社 Novaデザイン</div>
-                    <div class="case-badges">
-                        <span class="badge badge-red">AI活用</span>
-                        <span class="badge">在庫削減</span>
-                    </div>
-                </div>
-                <div class="case-body">
-                    <p class="case-description">
-                        AI動画導入で業務効率化と顧客満足向上、在庫問題も改善
-                    </p>
-                    
-                    <div class="features-grid">
-                        <div class="feature-item">AI動画活用</div>
-                        <div class="feature-item">商品案内</div>
-                        <div class="feature-item">顧客対応自動化</div>
-                        <div class="feature-item">SNS連携</div>
-                    </div>
-                    
-                    <div class="quote-box">
-                        <div class="quote-text">"LINEってここまでできるんだ！"</div>
-                    </div>
-                    
-                    <button class="expand-btn" onclick="toggleExpand(this)">
-                        詳細を見る <i class="fas fa-chevron-down ml-2"></i>
-                    </button>
-                    
-                    <div class="expandable-content">
-                        <div class="phone-preview">
-                            <img src="https://page.genspark.site/v1/base64_upload/b2211f8ea078830966e4a0886a2efbda" alt="NovaデザインLINE画面" class="phone-screen">
-                        </div>
-                        <p style="font-size: 12px; color: #666; text-align: center;">
-                            AI動画導入で業務効率化と顧客満足向上を同時に実現
-                        </p>
+                         <div class="phone-preview"><img src="https://page.genspark.site/v1/base64_upload/b2211f8ea078830966e4a0886a2efbda" alt="LINE画面"></div>
+                        <p class="text-xs text-center px-4">AI動画の導入で、業務効率化と顧客満足度の向上を同時に実現しました。</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Results Tab -->
         <div id="results" class="tab-content">
-            <div class="slide-card">
-                <div class="line-accent"></div>
-                <div style="padding: 20px;">
-                    <h2 style="font-size: 20px; font-weight: bold; color: #333; margin-bottom: 20px; text-align: center;">
-                        <i class="fas fa-trophy text-yellow-500 mr-2"></i>
-                        主な成果・効果
-                    </h2>
-                    
-                    <div style="margin-bottom: 25px;">
-                        <h3 style="font-size: 16px; font-weight: bold; color: #06C755; margin-bottom: 15px;">
-                            <i class="fas fa-money-bill-wave mr-2"></i>コスト削減効果
-                        </h3>
-                        <div style="background: #f8f9fa; padding: 15px; border-radius: 10px; margin-bottom: 15px;">
-                            <div style="font-size: 24px; font-weight: bold; color: #d32f2f; text-align: center;">¥200,000/年</div>
-                            <div style="text-align: center; font-size: 14px; color: #666;">郵送費用削減（享栄高校OB・OG会）</div>
-                        </div>
+            <div class="result-card fade-in-up">
+                <h2 class="result-title"><i class="fas fa-trophy text-yellow-400 mr-2"></i>主な成果・効果</h2>
+                <div class="result-item">
+                    <h3 class="result-item-title">コスト削減効果</h3>
+                    <div class="cost-comparison">
+                        <i class="fas fa-yen-sign text-2xl text-red-500"></i>
+                        <div class="cost-text">郵送費用</div>
+                        <div class="cost-amount">20万円/年</div>
+                        <i class="fas fa-arrow-right text-red-500"></i>
+                        <div class="font-bold text-lg text-red-500">¥0</div>
                     </div>
-                    
-                    <div style="margin-bottom: 25px;">
-                        <h3 style="font-size: 16px; font-weight: bold; color: #06C755; margin-bottom: 15px;">
-                            <i class="fas fa-chart-line mr-2"></i>効率化・満足度向上
-                        </h3>
-                        <div class="summary-stats" style="grid-template-columns: 1fr; gap: 10px;">
-                            <div style="background: #e8f5e9; padding: 12px; border-radius: 8px; text-align: center;">
-                                <div style="font-size: 18px; font-weight: bold; color: #388e3c;">情報伝達率 30% → 90%</div>
-                                <div style="font-size: 12px; color: #666;">既読率の大幅向上</div>
-                            </div>
-                            <div style="background: #e3f2fd; padding: 12px; border-radius: 8px; text-align: center;">
-                                <div style="font-size: 18px; font-weight: bold; color: #1976d2;">問合せ対応 40%削減</div>
-                                <div style="font-size: 12px; color: #666;">AI動画導入効果</div>
-                            </div>
-                            <div style="background: #fff3e0; padding: 12px; border-radius: 8px; text-align: center;">
-                                <div style="font-size: 18px; font-weight: bold; color: #f57c00;">在庫問題 30%改善</div>
-                                <div style="font-size: 12px; color: #666;">情報発信強化効果</div>
-                            </div>
+                </div>
+                <div class="result-item">
+                    <h3 class="result-item-title">効率化・満足度向上</h3>
+                    <div class="efficiency-grid">
+                        <div class="efficiency-item">
+                            <div class="efficiency-value">30% <i class="fas fa-long-arrow-alt-right mx-1"></i> 90%</div>
+                            <div class="efficiency-label">情報伝達率（既読率）の向上</div>
                         </div>
-                    </div>
-                    
-                    <div style="margin-bottom: 25px;">
-                        <h3 style="font-size: 16px; font-weight: bold; color: #06C755; margin-bottom: 15px;">
-                            <i class="fas fa-heart mr-2"></i>顧客満足度
-                        </h3>
-                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
-                            <div style="background: #f5fffa; padding: 12px; border-radius: 8px; border: 1px solid #06C755;">
-                                <div style="font-size: 24px; font-weight: bold; color: #06C755; text-align: center;">100%</div>
-                                <div style="font-size: 12px; color: #666; text-align: center;">満足度</div>
-                            </div>
-                            <div style="background: #f5fffa; padding: 12px; border-radius: 8px; border: 1px solid #06C755;">
-                                <div style="font-size: 24px; font-weight: bold; color: #06C755; text-align: center;">5件</div>
-                                <div style="font-size: 12px; color: #666; text-align: center;">全案件成功</div>
-                            </div>
+                         <div class="efficiency-item">
+                            <div class="efficiency-value">40% 削減</div>
+                            <div class="efficiency-label">問合せ対応工数（AI動画導入）</div>
                         </div>
-                    </div>
-                    
-                    <div style="background: linear-gradient(135deg, #06C755, #04a045); color: white; padding: 20px; border-radius: 10px; text-align: center;">
-                        <div style="font-size: 18px; font-weight: bold; margin-bottom: 10px;">
-                            <i class="fas fa-rocket mr-2"></i>次世代LINE構築サービス
-                        </div>
-                        <div style="font-size: 14px; opacity: 0.9;">
-                            AIと人間の融合で、あなたのビジネスを<br>次のステージへ押し上げます
+                         <div class="efficiency-item">
+                            <div class="efficiency-value">100% 達成</div>
+                            <div class="efficiency-label">全案件での顧客満足度</div>
                         </div>
                     </div>
                 </div>
@@ -742,26 +533,16 @@
     </div>
 
     <script>
+        // --- タブ切り替え機能 ---
         function showTab(tabName) {
-            // Hide all tab contents
-            const tabContents = document.querySelectorAll('.tab-content');
-            tabContents.forEach(content => {
-                content.classList.remove('active');
-            });
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
             
-            // Remove active class from all tabs
-            const tabs = document.querySelectorAll('.nav-tab');
-            tabs.forEach(tab => {
-                tab.classList.remove('active');
-            });
-            
-            // Show selected tab content
             document.getElementById(tabName).classList.add('active');
-            
-            // Add active class to clicked tab
             event.target.classList.add('active');
         }
-        
+
+        // --- 詳細表示/非表示機能 ---
         function toggleExpand(button) {
             const content = button.nextElementSibling;
             const icon = button.querySelector('i');
@@ -769,11 +550,54 @@
             if (content.classList.contains('expanded')) {
                 content.classList.remove('expanded');
                 button.innerHTML = '詳細を見る <i class="fas fa-chevron-down ml-2"></i>';
+                icon.style.transform = 'rotate(0deg)';
             } else {
                 content.classList.add('expanded');
                 button.innerHTML = '閉じる <i class="fas fa-chevron-up ml-2"></i>';
+                icon.style.transform = 'rotate(180deg)';
             }
         }
+        
+        // --- 表示されたら発動するアニメーション ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // カウントアップアニメーション
+            const counters = document.querySelectorAll('.stat-number');
+            const speed = 200; // アニメーション速度
+
+            const animateCount = (counter) => {
+                const target = +counter.getAttribute('data-count');
+                const updateCount = () => {
+                    const count = +counter.innerText;
+                    const increment = target / speed;
+                    
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count + increment);
+                        setTimeout(updateCount, 1);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                updateCount();
+            };
+            
+            // フェードインアニメーション
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        if(entry.target.classList.contains('stat-number')) {
+                            animateCount(entry.target);
+                        } else {
+                            entry.target.classList.add('fade-in-up');
+                        }
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-in-up, .stat-number').forEach(el => {
+                observer.observe(el);
+            });
+        });
     </script>
 </body>
 </html>
