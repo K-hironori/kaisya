@@ -3,868 +3,777 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI × LINE構築サービス | 次世代マーケティング自動化</title>
-    <meta name="description" content="開封率95%超、リピート率5倍を実現するAI powered LINE構築サービス。無料戦略セッションで売上を爆発的に成長させませんか？">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <title>公式LINE構築実績まとめ - モバイル版</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        /* Reset and Base Styles */
-        * {
+        body {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', 'Noto Sans JP', sans-serif;
-            line-height: 1.6;
-            color: #fff;
-            background: #0A0A0A;
-            overflow-x: hidden;
-        }
-
-        /* Glass Morphism Effects */
-        .glass-morphism {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .glass-morphism-dark {
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .text-gradient {
-            background: linear-gradient(135deg, #06C755, #00FF88, #06C755);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .neon-border {
-            box-shadow: 0 0 20px rgba(6, 199, 85, 0.5), inset 0 0 20px rgba(6, 199, 85, 0.1);
-        }
-
-        .particle-bg {
-            background-image: 
-                radial-gradient(circle at 25% 25%, rgba(6, 199, 85, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 75% 75%, rgba(0, 255, 136, 0.1) 0%, transparent 50%);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #0A0A0A 0%, #1a1a1a 25%, #06C755 100%);
-            color: white;
+            font-family: 'Noto Sans JP', sans-serif;
+            background: linear-gradient(135deg, #ffffff 0%, #e6f9e6 100%);
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            position: relative;
+        }
+        
+        .mobile-container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 10px;
+        }
+        
+        .slide-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
             overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(to-br, from-black/60 via-transparent to-black/40);
-            z-index: 1;
-        }
-
-        /* Floating geometric shapes */
-        .hero::after {
-            content: '';
-            position: absolute;
-            top: 20%;
-            left: 15%;
-            width: 200px;
-            height: 200px;
-            background: rgba(6, 199, 85, 0.1);
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-            z-index: 1;
-        }
-
-        .hero-content {
             position: relative;
-            z-index: 2;
+        }
+        
+        .line-accent {
+            position: absolute;
+            height: 100%;
+            width: 6px;
+            background-color: #06C755;
+            left: 0;
+            top: 0;
+        }
+        
+        .title-section {
+            padding: 20px;
             text-align: center;
-            animation: slideUp 1s ease-out;
+            background: linear-gradient(135deg, #06C755, #04a045);
+            color: white;
         }
-
-        .hero-badge {
-            display: inline-block;
-            background: rgba(6, 199, 85, 0.2);
-            border: 1px solid rgba(6, 199, 85, 0.3);
-            padding: 10px 24px;
-            border-radius: 25px;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 24px;
-            backdrop-filter: blur(10px);
-            color: #00FF88;
-        }
-
-        .hero h1 {
-            font-size: clamp(3rem, 8vw, 6rem);
+        
+        .title {
+            font-size: 28px;
             font-weight: 900;
-            margin-bottom: 24px;
-            line-height: 1.1;
+            line-height: 1.2;
+            margin-bottom: 10px;
         }
-
-        .hero-highlight {
-            background: linear-gradient(135deg, #06C755, #00FF88, #06C755);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: glow 2s ease-in-out infinite alternate;
-        }
-
-        .hero p {
-            font-size: clamp(1.2rem, 4vw, 1.8rem);
-            margin-bottom: 40px;
+        
+        .subtitle {
+            font-size: 16px;
             opacity: 0.9;
-            font-weight: 300;
-            color: #E0E0E0;
         }
-
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(45deg, #06C755, #00FF88);
-            color: #000;
-            padding: 18px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.3rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 20px rgba(6, 199, 85, 0.5), inset 0 0 20px rgba(6, 199, 85, 0.1);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 0 30px rgba(6, 199, 85, 0.7), inset 0 0 30px rgba(6, 199, 85, 0.2);
-        }
-
-        /* Stats Section */
-        .stats {
-            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
-            padding: 100px 0;
-            position: relative;
-        }
-
-        .stats::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(6, 199, 85, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(0, 255, 136, 0.08) 0%, transparent 50%);
-            z-index: 1;
-        }
-
-        .stats .container {
-            position: relative;
-            z-index: 2;
-        }
-
+        
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
-            text-align: center;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            padding: 20px;
+            background: white;
         }
-
+        
         .stat-item {
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 50px 30px;
-            border-radius: 25px;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
+            text-align: center;
+            padding: 15px 10px;
+            background: #f8f9fa;
+            border-radius: 10px;
         }
-
-        .stat-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #06C755, #00FF88);
-            transform: translateX(-100%);
-            transition: transform 0.6s ease;
-        }
-
-        .stat-item:hover::before {
-            transform: translateX(0);
-        }
-
-        .stat-item:hover {
-            transform: translateY(-15px) scale(1.05);
-            background: rgba(6, 199, 85, 0.1);
-            border-color: rgba(6, 199, 85, 0.3);
-            box-shadow: 0 25px 50px rgba(6, 199, 85, 0.3);
-        }
-
+        
         .stat-number {
-            font-size: 4rem;
-            font-weight: 900;
-            background: linear-gradient(135deg, #06C755, #00FF88);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 15px;
+            font-size: 32px;
+            font-weight: bold;
+            color: #06C755;
             line-height: 1;
         }
-
+        
         .stat-label {
-            font-size: 1.2rem;
-            color: #E0E0E0;
-            font-weight: 500;
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
         }
-
-        /* Problems Section */
-        .problems {
-            background: linear-gradient(135deg, #0A0A0A 0%, #1a1a1a 100%);
+        
+        .case-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            margin-bottom: 15px;
+            overflow: hidden;
+            position: relative;
+            border-left: 4px solid #06C755;
+        }
+        
+        .case-header {
+            padding: 15px;
+            background: linear-gradient(to right, rgba(6, 199, 85, 0.1), rgba(255, 255, 255, 0));
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .case-number {
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #06C755;
             color: white;
-            padding: 100px 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .problems::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 75% 25%, rgba(255, 0, 85, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 25% 75%, rgba(255, 136, 0, 0.08) 0%, transparent 50%);
-            z-index: 1;
-        }
-
-        .problems .container {
-            position: relative;
-            z-index: 2;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            font-weight: 900;
-            margin-bottom: 20px;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            font-size: 1.3rem;
-            margin-bottom: 80px;
-            opacity: 0.8;
-            color: #B0B0B0;
-        }
-
-        .problems-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-        }
-
-        .problem-card {
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 25px;
-            padding: 40px;
-            text-align: center;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .problem-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #FF4757, #FF6B7A);
-            transform: translateX(-100%);
-            transition: transform 0.6s ease;
-        }
-
-        .problem-card:hover::before {
-            transform: translateX(0);
-        }
-
-        .problem-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            background: rgba(255, 71, 87, 0.1);
-            border-color: rgba(255, 71, 87, 0.3);
-            box-shadow: 0 25px 50px rgba(255, 71, 87, 0.2);
-        }
-
-        .problem-icon {
-            font-size: 4rem;
-            margin-bottom: 25px;
-            filter: drop-shadow(0 0 10px rgba(255, 71, 87, 0.5));
-        }
-
-        .problem-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: #FFFFFF;
-        }
-
-        .problem-text {
-            opacity: 0.8;
-            line-height: 1.6;
-            color: #E0E0E0;
-            font-size: 1.1rem;
-        }
-
-        /* Solutions Section */
-        .solutions {
-            background: linear-gradient(135deg, #1a1a1a 0%, #0A0A0A 100%);
-            padding: 100px 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .solutions::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 30% 40%, rgba(6, 199, 85, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 70% 60%, rgba(0, 255, 136, 0.08) 0%, transparent 50%);
-            z-index: 1;
-        }
-
-        .solutions .container {
-            position: relative;
-            z-index: 2;
-        }
-
-        .solutions-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 40px;
-        }
-
-        .solution-card {
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 25px;
-            padding: 40px;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .solution-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #06C755, #00FF88);
-            transform: translateX(-100%);
-            transition: transform 0.6s ease;
-        }
-
-        .solution-card:hover::before {
-            transform: translateX(0);
-        }
-
-        .solution-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            background: rgba(6, 199, 85, 0.1);
-            border-color: rgba(6, 199, 85, 0.3);
-            box-shadow: 0 25px 50px rgba(6, 199, 85, 0.3);
-        }
-
-        .solution-icon {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, #06C755, #00FF88);
-            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
-            margin-bottom: 25px;
-            transition: all 0.3s ease;
+            font-weight: bold;
+            font-size: 14px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
-
-        .solution-card:hover .solution-icon {
-            transform: scale(1.1) rotate(5deg);
-            box-shadow: 0 0 30px rgba(6, 199, 85, 0.6);
+        
+        .case-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+            padding-left: 15px;
         }
-
-        .solution-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: #FFFFFF;
+        
+        .case-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 10px;
+            padding-left: 15px;
         }
-
-        .solution-text {
-            color: #E0E0E0;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            font-size: 1.1rem;
-        }
-
-        .solution-benefit {
-            background: rgba(6, 199, 85, 0.2);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(6, 199, 85, 0.3);
-            color: #00FF88;
-            padding: 12px 18px;
-            border-radius: 15px;
+        
+        .badge {
+            background-color: #06C755;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 10px;
             font-weight: 600;
-            font-size: 1rem;
         }
-
-        /* CTA Section */
-        .cta-section {
-            background: linear-gradient(135deg, #06C755, #00FF88);
-            padding: 80px 0;
-            text-align: center;
-        }
-
-        .cta-section h2 {
-            color: #000;
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            font-weight: 900;
-            margin-bottom: 20px;
-        }
-
-        .cta-section p {
-            color: rgba(0, 0, 0, 0.8);
-            font-size: 1.3rem;
-            margin-bottom: 40px;
-        }
-
-        .cta-form {
-            max-width: 600px;
-            margin: 0 auto;
-            display: grid;
-            gap: 20px;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        .form-input, .form-textarea {
+        
+        .badge-blue { background-color: #3B82F6; }
+        .badge-purple { background-color: #8B5CF6; }
+        .badge-orange { background-color: #F59E0B; }
+        .badge-red { background-color: #EF4444; }
+        .badge-pink { background-color: #EC4899; }
+        
+        .case-body {
             padding: 15px;
-            border: none;
-            border-radius: 10px;
-            font-size: 1rem;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
         }
-
-        .form-input:focus, .form-textarea:focus {
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2);
-        }
-
-        .form-textarea {
-            grid-column: 1 / -1;
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .submit-button {
-            background: #000;
-            color: white;
-            padding: 18px 40px;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .submit-button:hover {
-            background: #333;
-            transform: translateY(-2px);
-        }
-
-        /* Footer */
-        .footer {
-            background: #1a1a1a;
-            color: white;
-            padding: 40px 0;
-            text-align: center;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 30px;
-        }
-
-        .footer-section h3 {
-            color: #06C755;
+        
+        .case-description {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
             margin-bottom: 15px;
         }
-
-        .footer-section ul {
-            list-style: none;
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-bottom: 15px;
         }
-
-        .footer-section ul li {
-            margin-bottom: 8px;
-            opacity: 0.8;
+        
+        .feature-item {
+            background: #f8f9fa;
+            padding: 8px;
+            border-radius: 8px;
+            font-size: 12px;
+            text-align: center;
         }
-
-        .footer-section ul li:hover {
-            opacity: 1;
+        
+        .quote-box {
+            background: #f5fffa;
+            border: 2px solid #06C755;
+            border-radius: 10px;
+            padding: 12px;
+            text-align: center;
+            position: relative;
+            margin-top: 15px;
+        }
+        
+        .quote-text {
+            font-size: 14px;
+            font-weight: 600;
             color: #06C755;
+            font-style: italic;
+        }
+        
+        .phone-preview {
+            width: 120px;
+            height: 200px;
+            border: 3px solid #333;
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 10px auto;
+            position: relative;
+            background: #000;
+        }
+        
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .cost-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .cost-item {
+            text-align: center;
+            padding: 12px;
+            border-radius: 8px;
+        }
+        
+        .cost-before {
+            background: #fff1f1;
+            border: 1px solid #ffcdd2;
+        }
+        
+        .cost-after {
+            background: #e8f5e9;
+            border: 1px solid #c8e6c9;
+        }
+        
+        .cost-amount {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .cost-before .cost-amount { color: #d32f2f; }
+        .cost-after .cost-amount { color: #388e3c; }
+        
+        .expand-btn {
+            width: 100%;
+            padding: 12px;
+            background: #06C755;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
             cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.3s ease;
         }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 20px;
-            opacity: 0.6;
+        
+        .expand-btn:hover {
+            background: #05b54b;
+            transform: translateY(-1px);
         }
-
-        /* Animations */
-        @keyframes slideUp {
-            from {
-                transform: translateY(50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
+        
+        .expandable-content {
+            display: none;
+            padding-top: 15px;
+            border-top: 1px solid #e0e0e0;
+            margin-top: 15px;
         }
-
-        @keyframes float {
-            0%, 100% { 
-                transform: translateY(0px); 
-            }
-            50% { 
-                transform: translateY(-20px); 
-            }
+        
+        .expandable-content.expanded {
+            display: block;
         }
-
-        @keyframes glow {
-            from { 
-                text-shadow: 0 0 20px #06C755, 0 0 30px #06C755, 0 0 40px #06C755; 
-            }
-            to { 
-                text-shadow: 0 0 10px #06C755, 0 0 20px #06C755, 0 0 30px #06C755; 
-            }
+        
+        .icon-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            color: white;
+            font-size: 18px;
         }
-
-        @keyframes fadeIn {
-            from { 
-                opacity: 0; 
-            }
-            to { 
-                opacity: 1; 
-            }
+        
+        .icon-bg-1 { background: linear-gradient(135deg, #06C755, #025a27); }
+        .icon-bg-2 { background: linear-gradient(135deg, #3B82F6, #1D4ED8); }
+        .icon-bg-3 { background: linear-gradient(135deg, #F59E0B, #D97706); }
+        .icon-bg-4 { background: linear-gradient(135deg, #8B5CF6, #6D28D9); }
+        .icon-bg-5 { background: linear-gradient(135deg, #EC4899, #BE185D); }
+        
+        .nav-tabs {
+            display: flex;
+            background: white;
+            border-radius: 10px;
+            padding: 5px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-            
-            .hero {
-                padding: 40px 0;
-                min-height: auto;
-            }
-            
-            .container {
-                padding: 0 15px;
-            }
+        
+        .nav-tab {
+            flex: 1;
+            padding: 12px 8px;
+            text-align: center;
+            background: transparent;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-tab.active {
+            background: #06C755;
+            color: white;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .summary-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            padding: 20px;
+        }
+        
+        .summary-item {
+            text-align: center;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .summary-icon {
+            font-size: 24px;
+            color: #06C755;
+            margin-bottom: 8px;
+        }
+        
+        .summary-title {
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .summary-desc {
+            font-size: 12px;
+            color: #666;
         }
     </style>
 </head>
 <body>
-    <!-- Hero Section -->
-    <section class="hero particle-bg">
-        <!-- Floating geometric shapes -->
-        <div style="position: absolute; top: 15%; right: 15%; width: 150px; height: 150px; background: rgba(0, 255, 136, 0.1); border-radius: 50%; animation: float 8s ease-in-out infinite; animation-delay: -2s; z-index: 1;"></div>
-        <div style="position: absolute; bottom: 20%; left: 10%; width: 100px; height: 100px; background: rgba(6, 199, 85, 0.15); transform: rotate(45deg); animation: float 10s ease-in-out infinite; animation-delay: -4s; z-index: 1;"></div>
-        
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-badge">🚀 次世代型LINE構築サービス</div>
-                <h1>
-                    <span style="color: #fff;">友だち登録が</span><br>
-                    <span class="hero-highlight">売上に変わる</span><br>
-                    <span style="color: #fff;">革命的体験</span>
-                </h1>
-                <p>
-                    <span style="color: #00FF88; font-weight: 600;">開封率95%超</span>、<span style="color: #00FF88; font-weight: 600;">リピート率5倍</span>を実現<br>
-                    AIと人間の融合で、あなたのビジネスを<br>
-                    <span class="text-gradient" style="font-weight: 700;">次のステージ</span>へ
-                </p>
-                <div style="display: flex; flex-direction: column; gap: 15px; align-items: center;">
-                    <a href="#contact" class="cta-button">🎯 無料戦略セッション予約</a>
-                    <a href="#solutions" style="color: #fff; text-decoration: none; padding: 12px 30px; border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 50px; backdrop-filter: blur(10px); transition: all 0.3s ease; font-weight: 600;" onmouseover="this.style.borderColor='rgba(6, 199, 85, 0.5)'; this.style.background='rgba(6, 199, 85, 0.1)'" onmouseout="this.style.borderColor='rgba(255, 255, 255, 0.2)'; this.style.background='transparent'">📊 成功事例を見る</a>
+    <div class="mobile-container">
+        <!-- Title Section -->
+        <div class="slide-card">
+            <div class="line-accent"></div>
+            <div class="title-section">
+                <div class="icon-circle icon-bg-1 mx-auto mb-4">
+                    <i class="fab fa-line"></i>
                 </div>
+                <h1 class="title">公式LINE<br>構築実績まとめ</h1>
+                <p class="subtitle">お客様の課題を解決する<br>成果につながる公式LINE構築</p>
             </div>
-        </div>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="stats">
-        <div class="container">
             <div class="stats-grid">
                 <div class="stat-item">
-                    <div class="stat-number">95%</div>
-                    <div class="stat-label">メッセージ開封率</div>
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">構築案件</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">5倍</div>
-                    <div class="stat-label">リピート率向上</div>
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">顧客満足度</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">24h</div>
-                    <div class="stat-label">AI自動運用</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">300%</div>
-                    <div class="stat-label">売上成長率</div>
+                    <div class="stat-number"><i class="fas fa-check-circle text-green-500"></i></div>
+                    <div class="stat-label">課題解決</div>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Problems Section -->
-    <section class="problems">
-        <div class="container">
-            <div style="text-align: center; margin-bottom: 24px;">
-                <span style="display: inline-block; padding: 10px 24px; background: rgba(255, 71, 87, 0.2); border: 1px solid rgba(255, 71, 87, 0.3); border-radius: 25px; font-size: 14px; font-weight: 600; color: #FF6B7A; backdrop-filter: blur(10px);">
-                    ⚠️ 多くの企業が直面する現実
-                </span>
-            </div>
-            <h2 class="section-title">
-                <span style="color: #fff;">もう</span>
-                <span class="text-gradient">悩まない</span>
-                <span style="color: #fff;">でください</span>
-            </h2>
-            <p class="section-subtitle">これらの問題、すべて解決できます</p>
-            
-            <div class="problems-grid">
-                <div class="problem-card">
-                    <div class="problem-icon">💔</div>
-                    <h3 class="problem-title">友だちは増えたのに売上につながらない</h3>
-                    <p class="problem-text">せっかく登録してもらっても、配信しても反応がない...平均開封率15%以下という現実</p>
-                </div>
-                <div class="problem-card">
-                    <div class="problem-icon">😰</div>
-                    <h3 class="problem-title">何を配信すればいいか分からない</h3>
-                    <p class="problem-text">シナリオ設計やコンテンツ作成に週20時間以上を浪費。本業に集中できない</p>
-                </div>
-                <div class="problem-card">
-                    <div class="problem-icon">🔧</div>
-                    <h3 class="problem-title">機能が多すぎて使いこなせない</h3>
-                    <p class="problem-text">リッチメニューやチャットボット設定が複雑。機能活用率30%以下でもったいない</p>
-                </div>
-            </div>
+        <!-- Navigation Tabs -->
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showTab('overview')">概要</button>
+            <button class="nav-tab" onclick="showTab('cases')">案件詳細</button>
+            <button class="nav-tab" onclick="showTab('results')">成果</button>
         </div>
-    </section>
 
-    <!-- Solutions Section -->
-    <section class="solutions" id="solutions">
-        <div class="container">
-            <div style="text-align: center; margin-bottom: 24px;">
-                <span style="display: inline-block; padding: 10px 24px; background: rgba(6, 199, 85, 0.2); border: 1px solid rgba(6, 199, 85, 0.3); border-radius: 25px; font-size: 14px; font-weight: 600; color: #00FF88; backdrop-filter: blur(10px);">
-                    🎯 革新的ソリューション
-                </span>
-            </div>
-            <h2 class="section-title">
-                <span style="color: #fff;">AIが作る</span><br>
-                <span class="text-gradient">未来のLINE</span>
-            </h2>
-            <p class="section-subtitle">まるで専属マーケティングチームが24時間働いているかのような体験</p>
-            
-            <div class="solutions-grid">
-                <div class="solution-card">
-                    <div class="solution-icon">🤖</div>
-                    <h3 class="solution-title">AI構築・初期設定</h3>
-                    <p class="solution-text">プロフィールから基本設定まで、AIが最適化して自動構築。人的ミスを排除し、効率的なセットアップを実現。</p>
-                    <div class="solution-benefit">✨ 設定時間: 従来の1/10</div>
-                </div>
-                <div class="solution-card">
-                    <div class="solution-icon">🧠</div>
-                    <h3 class="solution-title">心理学ベースシナリオ</h3>
-                    <p class="solution-text">顧客心理を分析し、購買行動を促進するシナリオを自動生成。データドリブンなアプローチで成果を最大化。</p>
-                    <div class="solution-benefit">🎯 コンバージョン率: 3倍向上</div>
-                </div>
-                <div class="solution-card">
-                    <div class="solution-icon">💬</div>
-                    <h3 class="solution-title">次世代AIチャットボット</h3>
-                    <p class="solution-text">GPT-4を活用した自然な対話で、24時間365日の接客を実現。顧客満足度向上と業務効率化を同時に達成。</p>
-                    <div class="solution-benefit">⚡ 応答速度: 0.3秒以内</div>
-                </div>
-                <div class="solution-card">
-                    <div class="solution-icon">🎯</div>
-                    <h3 class="solution-title">動的セグメンテーション</h3>
-                    <p class="solution-text">AIが顧客行動を分析し、リアルタイムでセグメントを自動更新。パーソナライズされたメッセージで高い効果を実現。</p>
-                    <div class="solution-benefit">📊 精度: 95%以上</div>
-                </div>
-                <div class="solution-card">
-                    <div class="solution-icon">🎨</div>
-                    <h3 class="solution-title">AIデザイン生成</h3>
-                    <p class="solution-text">リッチメニューやカードメッセージをAIが自動デザイン。ブランドに合わせた美しいビジュアルを瞬時に生成。</p>
-                    <div class="solution-benefit">🎨 生成時間: 5分以内</div>
-                </div>
-                <div class="solution-card">
-                    <div class="solution-icon">📊</div>
-                    <h3 class="solution-title">リアルタイム分析</h3>
-                    <p class="solution-text">AIが24時間データを分析し、即座に改善提案を実行。継続的な最適化で長期的な成長を支援。</p>
-                    <div class="solution-benefit">⚡ 改善提案: 毎時更新</div>
+        <!-- Overview Tab -->
+        <div id="overview" class="tab-content active">
+            <div class="slide-card">
+                <div class="line-accent"></div>
+                <div style="padding: 20px;">
+                    <h2 style="font-size: 20px; font-weight: bold; color: #333; margin-bottom: 15px; text-align: center;">
+                        <i class="fas fa-chart-line text-green-500 mr-2"></i>
+                        構築実績サマリー
+                    </h2>
+                    
+                    <div class="summary-stats">
+                        <div class="summary-item">
+                            <div class="summary-icon">
+                                <i class="fas fa-industry"></i>
+                            </div>
+                            <div class="summary-title">多様な業種・業態</div>
+                            <div class="summary-desc">コンサル・スポーツ・美容・団体・リフォーム</div>
+                        </div>
+                        
+                        <div class="summary-item">
+                            <div class="summary-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="summary-title">効果の実証</div>
+                            <div class="summary-desc">コスト削減・効率化・満足度向上</div>
+                        </div>
+                        
+                        <div class="summary-item">
+                            <div class="summary-icon">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="summary-title">最新技術活用</div>
+                            <div class="summary-desc">AI動画・ChatGPT・自動応答</div>
+                        </div>
+                        
+                        <div class="summary-item">
+                            <div class="summary-icon">
+                                <i class="fas fa-users-cog"></i>
+                            </div>
+                            <div class="summary-title">課題解決力</div>
+                            <div class="summary-desc">各種ビジネス課題に対応した設計</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- CTA Section -->
-    <section class="cta-section" id="contact">
-        <div class="container">
-            <h2>今すぐ始めて、売上を爆発的に成長させませんか？</h2>
-            <p>無料戦略セッションで、あなたのビジネスに最適な次世代LINE活用法をご提案します</p>
-            
-            <form class="cta-form" id="contactForm">
-                <div class="form-row">
-                    <input type="text" class="form-input" placeholder="お名前" required>
-                    <input type="email" class="form-input" placeholder="メールアドレス" required>
+        <!-- Cases Tab -->
+        <div id="cases" class="tab-content">
+            <!-- Case 1: Axis Consultant -->
+            <div class="case-card">
+                <div class="case-number">1</div>
+                <div class="case-header">
+                    <div class="icon-circle icon-bg-1">
+                        <i class="fas fa-compass"></i>
+                    </div>
+                    <div class="case-title">軸づくりコンサルタント</div>
+                    <div class="case-badges">
+                        <span class="badge">モニター案件</span>
+                        <span class="badge badge-purple">AI活用</span>
+                    </div>
                 </div>
-                <input type="tel" class="form-input" placeholder="電話番号">
-                <textarea class="form-textarea" placeholder="ご相談内容・現在の課題をお聞かせください（任意）"></textarea>
-                <button type="submit" class="submit-button">🚀 無料戦略セッションを予約する</button>
-            </form>
-            
-            <p style="margin-top: 20px; font-size: 0.9rem; opacity: 0.8;">
-                ※ 24時間以内にご連絡いたします　※ 無理な営業は一切いたしません
-            </p>
-        </div>
-    </section>
+                <div class="case-body">
+                    <p class="case-description">
+                        クライアントの世界観を反映し、ブランドイメージの一貫性を実現した初案件
+                    </p>
+                    
+                    <div class="features-grid">
+                        <div class="feature-item">ChatGPT活用</div>
+                        <div class="feature-item">世界観構築</div>
+                        <div class="feature-item">メニュー最適化</div>
+                        <div class="feature-item">ZOOM予約</div>
+                    </div>
+                    
+                    <div class="quote-box">
+                        <div class="quote-text">"大満足です！"</div>
+                    </div>
+                    
+                    <button class="expand-btn" onclick="toggleExpand(this)">
+                        詳細を見る <i class="fas fa-chevron-down ml-2"></i>
+                    </button>
+                    
+                    <div class="expandable-content">
+                        <div class="phone-preview">
+                            <img src="https://page.genspark.site/v1/base64_upload/dadf28c58e5f755a6bc7ea944506f626" alt="軸づくりコンサルタントLINE画面" class="phone-screen">
+                        </div>
+                        <p style="font-size: 12px; color: #666; text-align: center;">
+                            AI技術でクライアントの世界観を的確に表現し、ZOOM予約への導線を強化
+                        </p>
+                    </div>
+                </div>
+            </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>🎯 サービス</h3>
-                    <ul>
-                        <li>AI構築・初期設定</li>
-                        <li>心理学ベースシナリオ</li>
-                        <li>次世代AIチャットボット</li>
-                        <li>動的セグメンテーション</li>
-                        <li>AIデザイン生成</li>
-                        <li>リアルタイム分析</li>
-                    </ul>
+            <!-- Case 2: Baseball Club -->
+            <div class="case-card">
+                <div class="case-number">2</div>
+                <div class="case-header">
+                    <div class="icon-circle icon-bg-2">
+                        <i class="fas fa-baseball-ball"></i>
+                    </div>
+                    <div class="case-title">中学生野球クラブチーム</div>
+                    <div class="case-badges">
+                        <span class="badge badge-blue">スポーツ団体向け</span>
+                        <span class="badge">初報酬案件</span>
+                    </div>
                 </div>
-                <div class="footer-section">
-                    <h3>🔗 会社情報</h3>
-                    <ul>
-                        <li>会社概要</li>
-                        <li>成功事例</li>
-                        <li>料金プラン</li>
-                        <li>お問い合わせ</li>
-                        <li>プライバシーポリシー</li>
-                        <li>利用規約</li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>📞 お問い合わせ</h3>
-                    <ul>
-                        <li>無料戦略セッション</li>
-                        <li>技術サポート</li>
-                        <li>導入相談</li>
-                        <li>メディア掲載</li>
-                    </ul>
+                <div class="case-body">
+                    <p class="case-description">
+                        電話対応だった体験申込受付をLINEで完結し、集客基盤を構築
+                    </p>
+                    
+                    <div class="features-grid">
+                        <div class="feature-item">体験申込フォーム</div>
+                        <div class="feature-item">自動応答</div>
+                        <div class="feature-item">集客導線</div>
+                        <div class="feature-item">年間スケジュール</div>
+                    </div>
+                    
+                    <div class="quote-box">
+                        <div class="quote-text">"保護者対応が楽になった"</div>
+                    </div>
+                    
+                    <button class="expand-btn" onclick="toggleExpand(this)">
+                        詳細を見る <i class="fas fa-chevron-down ml-2"></i>
+                    </button>
+                    
+                    <div class="expandable-content">
+                        <div class="phone-preview">
+                            <img src="https://page.genspark.site/v1/base64_upload/b19077f634e7f8334bbfdbbc5f991fd5" alt="野球クラブチームLINE画面" class="phone-screen">
+                        </div>
+                        <p style="font-size: 12px; color: #666; text-align: center;">
+                            体験申込の自動化で運営効率化を実現、保護者の負担も大幅軽減
+                        </p>
+                    </div>
                 </div>
             </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2024 次世代AI × LINE構築サービス. All rights reserved.</p>
+
+            <!-- Case 3: Beauty Salon -->
+            <div class="case-card">
+                <div class="case-number">3</div>
+                <div class="case-header">
+                    <div class="icon-circle icon-bg-3">
+                        <i class="fas fa-cut"></i>
+                    </div>
+                    <div class="case-title">美容室BLESS</div>
+                    <div class="case-badges">
+                        <span class="badge badge-orange">店舗ビジネス</span>
+                        <span class="badge">複合サービス</span>
+                    </div>
+                </div>
+                <div class="case-body">
+                    <p class="case-description">
+                        美容・ヨガ・ピラティス・整体など複数事業の情報発信環境を効率化
+                    </p>
+                    
+                    <div class="features-grid">
+                        <div class="feature-item">複数サービス案内</div>
+                        <div class="feature-item">一斉配信</div>
+                        <div class="feature-item">導線設計</div>
+                        <div class="feature-item">情報一元管理</div>
+                    </div>
+                    
+                    <div class="quote-box">
+                        <div class="quote-text">"伝えるのがラクになった！"</div>
+                    </div>
+                    
+                    <button class="expand-btn" onclick="toggleExpand(this)">
+                        詳細を見る <i class="fas fa-chevron-down ml-2"></i>
+                    </button>
+                    
+                    <div class="expandable-content">
+                        <div class="phone-preview">
+                            <img src="https://page.genspark.site/v1/base64_upload/dc9f2c427c0b23c6a0ad32ba534f0fdc" alt="美容室BLESSLINE画面" class="phone-screen">
+                        </div>
+                        <p style="font-size: 12px; color: #666; text-align: center;">
+                            6つのサービスを一元管理し、マルチサービス展開をサポート
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Case 4: OB/OG Association -->
+            <div class="case-card">
+                <div class="case-number">4</div>
+                <div class="case-header">
+                    <div class="icon-circle icon-bg-4">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="case-title">享栄高校 硬式野球部 OB・OG会</div>
+                    <div class="case-badges">
+                        <span class="badge badge-purple">団体向け</span>
+                        <span class="badge">コスト削減</span>
+                    </div>
+                </div>
+                <div class="case-body">
+                    <p class="case-description">
+                        郵送費年間20万円を削減し、情報伝達率を30%から90%に向上
+                    </p>
+                    
+                    <div class="cost-comparison">
+                        <div class="cost-item cost-before">
+                            <div class="cost-amount">¥200,000/年</div>
+                            <div style="font-size: 12px;">郵送費用</div>
+                            <div style="font-size: 10px; color: #666;">返信率30%</div>
+                        </div>
+                        <div class="cost-item cost-after">
+                            <div class="cost-amount">¥0</div>
+                            <div style="font-size: 12px;">LINE活用</div>
+                            <div style="font-size: 10px; color: #666;">既読率90%</div>
+                        </div>
+                    </div>
+                    
+                    <div class="quote-box">
+                        <div class="quote-text">"コストも減り運営が楽に"</div>
+                    </div>
+                    
+                    <button class="expand-btn" onclick="toggleExpand(this)">
+                        詳細を見る <i class="fas fa-chevron-down ml-2"></i>
+                    </button>
+                    
+                    <div class="expandable-content">
+                        <div class="phone-preview">
+                            <img src="https://page.genspark.site/v1/base64_upload/88028339988cc88ba6962fe2bb7e6cf1" alt="OB・OG会LINE画面" class="phone-screen">
+                        </div>
+                        <p style="font-size: 12px; color: #666; text-align: center;">
+                            年間約20万円の削減と情報共有率向上を同時に実現
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Case 5: Renovation Company -->
+            <div class="case-card">
+                <div class="case-number">5</div>
+                <div class="case-header">
+                    <div class="icon-circle icon-bg-5">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <div class="case-title">リフォーム会社 Novaデザイン</div>
+                    <div class="case-badges">
+                        <span class="badge badge-red">AI活用</span>
+                        <span class="badge">在庫削減</span>
+                    </div>
+                </div>
+                <div class="case-body">
+                    <p class="case-description">
+                        AI動画導入で業務効率化と顧客満足向上、在庫問題も改善
+                    </p>
+                    
+                    <div class="features-grid">
+                        <div class="feature-item">AI動画活用</div>
+                        <div class="feature-item">商品案内</div>
+                        <div class="feature-item">顧客対応自動化</div>
+                        <div class="feature-item">SNS連携</div>
+                    </div>
+                    
+                    <div class="quote-box">
+                        <div class="quote-text">"LINEってここまでできるんだ！"</div>
+                    </div>
+                    
+                    <button class="expand-btn" onclick="toggleExpand(this)">
+                        詳細を見る <i class="fas fa-chevron-down ml-2"></i>
+                    </button>
+                    
+                    <div class="expandable-content">
+                        <div class="phone-preview">
+                            <img src="https://page.genspark.site/v1/base64_upload/b2211f8ea078830966e4a0886a2efbda" alt="NovaデザインLINE画面" class="phone-screen">
+                        </div>
+                        <p style="font-size: 12px; color: #666; text-align: center;">
+                            AI動画導入で業務効率化と顧客満足向上を同時に実現
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
-    </footer>
+
+        <!-- Results Tab -->
+        <div id="results" class="tab-content">
+            <div class="slide-card">
+                <div class="line-accent"></div>
+                <div style="padding: 20px;">
+                    <h2 style="font-size: 20px; font-weight: bold; color: #333; margin-bottom: 20px; text-align: center;">
+                        <i class="fas fa-trophy text-yellow-500 mr-2"></i>
+                        主な成果・効果
+                    </h2>
+                    
+                    <div style="margin-bottom: 25px;">
+                        <h3 style="font-size: 16px; font-weight: bold; color: #06C755; margin-bottom: 15px;">
+                            <i class="fas fa-money-bill-wave mr-2"></i>コスト削減効果
+                        </h3>
+                        <div style="background: #f8f9fa; padding: 15px; border-radius: 10px; margin-bottom: 15px;">
+                            <div style="font-size: 24px; font-weight: bold; color: #d32f2f; text-align: center;">¥200,000/年</div>
+                            <div style="text-align: center; font-size: 14px; color: #666;">郵送費用削減（享栄高校OB・OG会）</div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 25px;">
+                        <h3 style="font-size: 16px; font-weight: bold; color: #06C755; margin-bottom: 15px;">
+                            <i class="fas fa-chart-line mr-2"></i>効率化・満足度向上
+                        </h3>
+                        <div class="summary-stats" style="grid-template-columns: 1fr; gap: 10px;">
+                            <div style="background: #e8f5e9; padding: 12px; border-radius: 8px; text-align: center;">
+                                <div style="font-size: 18px; font-weight: bold; color: #388e3c;">情報伝達率 30% → 90%</div>
+                                <div style="font-size: 12px; color: #666;">既読率の大幅向上</div>
+                            </div>
+                            <div style="background: #e3f2fd; padding: 12px; border-radius: 8px; text-align: center;">
+                                <div style="font-size: 18px; font-weight: bold; color: #1976d2;">問合せ対応 40%削減</div>
+                                <div style="font-size: 12px; color: #666;">AI動画導入効果</div>
+                            </div>
+                            <div style="background: #fff3e0; padding: 12px; border-radius: 8px; text-align: center;">
+                                <div style="font-size: 18px; font-weight: bold; color: #f57c00;">在庫問題 30%改善</div>
+                                <div style="font-size: 12px; color: #666;">情報発信強化効果</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 25px;">
+                        <h3 style="font-size: 16px; font-weight: bold; color: #06C755; margin-bottom: 15px;">
+                            <i class="fas fa-heart mr-2"></i>顧客満足度
+                        </h3>
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
+                            <div style="background: #f5fffa; padding: 12px; border-radius: 8px; border: 1px solid #06C755;">
+                                <div style="font-size: 24px; font-weight: bold; color: #06C755; text-align: center;">100%</div>
+                                <div style="font-size: 12px; color: #666; text-align: center;">満足度</div>
+                            </div>
+                            <div style="background: #f5fffa; padding: 12px; border-radius: 8px; border: 1px solid #06C755;">
+                                <div style="font-size: 24px; font-weight: bold; color: #06C755; text-align: center;">5件</div>
+                                <div style="font-size: 12px; color: #666; text-align: center;">全案件成功</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="background: linear-gradient(135deg, #06C755, #04a045); color: white; padding: 20px; border-radius: 10px; text-align: center;">
+                        <div style="font-size: 18px; font-weight: bold; margin-bottom: 10px;">
+                            <i class="fas fa-rocket mr-2"></i>次世代LINE構築サービス
+                        </div>
+                        <div style="font-size: 14px; opacity: 0.9;">
+                            AIと人間の融合で、あなたのビジネスを<br>次のステージへ押し上げます
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+        function showTab(tabName) {
+            // Hide all tab contents
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
             });
-        });
-
-        // Form submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('お問い合わせありがとうございます！24時間以内にご連絡いたします。');
-        });
-
-        // Add scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animation = 'slideUp 0.8s ease-out forwards';
-                }
+            
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
             });
-        }, observerOptions);
-
-        // Observe sections for animation
-        document.querySelectorAll('.stat-item, .problem-card, .solution-card').forEach(el => {
-            observer.observe(el);
-        });
+            
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+        
+        function toggleExpand(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('i');
+            
+            if (content.classList.contains('expanded')) {
+                content.classList.remove('expanded');
+                button.innerHTML = '詳細を見る <i class="fas fa-chevron-down ml-2"></i>';
+            } else {
+                content.classList.add('expanded');
+                button.innerHTML = '閉じる <i class="fas fa-chevron-up ml-2"></i>';
+            }
+        }
     </script>
 </body>
 </html>
