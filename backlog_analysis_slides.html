@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>未処理品番 処理進捗分析</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hiragino Sans', 'Yu Gothic', 'Meiryo', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            overflow: hidden;
+        }
+
+        .slide-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            padding: 60px;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: white;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        h1 {
+            font-size: 48px;
+            color: #2E86AB;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        h2 {
+            font-size: 36px;
+            color: #2E86AB;
+            margin-bottom: 40px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        h3 {
+            font-size: 28px;
+            color: #444;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .subtitle {
+            font-size: 20px;
+            color: #666;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .key-metrics {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .metric-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .metric-value {
+            font-size: 48px;
+            font-weight: bold;
+            color: #2E86AB;
+            margin-bottom: 10px;
+        }
+
+        .metric-label {
+            font-size: 16px;
+            color: #666;
+        }
+
+        .chart-container {
+            width: 100%;
+            max-width: 900px;
+            height: 400px;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .data-table {
+            width: 100%;
+            max-width: 1000px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #2E86AB;
+            color: white;
+            padding: 15px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        td {
+            padding: 12px 15px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+            font-size: 13px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        tr:last-child td {
+            background-color: #ffe6e6;
+            font-weight: bold;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            padding: 12px 24px;
+            background: #2E86AB;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: #1e5f7a;
+            transform: translateY(-2px);
+        }
+
+        .nav-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .slide-counter {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: rgba(46, 134, 171, 0.1);
+            padding: 10px 20px;
+            border-radius: 20px;
+            color: #2E86AB;
+            font-weight: bold;
+            z-index: 1000;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .bullet-points {
+            text-align: left;
+            font-size: 18px;
+            line-height: 1.8;
+            max-width: 800px;
+        }
+
+        .bullet-points li {
+            margin-bottom: 15px;
+            padding-left: 10px;
+        }
+
+        .emphasis {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        .success {
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .slide.active {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="slide-counter">
+            <span id="current-slide">1</span> / <span id="total-slides">6</span>
+        </div>
+
+        <!-- スライド1: タイトル -->
+        <div class="slide active">
+            <h1>未処理品番 処理進捗分析</h1>
+            <div class="subtitle">2025年8月開始 〜 完了予測レポート</div>
+            <div class="highlight-box">
+                <h3>📊 分析結果サマリー</h3>
+                <div class="key-metrics">
+                    <div class="metric-card">
+                        <div class="metric-value">2,600</div>
+                        <div class="metric-label">初期未処理品番</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value emphasis">2026-10</div>
+                        <div class="metric-label">ゼロ到達予定月</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- スライド2: 初期条件 -->
+        <div class="slide">
+            <h2>📋 初期条件・前提</h2>
+            <div class="key-metrics">
+                <div class="metric-card">
+                    <div class="metric-value">2,600</div>
+                    <div class="metric-label">初期未処理品番</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">10</div>
+                    <div class="metric-label">日次処理能力（品番/日）</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">1.2</div>
+                    <div class="metric-label">日次新規流入（品番/日）</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">20</div>
+                    <div class="metric-label">月次稼働日数</div>
+                </div>
+            </div>
+            <div class="highlight-box">
+                <ul class="bullet-points">
+                    <li><strong>月次処理能力：</strong> 200品番/月（10品番/日 × 20日）</li>
+                    <li><strong>月次新規流入：</strong> 24品番/月（1.2品番/日 × 20日）</li>
+                    <li><strong>実質月次純減：</strong> <span class="success">176品番/月</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- スライド3: 処理進捗グラフ -->
+        <div class="slide">
+            <h2>📈 月次推移グラフ</h2>
+            <div class="chart-container">
+                <canvas id="progressChart" width="860" height="360"></canvas>
+            </div>
+            <div class="highlight-box">
+                <ul class="bullet-points">
+                    <li>一定ペース（月次176品番）で順調に減少</li>
+                    <li>2025年8月から<span class="emphasis">15ヶ月間</span>で完了予定</li>
+                    <li>最終月（2026年10月）は<span class="success">稼働16日目</span>でゼロ到達</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- スライド4: 到達見込み -->
+        <div class="slide">
+            <h2>🎯 完了予測</h2>
+            <div class="key-metrics">
+                <div class="metric-card">
+                    <div class="metric-value emphasis">2026-10</div>
+                    <div class="metric-label">未処理ゼロ到達月</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">16</div>
+                    <div class="metric-label">最終月稼働日数</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">15</div>
+                    <div class="metric-label">総処理期間（ヶ月）</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value success">1.2</div>
+                    <div class="metric-label">以降の日次処理量</div>
+                </div>
+            </div>
+            <div class="highlight-box">
+                <h3>🔄 ゼロ到達後の運用</h3>
+                <p style="font-size: 18px; text-align: center; margin-top: 15px;">
+                    2026年10月以降は<strong>新規1.2品番/日の処理のみ</strong>で安定運用可能
+                </p>
+            </div>
+        </div>
+
+        <!-- スライド5: 改善提案 -->
+        <div class="slide">
+            <h2>💡 現場への示唆・改善案</h2>
+            <div class="highlight-box">
+                <h3>⚡ 処理能力向上効果</h3>
+                <ul class="bullet-points">
+                    <li><strong>現状：</strong> 日次10品番処理 → 2026年10月完了</li>
+                    <li><strong>改善案：</strong> 日次<span class="success">+2品番</span>（計12品番/日）向上</li>
+                    <li><strong>効果：</strong> 約<span class="emphasis">2-3ヶ月短縮</span>が可能</li>
+                </ul>
+            </div>
+            <div class="key-metrics" style="margin-top: 40px;">
+                <div class="metric-card">
+                    <div class="metric-value">12</div>
+                    <div class="metric-label">改善後 処理能力</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">216</div>
+                    <div class="metric-label">改善後 月次純減</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value emphasis">2026-07</div>
+                    <div class="metric-label">短縮後 完了予定</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value success">-3ヶ月</div>
+                    <div class="metric-label">短縮効果</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- スライド6: 詳細データ表 -->
+        <div class="slide">
+            <h2>📊 月次推移詳細データ</h2>
+            <div class="data-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>月</th>
+                            <th>期首残<br>(品番)</th>
+                            <th>新規<br>(品番/月)</th>
+                            <th>処理<br>(品番/月)</th>
+                            <th>純減<br>(品番/月)</th>
+                            <th>期末残<br>(品番)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>2025-08</td><td>2,600</td><td>24.0</td><td>200</td><td>176.0</td><td>2,424</td></tr>
+                        <tr><td>2025-09</td><td>2,424</td><td>24.0</td><td>200</td><td>176.0</td><td>2,248</td></tr>
+                        <tr><td>2025-10</td><td>2,248</td><td>24.0</td><td>200</td><td>176.0</td><td>2,072</td></tr>
+                        <tr><td>2025-11</td><td>2,072</td><td>24.0</td><td>200</td><td>176.0</td><td>1,896</td></tr>
+                        <tr><td>2025-12</td><td>1,896</td><td>24.0</td><td>200</td><td>176.0</td><td>1,720</td></tr>
+                        <tr><td>2026-01</td><td>1,720</td><td>24.0</td><td>200</td><td>176.0</td><td>1,544</td></tr>
+                        <tr><td>2026-02</td><td>1,544</td><td>24.0</td><td>200</td><td>176.0</td><td>1,368</td></tr>
+                        <tr><td>2026-03</td><td>1,368</td><td>24.0</td><td>200</td><td>176.0</td><td>1,192</td></tr>
+                        <tr><td>2026-04</td><td>1,192</td><td>24.0</td><td>200</td><td>176.0</td><td>1,016</td></tr>
+                        <tr><td>2026-05</td><td>1,016</td><td>24.0</td><td>200</td><td>176.0</td><td>840</td></tr>
+                        <tr><td>2026-06</td><td>840</td><td>24.0</td><td>200</td><td>176.0</td><td>664</td></tr>
+                        <tr><td>2026-07</td><td>664</td><td>24.0</td><td>200</td><td>176.0</td><td>488</td></tr>
+                        <tr><td>2026-08</td><td>488</td><td>24.0</td><td>200</td><td>176.0</td><td>312</td></tr>
+                        <tr><td>2026-09</td><td>312</td><td>24.0</td><td>200</td><td>176.0</td><td>136</td></tr>
+                        <tr><td>2026-10</td><td>136</td><td>19.2</td><td>160</td><td>140.8</td><td>0</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">← 前へ</button>
+        <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">次へ →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        function updateSlide() {
+            slides.forEach((slide, index) => {
+                slide.classList.toggle('active', index === currentSlide);
+            });
+            
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+            document.getElementById('prevBtn').disabled = currentSlide === 0;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+        }
+
+        function changeSlide(direction) {
+            currentSlide = Math.max(0, Math.min(totalSlides - 1, currentSlide + direction));
+            updateSlide();
+            
+            if (currentSlide === 2) {
+                setTimeout(drawChart, 300);
+            }
+        }
+
+        // キーボードナビゲーション
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+            if (e.key === 'ArrowRight') changeSlide(1);
+        });
+
+        // グラフ描画
+        function drawChart() {
+            const canvas = document.getElementById('progressChart');
+            if (!canvas) return;
+            
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            const data = [
+                { month: '2025-08', value: 2424 },
+                { month: '2025-09', value: 2248 },
+                { month: '2025-10', value: 2072 },
+                { month: '2025-11', value: 1896 },
+                { month: '2025-12', value: 1720 },
+                { month: '2026-01', value: 1544 },
+                { month: '2026-02', value: 1368 },
+                { month: '2026-03', value: 1192 },
+                { month: '2026-04', value: 1016 },
+                { month: '2026-05', value: 840 },
+                { month: '2026-06', value: 664 },
+                { month: '2026-07', value: 488 },
+                { month: '2026-08', value: 312 },
+                { month: '2026-09', value: 136 },
+                { month: '2026-10', value: 0 }
+            ];
+            
+            const padding = 60;
+            const chartWidth = canvas.width - padding * 2;
+            const chartHeight = canvas.height - padding * 2;
+            
+            const maxValue = 2600;
+            const stepX = chartWidth / (data.length - 1);
+            
+            // グリッド描画
+            ctx.strokeStyle = '#e0e0e0';
+            ctx.lineWidth = 1;
+            
+            for (let i = 0; i <= 5; i++) {
+                const y = padding + (chartHeight / 5) * i;
+                ctx.beginPath();
+                ctx.moveTo(padding, y);
+                ctx.lineTo(canvas.width - padding, y);
+                ctx.stroke();
+            }
+            
+            // Y軸ラベル
+            ctx.fillStyle = '#666';
+            ctx.font = '14px sans-serif';
+            ctx.textAlign = 'right';
+            
+            for (let i = 0; i <= 5; i++) {
+                const value = maxValue - (maxValue / 5) * i;
+                const y = padding + (chartHeight / 5) * i + 5;
+                ctx.fillText(value.toLocaleString(), padding - 10, y);
+            }
+            
+            // X軸ラベル
+            ctx.textAlign = 'center';
+            data.forEach((point, index) => {
+                if (index % 2 === 0) {
+                    const x = padding + stepX * index;
+                    const y = canvas.height - padding + 20;
+                    ctx.fillText(point.month, x, y);
+                }
+            });
+            
+            // データライン描画
+            ctx.strokeStyle = '#2E86AB';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            
+            data.forEach((point, index) => {
+                const x = padding + stepX * index;
+                const y = padding + chartHeight - (point.value / maxValue) * chartHeight;
+                
+                if (index === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+            });
+            
+            ctx.stroke();
+            
+            // データポイント描画
+            ctx.fillStyle = '#2E86AB';
+            data.forEach((point, index) => {
+                const x = padding + stepX * index;
+                const y = padding + chartHeight - (point.value / maxValue) * chartHeight;
+                
+                ctx.beginPath();
+                ctx.arc(x, y, 5, 0, 2 * Math.PI);
+                ctx.fill();
+            });
+            
+            // 軸ラベル
+            ctx.fillStyle = '#333';
+            ctx.font = 'bold 16px sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('月', canvas.width / 2, canvas.height - 10);
+            
+            ctx.save();
+            ctx.translate(20, canvas.height / 2);
+            ctx.rotate(-Math.PI / 2);
+            ctx.fillText('期末残(品番)', 0, 0);
+            ctx.restore();
+        }
+
+        // 初期化
+        updateSlide();
+    </script>
+</body>
+</html>
