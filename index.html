@@ -3,605 +3,358 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>【改善版】公式LINE構築実績 | Modern Portfolio</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
-    
+    <title>未処理品番 処理進捗報告</title>
     <style>
-        /* --- CSS変数定義 --- */
-        :root {
-            --primary-color: #06C755;
-            --primary-dark: #05a84a;
-            --accent-blue: #3B82F6;
-            --accent-red: #EF4444;
-            --text-dark: #1a202c;
-            --text-light: #4a5568;
-            --bg-main: #f8faff;
-            --bg-card: #ffffff;
-            --border-light: #e2e8f0;
-            --shadow-soft: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-            --shadow-medium: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            --radius-md: 12px;
-            --radius-lg: 16px;
-        }
-
-        /* --- 基本スタイル --- */
         body {
-            font-family: 'Noto Sans JP', sans-serif;
-            background-color: var(--bg-main);
-            color: var(--text-light);
+            font-family: 'Hiragino Sans', 'Yu Gothic', 'Meiryo', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
         }
 
-        .container {
-            max-width: 480px;
+        .page {
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 16px;
-        }
-
-        /* --- アニメーション --- */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        .fade-in-up {
-            animation: fadeInUp 0.6s ease-out forwards;
-        }
-        
-        /* --- ヘッダーカード --- */
-        .hero-card {
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-            color: white;
-            border-radius: var(--radius-lg);
-            padding: 24px;
-            text-align: center;
-            box-shadow: var(--shadow-medium);
-            margin-bottom: 24px;
-        }
-        .hero-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-        .hero-title {
-            font-size: 1.8rem;
-            font-weight: 900;
-            line-height: 1.3;
-        }
-        .hero-subtitle {
-            font-size: 1rem;
-            opacity: 0.9;
-            margin-top: 8px;
-        }
-        .stats-bar {
-            display: flex;
-            justify-content: space-around;
-            background-color: rgba(255,255,255,0.1);
-            border-radius: var(--radius-md);
-            margin-top: 24px;
-            padding: 16px 8px;
-        }
-        .stat-item {
-            text-align: center;
-        }
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 700;
-        }
-        .stat-label {
-            font-size: 0.8rem;
-            opacity: 0.8;
-        }
-
-        /* --- タブナビゲーション --- */
-        .nav-tabs {
-            display: flex;
-            background-color: #f8fafc;
-            border-radius: var(--radius-lg);
-            padding: 8px;
-            box-shadow: var(--shadow-medium);
-            margin-bottom: 24px;
-            border: 2px solid #e2e8f0;
-        }
-        .nav-tab {
-            flex: 1;
-            padding: 16px 12px;
-            border: 2px solid transparent;
             background: white;
-            border-radius: var(--radius-md);
-            font-weight: 700;
-            font-size: 0.9rem;
-            color: var(--text-dark);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin: 0 4px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
-        .nav-tab:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            border-color: var(--primary-color);
-        }
-        .nav-tab.active {
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-            color: white;
-            border-color: var(--primary-dark);
-            box-shadow: 0 4px 12px rgba(6, 199, 85, 0.4);
-            transform: translateY(-1px);
-        }
-        .tab-content { display: none; }
-        .tab-content.active { display: block; }
-
-        /* --- 案件カード --- */
-        .case-card {
-            background-color: var(--bg-card);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-soft);
-            margin-bottom: 20px;
-            overflow: hidden;
-            border-left: 5px solid;
-            transition: all 0.3s ease;
-        }
-        .case-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-medium);
-        }
-        .case-card[data-type="consult"] { border-image: linear-gradient(to top, #8B5CF6, #c084fc) 1; }
-        .case-card[data-type="sports"] { border-image: linear-gradient(to top, #3B82F6, #60a5fa) 1; }
-        .case-card[data-type="beauty"] { border-image: linear-gradient(to top, #F59E0B, #fcd34d) 1; }
-        .case-card[data-type="group"] { border-image: linear-gradient(to top, #6D28D9, #a78bfa) 1; }
-        .case-card[data-type="company"] { border-image: linear-gradient(to top, #EC4899, #f9a8d4) 1; }
-        
-        .case-header {
-            padding: 16px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .case-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            display: grid;
-            place-items: center;
-            color: white;
-            font-size: 1.25rem;
-            flex-shrink: 0;
-        }
-        .case-icon-consult { background: linear-gradient(135deg, #8B5CF6, #c084fc); }
-        .case-icon-sports { background: linear-gradient(135deg, #3B82F6, #60a5fa); }
-        .case-icon-beauty { background: linear-gradient(135deg, #F59E0B, #fcd34d); }
-        .case-icon-group { background: linear-gradient(135deg, #6D28D9, #a78bfa); }
-        .case-icon-company { background: linear-gradient(135deg, #EC4899, #f9a8d4); }
-        
-        .case-title-group {
-            flex-grow: 1;
-        }
-        .case-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--text-dark);
-        }
-        .case-badges {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-top: 4px;
-        }
-        .badge {
-            padding: 3px 10px;
-            border-radius: 99px;
-            font-size: 0.7rem;
-            font-weight: 700;
-            color: white;
-            background-color: var(--primary-color);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            page-break-after: always;
         }
 
-        .case-body {
-            padding: 0 20px 20px;
-        }
-        .case-desc {
-            font-size: 0.9rem;
-            margin-bottom: 16px;
-        }
-        .case-point {
-            background-color: rgba(6, 199, 85, 0.05);
-            border-radius: var(--radius-md);
-            padding: 12px;
+        h1 {
             text-align: center;
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: var(--primary-dark);
-            border: 1px solid rgba(6, 199, 85, 0.1);
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 28px;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
         }
 
-        /* 詳細表示 */
-        .expand-btn {
+        .summary {
+            background-color: #e8f4f8;
+            padding: 20px;
+            border-left: 4px solid #3498db;
+            margin: 20px 0;
+            font-size: 16px;
+        }
+
+        .key-result {
+            font-size: 18px;
+            font-weight: bold;
+            color: #e74c3c;
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        .chart-container {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .chart-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        table {
             width: 100%;
-            padding: 12px;
-            margin-top: 16px;
-            background-color: #e2e8f0;
-            color: var(--text-light);
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+
+        th {
+            background-color: #3498db;
+            color: white;
+            padding: 12px 8px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        td {
+            padding: 10px 8px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:last-child {
+            background-color: #fff3cd;
+            font-weight: bold;
+        }
+
+        .analysis {
+            margin: 30px 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+
+        .analysis h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .analysis ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+
+        .analysis li {
+            margin-bottom: 8px;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+
+        .success {
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .warning {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        .navigation {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .nav-btn {
+            padding: 10px 20px;
+            margin: 0 10px;
+            background-color: #3498db;
+            color: white;
             border: none;
-            border-radius: var(--radius-md);
-            font-weight: 700;
+            border-radius: 5px;
             cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .expand-btn:hover {
-            background-color: #cbd5e1;
-            color: var(--text-dark);
-        }
-        .expand-btn i {
-            transition: transform 0.3s ease;
-        }
-        .expandable-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease-in-out, margin-top 0.5s ease-in-out;
-        }
-        .expandable-content.expanded {
-            margin-top: 16px;
-            max-height: 500px; /* 十分な高さを確保 */
-        }
-        
-        /* 成果タブ */
-        .result-card {
-            background: var(--bg-card);
-            border-radius: var(--radius-lg);
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: var(--shadow-soft);
-        }
-        .result-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .result-item {
-            margin-bottom: 24px;
-        }
-        .result-item-title {
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--primary-dark);
-            margin-bottom: 12px;
-            border-left: 3px solid var(--primary-color);
-            padding-left: 8px;
-        }
-        .cost-comparison {
-            display: grid;
-            grid-template-columns: auto 1fr auto auto auto;
-            align-items: center;
-            gap: 8px;
-            background: #f0f9ff;
-            padding: 16px;
-            border-radius: var(--radius-md);
-        }
-        .cost-text {
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: var(--accent-blue);
-            writing-mode: horizontal-tb;
-            text-orientation: mixed;
-        }
-        .cost-amount {
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: var(--primary-dark);
-            text-align: center;
-        }
-        .efficiency-grid {
-            display: grid;
-            gap: 12px;
-        }
-        .efficiency-item {
-            background-color: #f0f9ff;
-            border: 1px solid #e0f2fe;
-            border-radius: var(--radius-md);
-            padding: 16px;
-            text-align: center;
-        }
-        .efficiency-value {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--accent-blue);
-            margin-bottom: 4px;
-        }
-        .efficiency-label {
-            font-size: 0.8rem;
+            font-size: 14px;
         }
 
-        /* 概要タブ */
-        .summary-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-        }
-        .summary-item {
-            background: var(--bg-card);
-            border-radius: var(--radius-lg);
-            padding: 20px;
-            text-align: center;
-            box-shadow: var(--shadow-soft);
-        }
-        .summary-icon {
-            font-size: 1.8rem;
-            margin-bottom: 12px;
-            color: var(--primary-color);
-        }
-        .summary-title {
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 4px;
-        }
-        .summary-desc {
-            font-size: 0.8rem;
-            line-height: 1.5;
+        .nav-btn:hover {
+            background-color: #2980b9;
         }
 
-        /* スマホプレビュー */
-        .phone-preview {
-            width: 150px;
-            height: auto;
-            margin: 16px auto 8px;
-            filter: drop-shadow(0 10px 8px rgba(0,0,0,0.1));
-        }
-        .phone-preview img {
-            width: 100%;
-            border-radius: 12px;
+        .nav-btn:disabled {
+            background-color: #bdc3c7;
+            cursor: not-allowed;
         }
 
+        @media print {
+            .navigation { display: none; }
+            .page { box-shadow: none; margin-bottom: 0; }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header class="hero-card">
-            <div class="hero-icon"><i class="fab fa-line"></i></div>
-            <h1 class="hero-title">公式LINE構築実績</h1>
-            <p class="hero-subtitle">ビジネスを加速させるLINE活用事例</p>
-            <div class="stats-bar">
-                <div class="stat-item">
-                    <div class="stat-number" data-count="5">0</div>
-                    <div class="stat-label">構築案件</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number" data-count="100">0</div>
-                    <div class="stat-label">顧客満足度 %</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number" data-count="90">0</div>
-                    <div class="stat-label">最高既読率 %</div>
-                </div>
-            </div>
-        </header>
-
-        <nav class="nav-tabs">
-            <button class="nav-tab active" onclick="showTab('overview')">概要</button>
-            <button class="nav-tab" onclick="showTab('cases')">案件詳細</button>
-            <button class="nav-tab" onclick="showTab('results')">成果</button>
-        </nav>
-
-        <div id="overview" class="tab-content active">
-            <div class="summary-grid">
-                <div class="summary-item fade-in-up" style="animation-delay: 0.1s;">
-                    <div class="summary-icon"><i class="fas fa-industry"></i></div>
-                    <div class="summary-title">多様な業種に対応</div>
-                    <div class="summary-desc">コンサル・美容・スポーツなど幅広い実績</div>
-                </div>
-                <div class="summary-item fade-in-up" style="animation-delay: 0.2s;">
-                    <div class="summary-icon"><i class="fas fa-chart-line"></i></div>
-                    <div class="summary-title">確かな成果</div>
-                    <div class="summary-desc">コスト削減・業務効率化・満足度向上を実現</div>
-                </div>
-                <div class="summary-item fade-in-up" style="animation-delay: 0.3s;">
-                    <div class="summary-icon"><i class="fas fa-robot"></i></div>
-                    <div class="summary-title">最新技術の活用</div>
-                    <div class="summary-desc">AI動画・ChatGPT連携など最先端の機能</div>
-                </div>
-                <div class="summary-item fade-in-up" style="animation-delay: 0.4s;">
-                    <div class="summary-icon"><i class="fas fa-lightbulb"></i></div>
-                    <div class="summary-title">課題解決へのこだわり</div>
-                    <div class="summary-desc">お客様の課題に寄り添った最適な設計を提案</div>
-                </div>
-            </div>
+    <!-- 1ページ目: 概要とグラフ -->
+    <div class="page" id="page1">
+        <h1>未処理品番 処理進捗報告書</h1>
+        
+        <div class="summary">
+            <strong>【分析概要】</strong><br>
+            初期未処理2,600品番から開始し、月次176品番の純減ペースで処理を継続した場合の進捗予測を分析しました。
+            処理能力10品番/日（10品番で0.5H）、新規流入1.2品番/日、月次稼働20日の条件下での計算結果です。
         </div>
 
-        <div id="cases" class="tab-content">
-            <div class="case-card fade-in-up" data-type="consult">
-                <div class="case-header">
-                    <div class="case-icon case-icon-consult"><i class="fas fa-compass"></i></div>
-                    <div class="case-title-group">
-                        <div class="case-title">軸づくりコンサルタント</div>
-                        <div class="case-badges"><span class="badge">AI活用</span></div>
-                    </div>
-                </div>
-                <div class="case-body">
-                    <p class="case-desc">クライアントの世界観を反映し、ブランドイメージの一貫性を実現。</p>
-                    <div class="case-point">"大満足です！" というお言葉を頂きました</div>
-                    <button class="expand-btn" onclick="toggleExpand(this)">詳細を見る <i class="fas fa-chevron-down ml-2"></i></button>
-                    <div class="expandable-content">
-                        <div class="phone-preview"><img src="https://page.genspark.site/v1/base64_upload/dadf28c58e5f755a6bc7ea944506f626" alt="LINE画面"></div>
-                        <p class="text-xs text-center px-4">AI技術で世界観を的確に表現し、ZOOM予約への導線を強化しました。</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="case-card fade-in-up" data-type="sports">
-                <div class="case-header">
-                    <div class="case-icon case-icon-sports"><i class="fas fa-baseball-ball"></i></div>
-                    <div class="case-title-group">
-                        <div class="case-title">中学生野球クラブチーム</div>
-                        <div class="case-badges"><span class="badge">業務効率化</span></div>
-                    </div>
-                </div>
-                <div class="case-body">
-                    <p class="case-desc">電話対応だった体験申込をLINEで完結させ、集客と運営の基盤を構築。</p>
-                    <div class="case-point">保護者の対応が格段に楽になったと好評</div>
-                    <button class="expand-btn" onclick="toggleExpand(this)">詳細を見る <i class="fas fa-chevron-down ml-2"></i></button>
-                    <div class="expandable-content">
-                        <div class="phone-preview"><img src="https://page.genspark.site/v1/base64_upload/b19077f634e7f8334bbfdbbc5f991fd5" alt="LINE画面"></div>
-                        <p class="text-xs text-center px-4">体験申込の自動化で運営効率化を実現。保護者の負担も大幅軽減しました。</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="case-card fade-in-up" data-type="beauty">
-                <div class="case-header">
-                    <div class="case-icon case-icon-beauty"><i class="fas fa-cut"></i></div>
-                    <div class="case-title-group">
-                        <div class="case-title">美容室BLESS</div>
-                        <div class="case-badges"><span class="badge">複合サービス</span></div>
-                    </div>
-                </div>
-                <div class="case-body">
-                    <p class="case-desc">複数事業（美容・ヨガ・整体等）の情報発信と予約導線を一元化。</p>
-                    <div class="case-point">伝えるのがラクになった！と感謝されました</div>
-                    <button class="expand-btn" onclick="toggleExpand(this)">詳細を見る <i class="fas fa-chevron-down ml-2"></i></button>
-                    <div class="expandable-content">
-                        <div class="phone-preview"><img src="https://page.genspark.site/v1/base64_upload/dc9f2c427c0b23c6a0ad32ba534f0fdc" alt="LINE画面"></div>
-                        <p class="text-xs text-center px-4">6つのサービスを整理し、マルチサービス展開を強力にサポートしました。</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="case-card fade-in-up" data-type="group">
-                <div class="case-header">
-                    <div class="case-icon case-icon-group"><i class="fas fa-users"></i></div>
-                    <div class="case-title-group">
-                        <div class="case-title">享栄高校 硬式野球部 OB・OG会</div>
-                        <div class="case-badges"><span class="badge">コスト削減</span></div>
-                    </div>
-                </div>
-                <div class="case-body">
-                    <p class="case-desc">郵送費を全額削減し、情報伝達率を30%から90%へと劇的に改善。</p>
-                    <div class="case-point">コストも減り、運営が楽になったと高評価</div>
-                    <button class="expand-btn" onclick="toggleExpand(this)">詳細を見る <i class="fas fa-chevron-down ml-2"></i></button>
-                    <div class="expandable-content">
-                         <div class="phone-preview"><img src="https://page.genspark.site/v1/base64_upload/88028339988cc88ba6962fe2bb7e6cf1" alt="LINE画面"></div>
-                        <p class="text-xs text-center px-4">年間約20万円の郵送費削減と、情報共有率の向上を同時に達成しました。</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="case-card fade-in-up" data-type="company">
-                <div class="case-header">
-                    <div class="case-icon case-icon-company"><i class="fas fa-tools"></i></div>
-                    <div class="case-title-group">
-                        <div class="case-title">リフォーム会社 Novaデザイン</div>
-                        <div class="case-badges"><span class="badge">AI動画</span><span class="badge ml-2">在庫削減</span></div>
-                    </div>
-                </div>
-                <div class="case-body">
-                    <p class="case-desc">AI動画で業務効率化と顧客満足度を向上させ、在庫問題も改善。</p>
-                    <div class="case-point">"LINEってここまでできるんだ！"と驚きの声</div>
-                    <button class="expand-btn" onclick="toggleExpand(this)">詳細を見る <i class="fas fa-chevron-down ml-2"></i></button>
-                    <div class="expandable-content">
-                         <div class="phone-preview"><img src="https://page.genspark.site/v1/base64_upload/b2211f8ea078830966e4a0886a2efbda" alt="LINE画面"></div>
-                        <p class="text-xs text-center px-4">AI動画の導入で、業務効率化と顧客満足度の向上を同時に実現しました。</p>
-                    </div>
-                </div>
-            </div>
+        <div class="key-result">
+            🎯 <span class="warning">2026年10月</span>に未処理品番ゼロ到達予定
         </div>
 
-        <div id="results" class="tab-content">
-            <div class="result-card fade-in-up">
-                <h2 class="result-title"><i class="fas fa-trophy text-yellow-400 mr-2"></i>主な成果・効果</h2>
-                <div class="result-item">
-                    <h3 class="result-item-title">効率化・満足度向上</h3>
-                    <div class="efficiency-grid">
-                        <div class="efficiency-item">
-                            <div class="efficiency-value">30% <i class="fas fa-long-arrow-alt-right mx-1"></i> 90%</div>
-                            <div class="efficiency-label">情報伝達率（既読率）の向上</div>
-                        </div>
-                         <div class="efficiency-item">
-                            <div class="efficiency-value">40% 削減</div>
-                            <div class="efficiency-label">問合せ対応工数（AI動画導入）</div>
-                        </div>
-                         <div class="efficiency-item">
-                            <div class="efficiency-value">100% 達成</div>
-                            <div class="efficiency-label">全案件での顧客満足度</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="chart-container">
+            <div class="chart-title">■ 未処理品番 月次推移</div>
+            <canvas id="progressChart" width="800" height="300"></canvas>
+        </div>
+
+        <div class="analysis">
+            <h3>📊 分析結果</h3>
+            <ul>
+                <li><strong>処理期間：</strong>約<span class="highlight">15ヶ月</span>（2025年8月〜2026年10月）</li>
+                <li><strong>月次処理：</strong>200品番/月 - 24品番/月（新規）= <span class="success">176品番/月の純減</span></li>
+                <li><strong>最終月：</strong>2026年10月の<span class="success">16日稼働</span>でゼロ到達</li>
+                <li><strong>完了後：</strong>新規1.2品番/日の処理のみで安定運用可能</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- 2ページ目: 詳細データ表 -->
+    <div class="page" id="page2" style="display:none;">
+        <h1>月次処理データ詳細</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>処理月</th>
+                    <th>期首残<br>(品番)</th>
+                    <th>新規流入<br>(品番/月)</th>
+                    <th>処理実行<br>(品番/月)</th>
+                    <th>純減<br>(品番/月)</th>
+                    <th>期末残<br>(品番)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>2025-08</td><td>2,600</td><td>24.0</td><td>200</td><td>176.0</td><td>2,424</td></tr>
+                <tr><td>2025-09</td><td>2,424</td><td>24.0</td><td>200</td><td>176.0</td><td>2,248</td></tr>
+                <tr><td>2025-10</td><td>2,248</td><td>24.0</td><td>200</td><td>176.0</td><td>2,072</td></tr>
+                <tr><td>2025-11</td><td>2,072</td><td>24.0</td><td>200</td><td>176.0</td><td>1,896</td></tr>
+                <tr><td>2025-12</td><td>1,896</td><td>24.0</td><td>200</td><td>176.0</td><td>1,720</td></tr>
+                <tr><td>2026-01</td><td>1,720</td><td>24.0</td><td>200</td><td>176.0</td><td>1,544</td></tr>
+                <tr><td>2026-02</td><td>1,544</td><td>24.0</td><td>200</td><td>176.0</td><td>1,368</td></tr>
+                <tr><td>2026-03</td><td>1,368</td><td>24.0</td><td>200</td><td>176.0</td><td>1,192</td></tr>
+                <tr><td>2026-04</td><td>1,192</td><td>24.0</td><td>200</td><td>176.0</td><td>1,016</td></tr>
+                <tr><td>2026-05</td><td>1,016</td><td>24.0</td><td>200</td><td>176.0</td><td>840</td></tr>
+                <tr><td>2026-06</td><td>840</td><td>24.0</td><td>200</td><td>176.0</td><td>664</td></tr>
+                <tr><td>2026-07</td><td>664</td><td>24.0</td><td>200</td><td>176.0</td><td>488</td></tr>
+                <tr><td>2026-08</td><td>488</td><td>24.0</td><td>200</td><td>176.0</td><td>312</td></tr>
+                <tr><td>2026-09</td><td>312</td><td>24.0</td><td>200</td><td>176.0</td><td>136</td></tr>
+                <tr><td>2026-10</td><td>136</td><td>19.2</td><td>160</td><td>140.8</td><td>0</td></tr>
+            </tbody>
+        </table>
+
+        <div class="analysis">
+            <h3>📋 データ補足</h3>
+            <ul>
+                <li><strong>基本条件：</strong>処理能力10品番/日 × 稼働20日/月 = 200品番/月</li>
+                <li><strong>新規流入：</strong>1.2品番/日 × 稼働20日/月 = 24品番/月</li>
+                <li><strong>最終月：</strong>136品番÷8.8品番/日 = 15.5日 → 稼働16日で完了</li>
+            </ul>
+        </div>
+
+        <div class="summary">
+            <strong>【結論】</strong><br>
+            現在の処理体制を維持した場合、<span class="warning">2026年10月16日稼働日</span>に未処理品番がゼロになる予定です。
+            以降は新規流入分（1.2品番/日）の処理のみで運用が継続できます。
         </div>
     </div>
 
-    <script>
-        // --- タブ切り替え機能 ---
-        function showTab(tabName) {
-            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-            document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-            
-            document.getElementById(tabName).classList.add('active');
-            event.target.classList.add('active');
-        }
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn" onclick="changePage(-1)">← 前ページ</button>
+        <span id="pageInfo">1 / 2</span>
+        <button class="nav-btn" id="nextBtn" onclick="changePage(1)">次ページ →</button>
+    </div>
 
-        // --- 詳細表示/非表示機能 ---
-        function toggleExpand(button) {
-            const content = button.nextElementSibling;
-            const icon = button.querySelector('i');
+    <script>
+        let currentPage = 1;
+        const totalPages = 2;
+
+        function updatePage() {
+            document.getElementById('page1').style.display = currentPage === 1 ? 'block' : 'none';
+            document.getElementById('page2').style.display = currentPage === 2 ? 'block' : 'none';
+            document.getElementById('pageInfo').textContent = `${currentPage} / ${totalPages}`;
+            document.getElementById('prevBtn').disabled = currentPage === 1;
+            document.getElementById('nextBtn').disabled = currentPage === totalPages;
             
-            if (content.classList.contains('expanded')) {
-                content.classList.remove('expanded');
-                button.innerHTML = '詳細を見る <i class="fas fa-chevron-down ml-2"></i>';
-                icon.style.transform = 'rotate(0deg)';
-            } else {
-                content.classList.add('expanded');
-                button.innerHTML = '閉じる <i class="fas fa-chevron-up ml-2"></i>';
-                icon.style.transform = 'rotate(180deg)';
+            if (currentPage === 1) {
+                setTimeout(drawChart, 100);
             }
         }
-        
-        // --- 表示されたら発動するアニメーション ---
-        document.addEventListener('DOMContentLoaded', () => {
-            // カウントアップアニメーション
-            const counters = document.querySelectorAll('.stat-number');
-            const speed = 200; // アニメーション速度
 
-            const animateCount = (counter) => {
-                const target = +counter.getAttribute('data-count');
-                const updateCount = () => {
-                    const count = +counter.innerText;
-                    const increment = target / speed;
-                    
-                    if (count < target) {
-                        counter.innerText = Math.ceil(count + increment);
-                        setTimeout(updateCount, 1);
-                    } else {
-                        counter.innerText = target;
-                    }
-                };
-                updateCount();
-            };
+        function changePage(direction) {
+            currentPage = Math.max(1, Math.min(totalPages, currentPage + direction));
+            updatePage();
+        }
+
+        function drawChart() {
+            const canvas = document.getElementById('progressChart');
+            if (!canvas) return;
             
-            // フェードインアニメーション
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        if(entry.target.classList.contains('stat-number')) {
-                            animateCount(entry.target);
-                        } else {
-                            entry.target.classList.add('fade-in-up');
-                        }
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            document.querySelectorAll('.fade-in-up, .stat-number').forEach(el => {
-                observer.observe(el);
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            const data = [2600, 2424, 2248, 2072, 1896, 1720, 1544, 1368, 1192, 1016, 840, 664, 488, 312, 136, 0];
+            const months = ['2025-08', '2025-09', '2025-10', '2025-11', '2025-12', '2026-01', '2026-02', '2026-03', '2026-04', '2026-05', '2026-06', '2026-07', '2026-08', '2026-09', '2026-10'];
+            
+            const padding = 60;
+            const chartWidth = canvas.width - padding * 2;
+            const chartHeight = canvas.height - padding * 2;
+            const maxValue = 2600;
+            const stepX = chartWidth / (data.length - 1);
+            
+            // グリッド線
+            ctx.strokeStyle = '#e0e0e0';
+            ctx.lineWidth = 1;
+            
+            for (let i = 0; i <= 5; i++) {
+                const y = padding + (chartHeight / 5) * i;
+                ctx.beginPath();
+                ctx.moveTo(padding, y);
+                ctx.lineTo(canvas.width - padding, y);
+                ctx.stroke();
+            }
+            
+            // Y軸目盛り
+            ctx.fillStyle = '#666';
+            ctx.font = '12px sans-serif';
+            ctx.textAlign = 'right';
+            
+            for (let i = 0; i <= 5; i++) {
+                const value = maxValue - (maxValue / 5) * i;
+                const y = padding + (chartHeight / 5) * i + 4;
+                ctx.fillText(value.toLocaleString(), padding - 10, y);
+            }
+            
+            // X軸目盛り
+            ctx.textAlign = 'center';
+            for (let i = 0; i < months.length; i += 3) {
+                const x = padding + stepX * i;
+                const y = canvas.height - padding + 15;
+                ctx.fillText(months[i], x, y);
+            }
+            
+            // データライン
+            ctx.strokeStyle = '#3498db';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            
+            data.forEach((value, index) => {
+                const x = padding + stepX * index;
+                const y = padding + chartHeight - (value / maxValue) * chartHeight;
+                
+                if (index === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
             });
+            
+            ctx.stroke();
+            
+            // データポイント
+            ctx.fillStyle = '#2980b9';
+            data.forEach((value, index) => {
+                const x = padding + stepX * index;
+                const y = padding + chartHeight - (value / maxValue) * chartHeight;
+                
+                ctx.beginPath();
+                ctx.arc(x, y, 3, 0, 2 * Math.PI);
+                ctx.fill();
+            });
+        }
+
+        // キーボードナビゲーション
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') changePage(-1);
+            if (e.key === 'ArrowRight') changePage(1);
         });
+
+        // 初期化
+        updatePage();
     </script>
 </body>
 </html>
